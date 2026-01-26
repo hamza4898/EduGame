@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.OpenApi;
 using Microsoft.Extensions.FileProviders;
+using System.ComponentModel;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var frontendPath = Path.Combine(builder.Environment.ContentRootPath, "../Frontend");
+Console.WriteLine("Frontend path: " + frontendPath);
 
 builder.Services.AddControllers();
 
@@ -19,11 +23,17 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseDefaultFiles(new DefaultFilesOptions
+{
+    FileProvider = new PhysicalFileProvider(frontendPath),
+    RequestPath = "",
+    DefaultFileNames = new List<string> { "EduHTML.html" }
+});
+
 app.UseStaticFiles(new StaticFileOptions
 {
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, "../Frontend")),
-    RequestPath = "/frontend"  
+    FileProvider = new PhysicalFileProvider(frontendPath),
+    RequestPath = ""  
 });
 
 app.UseHttpsRedirection();
