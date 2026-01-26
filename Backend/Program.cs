@@ -6,7 +6,6 @@ using System.ComponentModel;
 var builder = WebApplication.CreateBuilder(args);
 
 var frontendPath = Path.Combine(builder.Environment.ContentRootPath, "../Frontend");
-Console.WriteLine("Frontend path: " + frontendPath);
 
 builder.Services.AddControllers();
 
