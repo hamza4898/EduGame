@@ -26,7 +26,7 @@ app.UseDefaultFiles(new DefaultFilesOptions
 {
     FileProvider = new PhysicalFileProvider(frontendPath),
     RequestPath = "",
-    DefaultFileNames = new List<string> { "EduHTML.html" }
+    DefaultFileNames = new List<string> { "Main.html" }
 });
 
 app.UseStaticFiles(new StaticFileOptions
