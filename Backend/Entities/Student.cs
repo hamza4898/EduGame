@@ -11,7 +11,7 @@ namespace EduGame.Entities
         public Education UserEducation { get; set; }
         public string? Motivation { get; set; }
     }
-    enum Education
+    public enum Education
     {
         Pupil,
         MiddleSchool,

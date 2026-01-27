@@ -41,18 +41,24 @@
                 <button class="back-btn" onclick="hideAllForms()">← Назад к выбору</button>
                 <h3>👨‍🎓 Регистрация ученика</h3>
                 <form id="studentFormData">
-                    <input type="text" placeholder="ФИО" required>
+                    <input type="text" placeholder="Фамилия" required>
+                    <input type="text" placeholder="Имя" required>
+                    <select required aria-placeholder="Пол">
+                        <option value="" selected disabled>Пол</option>
+                        <option value="">Мужской</option>
+                        <option value="">Женский</option>
+                    </select>
                     <input type="email" placeholder="Email" required>
-                    <input type="tel" placeholder="Телефон" required>
-                    <input type="password" placeholder="Пароль" required>
                     <select required aria-placeholder = "Образование">
-                        <option value="">Образование</option>
+                        <option value="" selected disabled>Образование</option>
                         <option value="5">Ученик начальной школы</option>
                         <option value="9">Ученик средней школы</option>
                         <option value="11">Ученик старшей школы</option>
                         <option value="student">Студент</option>
                         <option value="other">Другое</option>
                     </select>
+                    <input type="tel" placeholder="Телефон" required>
+                    <input type="password" placeholder="Пароль" required>
                     <textarea placeholder="В чем ваша мотивация?" rows="4" required></textarea>
                     <button type="submit" class="submit-btn">Начать обучение</button>
                 </form>
