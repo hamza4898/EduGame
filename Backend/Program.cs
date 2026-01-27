@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var frontendPath = Path.Combine(builder.Environment.ContentRootPath, "../Frontend/");
+var frontendPath = Path.Combine(builder.Environment.ContentRootPath, "../Frontend");
 
 builder.Services.AddControllers();
 
@@ -26,7 +26,7 @@ app.UseDefaultFiles(new DefaultFilesOptions
 {
     FileProvider = new PhysicalFileProvider(frontendPath),
     RequestPath = "",
-    DefaultFileNames = new List<string> { "Main.html" }
+    DefaultFileNames = new List<string> { "EduHTML.html" }
 });
 
 app.UseStaticFiles(new StaticFileOptions
