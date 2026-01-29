@@ -1,5 +1,6 @@
 using EduGame.DTOs;
 using EduGame.Entities;
+using BCrypt.Net;
 
 namespace EduGame.Services
 {

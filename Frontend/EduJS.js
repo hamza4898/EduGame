@@ -14,20 +14,6 @@ function hideAllForms() {
     });
 }
 
-function download(platform) {
-    document.getElementById('downloadModal').style.display = 'block';
-    console.log(`Скачивание для ${platform}...`);
-}
-
-document.querySelectorAll('.role-form form').forEach(form => {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('✅ Заявка отправлена!\n\nМы свяжемся с вами в ближайшее время.\nСпасибо за интерес к EduGame!');
-        this.reset();
-        hideAllForms();
-    });
-});
-
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = 'none';
 }
@@ -37,3 +23,17 @@ window.onclick = function(event) {
         event.target.style.display = 'none';
     }
 }
+
+document.addEventListener('submit', async (e) => {
+    e.preventDefault(); 
+
+    const form = e.target;
+    
+    await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+    });
+
+    window.location.href = "/Main.html";
+});

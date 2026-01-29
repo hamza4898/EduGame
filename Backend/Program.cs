@@ -26,6 +26,8 @@ builder.Services.AddScoped<IStudentService, StudentService>();
 
 builder.Services.AddScoped<ITeacherService, TeacherService>();
 
+builder.Services.AddScoped<IPartnerService, PartnerService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
