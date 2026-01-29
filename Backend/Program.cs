@@ -1,7 +1,11 @@
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.OpenApi;
 using Microsoft.Extensions.FileProviders;
 using System.ComponentModel;
+using EduGame.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using EduGame.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +16,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<EFCoreDbContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")
+)));
+
+builder.Services.AddScoped<IStudentService, StudentService>();
 
 var app = builder.Build();
 

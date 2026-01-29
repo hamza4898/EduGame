@@ -1,11 +1,7 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace EduGame.Entities
+namespace EduGame.DTOs
 {
-    public class Student
+    public class StudentDTO
     {
-        public int Id { get; set; }
-
         public string? FirstName { get; set; }
 
         public string? LastName { get; set; }
@@ -18,7 +14,7 @@ namespace EduGame.Entities
 
         public string? Email { get; set; }
 
-        public string? PasswordHash { get; set; }
+        public string? Password { get; set; }
 
         public string? Motivation { get; set; }
     }
