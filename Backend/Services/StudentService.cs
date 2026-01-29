@@ -4,34 +4,28 @@ using EduGame.DTOs;
 using EduGame.Entities;
 using BCrypt.Net;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace EduGame.Services
 {
     public class StudentService : IStudentService
     {
         private readonly EFCoreDbContext _eduGameDbContext;
+        private readonly IMapper _mapper;
 
-        public StudentService(EFCoreDbContext eduGameDBContext)
+        public StudentService(EFCoreDbContext eduGameDBContext, IMapper mapper)
         {
             _eduGameDbContext = eduGameDBContext;
+            _mapper = mapper;
         }
 
         public async Task CreateStudent(StudentDTO studentDTO)
         {
-            var student = new Student()
-            {
-                FirstName = studentDTO.FirstName,
-                LastName = studentDTO.LastName,
-                Gender = studentDTO.Gender,
-                Phone = studentDTO.Phone,
-                Education = studentDTO.Education,
-                Email = studentDTO.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(studentDTO.Password),
-                Motivation = studentDTO.Motivation
-            };
+            var student = _mapper.Map<Student>(studentDTO);
+
+            student.PasswordHash = BCrypt.Net.BCrypt.HashPassword(studentDTO.Password);
 
             _eduGameDbContext.Students.Add(student);
-
             await _eduGameDbContext.SaveChangesAsync();     
         }
     }
