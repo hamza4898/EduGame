@@ -67,13 +67,20 @@
             <div id="teacherForm" class="role-form">
                 <button class="back-btn" onclick="hideAllForms()">← Назад к выбору</button>
                 <h3>👨‍🏫 Заявка преподавателя</h3>
-                <form id="teacherFormData">
-                    <input type="text" placeholder="ФИО" required>
-                    <input type="email" placeholder="Email" required>
-                    <input type="text" placeholder="Предмет/Специализация" required>
-                    <input type="tel" placeholder="Телефон" required>
-                    <textarea placeholder="Опыт преподавания, примеры работ" rows="4" required></textarea>
-                    <button type="submit" class="submit-btn">Отправить заявку</button>
+                <form method="post" action="/home/TeacherRegister">
+                    <input name = "FirstName" type="text" placeholder="Фамилия" required>
+                    <input name = "LastName" type="text" placeholder="Имя" required>
+                    <select name = "Gender" required aria-placeholder="Пол">
+                        <option value="" selected disabled>Пол</option>
+                        <option value="">Мужской</option>
+                        <option value="">Женский</option>
+                    </select>
+                    <input name = "Phone" type="tel" placeholder="Телефон" required>
+                    <input name = "Subject" type="text" placeholder="Предмет" required>
+                    <input name = "Email" type="email" placeholder="Email" required>
+                    <input name = "Password" type="password" placeholder="Пароль" required>
+                    <textarea placeholder="В чем ваша мотивация?" rows="4" required></textarea>
+                    <button type="submit" class="submit-btn">Начать обучение</button>
                 </form>
             </div>
 

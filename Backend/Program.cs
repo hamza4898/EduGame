@@ -24,6 +24,8 @@ builder.Services.AddDbContext<EFCoreDbContext>(options =>
 
 builder.Services.AddScoped<IStudentService, StudentService>();
 
+builder.Services.AddScoped<ITeacherService, TeacherService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
