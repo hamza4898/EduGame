@@ -21,23 +21,23 @@ namespace EduGame.Controllers
         }
 
         [HttpPost]
-        public IActionResult StudentRegister([FromBody] StudentDTO studentDTO)
+        public async Task<IActionResult> StudentRegister([FromBody] StudentDTO studentDTO)
         {
-            _studentService.CreateStudent(studentDTO);
+            await _studentService.CreateStudent(studentDTO);
             return Ok();
         }
 
         [HttpPost]
-        public IActionResult TeacherRegister([FromBody] TeacherDTO teacherDTO)
+        public async Task<IActionResult> TeacherRegister([FromBody] TeacherDTO teacherDTO)
         {
-            _teacherService.CreateTeacher(teacherDTO);
-            return Ok("Сенсей успешно сохранен в базе данных");
+            await _teacherService.CreateTeacher(teacherDTO);
+            return Ok();
         }
 
         [HttpPost]
-        public IActionResult PartnerRegister([FromBody] PartnerDTO partnerDTO)
+        public async Task<IActionResult> PartnerRegister([FromBody] PartnerDTO partnerDTO)
         {
-            _partnerService.CreatePartner(partnerDTO);
+            await _partnerService.CreatePartner(partnerDTO);
             return Ok(); 
         }
     }

@@ -4,6 +4,6 @@ namespace EduGame.Services
 {
     public interface IStudentService
     {
-        public void CreateStudent(StudentDTO studentDTO);
+        Task CreateStudent(StudentDTO studentDTO);
     }
 }

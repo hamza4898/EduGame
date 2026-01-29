@@ -4,6 +4,6 @@ namespace EduGame.Services
 {
     public interface IPartnerService
     {
-        public void CreatePartner(PartnerDTO partnerDTO);
+        Task CreatePartner(PartnerDTO partnerDTO);
     }
 }

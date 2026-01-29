@@ -4,6 +4,6 @@ namespace EduGame.Services
 {
     public interface ITeacherService
     {
-        void CreateTeacher(TeacherDTO teacherDTO);
+        Task CreateTeacher(TeacherDTO teacherDTO);
     }
 }

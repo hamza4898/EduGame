@@ -1,6 +1,7 @@
 using EduGame.DTOs;
 using EduGame.Entities;
 using BCrypt.Net;
+using System.Threading.Tasks;
 
 namespace EduGame.Services
 {
@@ -13,7 +14,7 @@ namespace EduGame.Services
             _eduGameDbContext = eduGameDbContext;
         }
 
-        public void CreateTeacher(TeacherDTO teacherDTO)
+        public async Task CreateTeacher(TeacherDTO teacherDTO)
         {
             var teacher = new Teacher
             {
@@ -29,7 +30,7 @@ namespace EduGame.Services
 
             _eduGameDbContext.Add(teacher);
 
-            _eduGameDbContext.SaveChanges();
+            await _eduGameDbContext.SaveChangesAsync();
         }
     }
 }
