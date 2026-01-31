@@ -23,11 +23,7 @@ builder.Services.AddDbContext<EFCoreDbContext>(options =>
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")
 )));
 
-builder.Services.AddScoped<IStudentService, StudentService>();
-
-builder.Services.AddScoped<ITeacherService, TeacherService>();
-
-builder.Services.AddScoped<IPartnerService, PartnerService>();
+builder.Services.AddScoped(typeof(IBaseUserService<,>), typeof(BaseUserService<,>));
 
 builder.Services.AddAutoMapper(cfg =>
 {
