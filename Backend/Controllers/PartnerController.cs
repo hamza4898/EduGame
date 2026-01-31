@@ -9,37 +9,15 @@ namespace EduGame.Controllers
 {
     [ApiController]
     [Route("api/partner/[action]")]
-    public class PartnerController : ControllerBase
+    public class PartnerController : RegisterController<Partner, PartnerDTO>
     {
-        private readonly IBaseUserService<Partner, PartnerDTO> _service;
-        private readonly IMapper _mapper;
+       public PartnerController(IBaseUserService<Partner, PartnerDTO> service, IMapper mapper) : base(service, mapper) {}
 
-        public PartnerController(IBaseUserService<Partner, PartnerDTO> service, IMapper mapper)
-        {
-            _service = service;
-            _mapper = mapper;
-        }  
+       [ActionName("RegisterPartner")]
+       public override async Task<IActionResult> RegisterUser(PartnerDTO partnerDTO) => await base.RegisterUser(partnerDTO);
 
-        [HttpPost]
-        public async Task<IActionResult> PartnerRegister(PartnerDTO partnerDTO)
-        {
-            var partner = await _service.CreateUser(partnerDTO);
-
-            var responseDTO = _mapper.Map<PartnerDTO>(partner);
-
-            return CreatedAtRoute("GetPartner", new { id = partner.Id }, responseDTO);
-        } 
-
-        [HttpGet("{id}", Name = "GetPartner")]
-        public async Task<IActionResult> GetPartnerById(int id)
-        {
-            var partner = await _service.GetUserById(id);
-
-            if (partner == null) return NotFound();
-
-            var responce = _mapper.Map<PartnerDTO>(partner);
-
-            return Ok(responce);
-        }
+       [HttpGet("{id}", Name = "GetPartner")]
+       [ActionName("GetPartner")]
+       public override async Task<IActionResult> GetUser(int id) => await base.GetUser(id);
     }
 }

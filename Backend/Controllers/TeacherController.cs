@@ -8,37 +8,15 @@ namespace EduGame.Controllers
 {
     [ApiController]
     [Route("api/teacher/[action]")]
-    public class TeacherController : ControllerBase
+    public class TeacherController : RegisterController<Teacher, TeacherDTO> 
     {
-        private readonly IBaseUserService<Teacher, TeacherDTO> _service;
-        private readonly IMapper _mapper;
+        public TeacherController(IBaseUserService<Teacher, TeacherDTO> service, IMapper mapper) : base(service, mapper) {}
 
-        public TeacherController(IBaseUserService<Teacher, TeacherDTO> service, IMapper mapper)
-        {
-            _service = service;
-            _mapper = mapper;
-        }   
+        [ActionName("RegisterTeacher")]
+        public override async Task<IActionResult> RegisterUser(TeacherDTO teacherDTO) => await base.RegisterUser(teacherDTO);
 
-        [HttpPost]
-        public async Task<IActionResult> TeacherRegister(TeacherDTO teacherDTO)
-        {
-            var teacher = await _service.CreateUser(teacherDTO);
-
-            var responseDTO = _mapper.Map<TeacherDTO>(teacher);
-
-            return CreatedAtRoute("GetTeacher", new { id = teacher.Id }, responseDTO);
-        }
-
-        [HttpGet("{id}", Name = "GetTeacher")] 
-        public async Task<IActionResult> GetTeacherById(int id)
-        {
-            var teacher = await _service.GetUserById(id);
-
-            if (teacher == null) return NotFound();
-
-            var responce = _mapper.Map<TeacherDTO>(teacher);
-
-            return Ok(responce);
-        }
+        [HttpGet("{id}", Name = "GetTeacher")]
+        [ActionName("GetTeacher")]
+        public override async Task<IActionResult> GetUser(int id) => await base.GetUser(id);
     }
 }
