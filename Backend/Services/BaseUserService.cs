@@ -18,14 +18,21 @@ namespace EduGame.Services
             _mapper = mapper;
         }
 
-        public async Task CreateUser(D userDTO)
+        public async Task<T> CreateUser(D userDTO)
         {
-            var user = _mapper.Map<T>(userDTO);
+            var userEntity = _mapper.Map<T>(userDTO);
 
-            ((dynamic)user).PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDTO.Password);
+            ((dynamic)userEntity).PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDTO.Password);
 
-            _eduGameDbContext.Add(user);
+            _eduGameDbContext.Add(userEntity);
             await _eduGameDbContext.SaveChangesAsync();
+
+            return userEntity;
+        }
+
+        public async Task<T> GetUserById(int id)
+        {
+            return (await _eduGameDbContext.Set<T>().FindAsync(id))!;
         }
     }
 }

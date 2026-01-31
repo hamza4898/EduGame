@@ -7,6 +7,7 @@ namespace EduGame.Entities
         public EFCoreDbContext() { }
 
         public EFCoreDbContext(DbContextOptions<EFCoreDbContext> options) : base(options) { }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
