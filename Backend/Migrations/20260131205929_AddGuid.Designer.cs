@@ -4,6 +4,7 @@ using EduGame.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduGameProject.Migrations
 {
     [DbContext(typeof(EFCoreDbContext))]
-    partial class EFCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260131205929_AddGuid")]
+    partial class AddGuid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,9 +62,6 @@ namespace EduGameProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExternalId")
-                        .IsUnique();
-
                     b.ToTable("Partners");
                 });
 
@@ -102,9 +102,6 @@ namespace EduGameProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExternalId")
-                        .IsUnique();
-
                     b.ToTable("Students");
                 });
 
@@ -144,9 +141,6 @@ namespace EduGameProject.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ExternalId")
-                        .IsUnique();
 
                     b.ToTable("Teachers");
                 });

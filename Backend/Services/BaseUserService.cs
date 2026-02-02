@@ -2,6 +2,7 @@ using EduGame.Entities;
 using AutoMapper;
 using BCrypt.Net;
 using EduGame.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace EduGame.Services
 {
@@ -30,9 +31,10 @@ namespace EduGame.Services
             return userEntity;
         }
 
-        public async Task<T> GetUserById(int id)
+        public async Task<T> GetUserByExternalId(Guid externalId)
         {
-            return (await _eduGameDbContext.Set<T>().FindAsync(id))!;
+            return await _eduGameDbContext.Set<T>()
+                .FirstOrDefaultAsync(user => EF.Property<Guid>(user, "ExternalId") == externalId);
         }
     }
 }

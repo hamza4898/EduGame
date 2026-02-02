@@ -27,14 +27,14 @@ namespace EduGame.Controllers
 
             var responceDTO = _mapper.Map<D>(userEntity);
 
-            return CreatedAtRoute($"Get{typeof(T).Name}", new { id = ((dynamic)userEntity).Id }, responceDTO);
+            return CreatedAtRoute($"Get{typeof(T).Name}", new { externalId = ((dynamic)userEntity).ExternalId }, responceDTO);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{externalId}")]
         [ActionName("GetUser")]
-        public virtual async Task<IActionResult> GetUser(int id)
+        public virtual async Task<IActionResult> GetUser(Guid externalId)
         {
-            var user = await _service.GetUserById(id);
+            var user = await _service.GetUserByExternalId(externalId);
 
             if (user == null) return NotFound();
 

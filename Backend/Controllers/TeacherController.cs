@@ -15,8 +15,8 @@ namespace EduGame.Controllers
         [ActionName("RegisterTeacher")]
         public override async Task<IActionResult> RegisterUser(TeacherDTO teacherDTO) => await base.RegisterUser(teacherDTO);
 
-        [HttpGet("{id}", Name = "GetTeacher")]
+        [HttpGet("{externalId}", Name = "GetTeacher")]
         [ActionName("GetTeacher")]
-        public override async Task<IActionResult> GetUser(int id) => await base.GetUser(id);
+        public override async Task<IActionResult> GetUser(Guid externalId) => await base.GetUser(externalId);
     }
 }

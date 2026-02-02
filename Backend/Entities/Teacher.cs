@@ -1,8 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace EduGame.Entities
 {
+    [Index(nameof(ExternalId), IsUnique = true)]
     public class Teacher
     {
         public int Id { get; set; }
+
+        public Guid ExternalId { get; set; } = Guid.NewGuid();
 
         public string? FirstName { get; set; }
 

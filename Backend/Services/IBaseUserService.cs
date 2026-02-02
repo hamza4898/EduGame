@@ -6,6 +6,6 @@ namespace EduGame.Services
     {
         Task<T> CreateUser(D userDTO);
 
-        Task<T> GetUserById(int id);
+        Task<T> GetUserByExternalId(Guid externalId);
     }
 }

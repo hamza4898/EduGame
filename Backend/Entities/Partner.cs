@@ -1,8 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace EduGame.Entities
 {
+    [Index(nameof(ExternalId), IsUnique = true)]
     public class Partner
     {
         public int Id { get; set; }
+        
+        public Guid ExternalId { get; set; } = Guid.NewGuid();
 
         public string? Company { get; set; }
 
@@ -17,7 +22,7 @@ namespace EduGame.Entities
         public string? Email { get; set; }
 
         public string? PasswordHash { get; set; }
-        
+
         public string? Motivation { get; set; }
     }
 }
