@@ -40,7 +40,7 @@ document.addEventListener('submit', async (e) => {
             alert("Ошибка сервера: " + response.status);
         }
     } catch (err) {
-        alert("Ошибка сети (проверь бэкенд)");
+        alert("Ошибка сети");
     }
 });
 

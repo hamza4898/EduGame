@@ -40,7 +40,7 @@
                 <div id="studentForm" class="role-form">
                     <button class="back-btn" type="button" onclick="hideAllForms()">← Назад к выбору</button>
                     <h3>👨‍🎓 Регистрация ученика</h3>
-                    <form method="post" action="/api/student/StudentRegister">
+                    <form method="post" action="/api/student/RegisterStudent">
                         <input name = "FirstName" type="text" placeholder="Фамилия" required>
                         <input name = "LastName" type="text" placeholder="Имя" required>
                         <select name = "Gender" required aria-placeholder="Пол">
@@ -67,7 +67,7 @@
             <div id="teacherForm" class="role-form">
                 <button class="back-btn" onclick="hideAllForms()">← Назад к выбору</button>
                 <h3>👨‍🏫 Заявка преподавателя</h3>
-                <form method="post" action="/api/teacher/TeacherRegister">
+                <form method="post" action="/api/teacher/RegisterTeacher">
                     <input name = "FirstName" type="text" placeholder="Фамилия" required>
                     <input name = "LastName" type="text" placeholder="Имя" required>
                     <select name = "Gender" required aria-placeholder="Пол">
@@ -87,7 +87,7 @@
             <div id="partnerForm" class="role-form">
                 <button class="back-btn" onclick="hideAllForms()">← Назад к выбору</button>
                 <h3>🤝 Заявка на партнерство</h3>
-                <form method="post" action="/api/partner/PartnerRegister">
+                <form method="post" action="/api/partner/RegisterPartner">
                     <input name="Company" type="text" placeholder="Название компании/организации" required>
                     <input name = "FirstName" type="text" placeholder="Фамилия контактного лица" required>
                     <input name = "LastName" type="text" placeholder="Имя контактного лица" required>
