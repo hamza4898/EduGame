@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>EduGame - Обучающая платформа с геймификацией</title>
-    <link rel = "stylesheet" href = "EduCSS.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <title>EduGame платформа</title>
+    <link rel = "stylesheet" href = "Main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src = "EduJS.js"></script>
+    <script src = "Main.js"></script>
 </head>
 <body style = "background-color: black;">
     <section id="home" class="hero">
@@ -14,13 +13,17 @@
             <h1>EduGame</h1>
             <p>Обучающая платформа с элементами геймификации<br>Задания, уровни, достижения, соревнования</p>
             <br>
-            <a href="#platforms" class="cta-btn">Узнать больше</a>
+            <button id="startButton" class="cta-btn animate__animated animate__heartBeat" onclick="showAuthButtons()">Узнать больше</button>
+            <div id="authContainer" class="platforms-grid" style="display: none;">
+                <button id="loginButton" class="platform-btn auth-btn" style="background: blue;">Вход</button>
+                <button id="regButton" class="platform-btn auth-btn" style="background: #FF9800;" onclick = "location.href = 'Registration.html'">Регистрация</button>
+            </div>
         </div>
     </section>
 
     <section id="features" class="features">
         <div class="container">
-            <h2>Что такое EduGame?</h2>
+            <h2 data-aos="fade-right" data-aos-duration="1000">Что такое EduGame?</h2>
             <div class="cards">
                 <div class="feature">
                     <span class="feature-icon">📚</span>
@@ -78,20 +81,8 @@
                 </p>
         </div>
     </section>
-
-    <section id="platforms">
-        <div class="container">
-            <h2 style = "color: white;">📱 Хотите поработать с нами?</h2>
-            <br>
-            <div class="platforms-grid" style = "color: white;">
-                <button class="platform-btn windows-btn">Вход</button>
-                <button class="platform-btn macos-btn" onclick = "location.href = 'Registration.html'">Регистрация</button>
-            </div>
-        </div>
-    </section>
     <br>
-    <p style="text-align: center; color: white;">2026 EduGame<br>Игровая образовательная платформа. Все права защищены</p>
-    <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <p class = "last-words">2026 EduGame<br>Игровая образовательная платформа. Все права защищены</p>
 </body>
 </html>
 

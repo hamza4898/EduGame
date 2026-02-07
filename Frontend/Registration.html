@@ -2,21 +2,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Registration</title>
-    <link rel = "stylesheet" href = "EduCSS.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <title>Регистрация</title>
+    <link rel = "stylesheet" href = "Registration.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src = "EduJS.js"></script>
+    <script src = "Registration.js"></script>
 </head>
 <body style = "background-color: black;">
     <section id="cooperation">
         <div class="container">
-            <br>
-            <br>
-            <h2 class = "animate__animated animate__fadeIn" style = "color: aliceblue;">Готовы поработать с нами?</h2>
-            <br>
-            <br>
-            <br>
+            <h2 class = "register-title animate__animated animate__fadeIn" style = "color: aliceblue;">Готовы поработать с нами?</h2>
             <div class="cta-grid animate__animated animate__fadeIn">
                 <div class="cta-card" style = "color: white;">
                     <h3>👨‍🎓 Ученик</h3>
@@ -31,7 +25,7 @@
                 </div>
                 
                 <div class="cta-card" style = "color: white;">
-                    <h3>🤝Сотрудничество</h3>
+                    <h3>🤝 Партнерство</h3>
                     <p>Школы, вузы, компании, франшизы и другие организации</p>
                     <button class="role-btn partner-btn" onclick="showForm('partner')">Предложить партнерство</button>
                 </div>
@@ -40,7 +34,7 @@
                 <div id="studentForm" class="role-form">
                     <button class="back-btn" type="button" onclick="hideAllForms()">← Назад к выбору</button>
                     <h3>👨‍🎓 Регистрация ученика</h3>
-                    <form method="post" action="/api/student/RegisterStudent">
+                    <form method="post" action="/api/Student/RegisterStudent">
                         <input name = "FirstName" type="text" placeholder="Фамилия" required>
                         <input name = "LastName" type="text" placeholder="Имя" required>
                         <select name = "Gender" required aria-placeholder="Пол">
@@ -60,14 +54,14 @@
                         <input name = "Email" type="email" placeholder="Email" required>
                         <input name = "Password" type="password" placeholder="Пароль" required>
                         <textarea name="Motivation" placeholder="В чем ваша мотивация?" rows="4" required></textarea>
-                        <button type="submit" class="submit-btn">Начать обучение</button>
+                        <button id="reg-btn" type="submit" class="submit-btn">Начать обучение</button>
                     </form>
                 </div>
 
             <div id="teacherForm" class="role-form">
                 <button class="back-btn" onclick="hideAllForms()">← Назад к выбору</button>
                 <h3>👨‍🏫 Заявка преподавателя</h3>
-                <form method="post" action="/api/teacher/RegisterTeacher">
+                <form method="post" action="/api/Teacher/RegisterTeacher">
                     <input name = "FirstName" type="text" placeholder="Фамилия" required>
                     <input name = "LastName" type="text" placeholder="Имя" required>
                     <select name = "Gender" required aria-placeholder="Пол">
@@ -80,14 +74,14 @@
                     <input name = "Email" type="email" placeholder="Email" required>
                     <input name = "Password" type="password" placeholder="Пароль" required>
                     <textarea name="Motivation" placeholder="Опыт преподавания, примеры работ" rows="4" required></textarea>
-                    <button type="submit" class="submit-btn">Начать обучение</button>
+                    <button id="reg-btn" type="submit" class="submit-btn">Начать обучение</button>
                 </form>
             </div>
 
             <div id="partnerForm" class="role-form">
                 <button class="back-btn" onclick="hideAllForms()">← Назад к выбору</button>
                 <h3>🤝 Заявка на партнерство</h3>
-                <form method="post" action="/api/partner/RegisterPartner">
+                <form method="post" action="/api/Partner/RegisterPartner">
                     <input name="Company" type="text" placeholder="Название компании/организации" required>
                     <input name = "FirstName" type="text" placeholder="Фамилия контактного лица" required>
                     <input name = "LastName" type="text" placeholder="Имя контактного лица" required>
@@ -103,11 +97,10 @@
                     <input name="Email"type="email" placeholder="Email" required>
                     <input name = "Password" type="password" placeholder="Пароль" required>
                     <textarea name="Motivation" placeholder="Предложение по сотрудничеству" rows="4" required></textarea>
-                    <button type="submit" class="submit-btn">Отправить заявку</button>
+                    <button id="reg-btn" type="submit" class="submit-btn">Отправить заявку</button>
                 </form>
             </div>
         </div>
     </section> 
-    <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
