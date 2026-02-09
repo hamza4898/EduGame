@@ -2,7 +2,7 @@ using EduGame.DTOs;
 
 namespace EduGame.Services
 {
-    public interface IBaseUserService<T, D>
+    public interface IRegistrationService<T, D>
     {
         Task<T> CreateUser(D userDTO);
 

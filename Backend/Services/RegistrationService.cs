@@ -1,4 +1,4 @@
-using EduGame.Entities;
+using EduGame.Data;
 using AutoMapper;
 using BCrypt.Net;
 using EduGame.DTOs;
@@ -6,14 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EduGame.Services
 {
-    public class BaseUserService<T, D> : IBaseUserService<T, D>
+    public class RegistrationService<T, D> : IRegistrationService<T, D>
         where T: class
-        where D: BaseRegistrationDTO
+        where D: BaseRegistrationDto
     {
-        private readonly EFCoreDbContext _eduGameDbContext;
+        private readonly EduGameDbContext _eduGameDbContext;
         private readonly IMapper _mapper;
 
-        public BaseUserService(EFCoreDbContext eduGameDbContext, IMapper mapper)
+        public RegistrationService(EduGameDbContext eduGameDbContext, IMapper mapper)
         {
             _eduGameDbContext = eduGameDbContext;
             _mapper = mapper;
@@ -25,7 +25,7 @@ namespace EduGame.Services
 
             ((dynamic)userEntity).PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDTO.Password);
 
-            _eduGameDbContext.Add(userEntity);
+            await _eduGameDbContext.AddAsync(userEntity);
             await _eduGameDbContext.SaveChangesAsync();
 
             return userEntity;

@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+using EduGame.Entities;
 
-namespace EduGame.Entities
+namespace EduGame.Data
 {
-    public class EFCoreDbContext : DbContext
+    public class EduGameDbContext : DbContext
     {
-        public EFCoreDbContext() { }
+        public EduGameDbContext() { }
 
-        public EFCoreDbContext(DbContextOptions<EFCoreDbContext> options) : base(options) { }
+        public EduGameDbContext(DbContextOptions<EduGameDbContext> options) : base(options) { }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

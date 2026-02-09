@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using EduGame.Services;
 using AutoMapper;
+using EduGame.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,12 +19,12 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<EFCoreDbContext>(options =>
+builder.Services.AddDbContext<EduGameDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")
 )));
 
-builder.Services.AddScoped(typeof(IBaseUserService<,>), typeof(BaseUserService<,>));
+builder.Services.AddScoped(typeof(IRegistrationService<,>), typeof(RegistrationService<,>));
 
 builder.Services.AddAutoMapper(cfg =>
 {

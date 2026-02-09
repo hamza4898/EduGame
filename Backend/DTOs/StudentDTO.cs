@@ -1,6 +1,6 @@
 namespace EduGame.DTOs
 {
-    public class StudentDTO : BaseRegistrationDTO
+    public class StudentDto : BaseRegistrationDto
     {
         public string? Gender { get; set; }
 

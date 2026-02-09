@@ -24,5 +24,7 @@ namespace EduGame.Entities
         public string? PasswordHash { get; set; }
 
         public string? Motivation { get; set; }
+
+        public DateTime RegisteredAt { get; set; } = DateTime.Now;
     }
 }

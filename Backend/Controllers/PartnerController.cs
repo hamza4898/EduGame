@@ -9,12 +9,12 @@ namespace EduGame.Controllers
 {
     [ApiController]
     [Route("api/partner/[action]")]
-    public class PartnerController : RegisterController<Partner, PartnerDTO>
+    public class PartnerController : RegisterController<Partner, PartnerDto>
     {
-       public PartnerController(IBaseUserService<Partner, PartnerDTO> service, IMapper mapper) : base(service, mapper) {}
+       public PartnerController(IRegistrationService<Partner, PartnerDto> registrationService, IMapper mapper) : base(registrationService, mapper) {}
 
        [ActionName("RegisterPartner")]
-       public override async Task<IActionResult> RegisterUser(PartnerDTO partnerDTO) => await base.RegisterUser(partnerDTO);
+       public override async Task<IActionResult> RegisterUser(PartnerDto partnerDto) => await base.RegisterUser(partnerDto);
 
        [HttpGet("{externalId}", Name = "GetPartner")]
        [ActionName("GetPartner")]

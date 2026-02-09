@@ -8,12 +8,12 @@ namespace EduGame.Controllers
 {
     [ApiController]
     [Route("api/student/[action]")]
-    public class StudentController : RegisterController<Student, StudentDTO>
+    public class StudentController : RegisterController<Student, StudentDto>
     {
-        public StudentController(IBaseUserService<Student, StudentDTO> service, IMapper mapper) : base(service, mapper) {}
+        public StudentController(IRegistrationService<Student, StudentDto> registrationService, IMapper mapper) : base(registrationService, mapper) {}
 
         [ActionName("RegisterStudent")]
-        public override async Task<IActionResult> RegisterUser(StudentDTO studentDTO) => await base.RegisterUser(studentDTO);
+        public override async Task<IActionResult> RegisterUser(StudentDto studentDto) => await base.RegisterUser(studentDto);
 
         [HttpGet("{externalId}", Name = "GetStudent")]
         [ActionName("GetStudent")]

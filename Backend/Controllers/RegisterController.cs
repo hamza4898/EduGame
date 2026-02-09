@@ -8,33 +8,33 @@ namespace EduGame.Controllers
     [ApiController]
     public abstract class RegisterController<T, D> : ControllerBase
         where T: class
-        where D: BaseRegistrationDTO
+        where D: BaseRegistrationDto
     {
-        protected readonly IBaseUserService<T, D> _service;
+        protected readonly IRegistrationService<T, D> _registrationService;
         protected readonly IMapper _mapper;
 
-        public RegisterController(IBaseUserService<T, D> service, IMapper mapper)
+        public RegisterController(IRegistrationService<T, D> registrationService, IMapper mapper)
         {
-            _service = service;
+            _registrationService = registrationService;
             _mapper = mapper;
         }
 
         [HttpPost]
         [ActionName("RegisterUser")]
-        public virtual async Task<IActionResult> RegisterUser(D userDTO)
+        public virtual async Task<IActionResult> RegisterUser(D userDto)
         {
-            var userEntity = await _service.CreateUser(userDTO);
+            var userEntity = await _registrationService.CreateUser(userDto);
 
-            var responceDTO = _mapper.Map<D>(userEntity);
+            var responceDto = _mapper.Map<D>(userEntity);
 
-            return CreatedAtRoute($"Get{typeof(T).Name}", new { externalId = ((dynamic)userEntity).ExternalId }, responceDTO);
+            return CreatedAtRoute($"Get{typeof(T).Name}", new { externalId = ((dynamic)userEntity).ExternalId }, responceDto);
         }
 
         [HttpGet("{externalId}")]
         [ActionName("GetUser")]
         public virtual async Task<IActionResult> GetUser(Guid externalId)
         {
-            var user = await _service.GetUserByExternalId(externalId);
+            var user = await _registrationService.GetUserByExternalId(externalId);
 
             if (user == null) return NotFound();
 

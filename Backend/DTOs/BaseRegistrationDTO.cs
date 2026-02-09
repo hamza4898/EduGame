@@ -1,6 +1,6 @@
 namespace EduGame.DTOs
 {
-    public abstract class BaseRegistrationDTO
+    public abstract class BaseRegistrationDto
     {
         public string? FirstName { get; set; }
         
@@ -13,5 +13,7 @@ namespace EduGame.DTOs
         public string? Password { get; set; }
 
         public string? Motivation { get; set; }
+        
+        public DateTime RegisteredAt { get; set; } = DateTime.Now;
     }
 }

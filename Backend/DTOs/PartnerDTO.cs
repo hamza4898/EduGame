@@ -1,6 +1,6 @@
 namespace EduGame.DTOs
 {
-    public class PartnerDTO : BaseRegistrationDTO
+    public class PartnerDto : BaseRegistrationDto
     {
         public string? Company { get; set; }
         
