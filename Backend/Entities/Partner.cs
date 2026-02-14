@@ -15,6 +15,8 @@ namespace EduGame.Entities
         
         public string? LastName { get; set; }
 
+        public DateTime DateOfBirth { get; set; }
+
         public string? Company { get; set; }
 
         public string? TypeOfCooperation { get; set; }
