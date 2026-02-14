@@ -25,7 +25,6 @@ namespace EduGame.Services
         public async Task<T> CreateUser(D userDto)
         {
             var identityUser = _mapper.Map<ApplicationUser>(userDto);
-            identityUser.UserName = identityUser.Email;
             var result = await _userManager.CreateAsync(identityUser, userDto.Password);       
 
             var userProfile = _mapper.Map<T>(userDto);

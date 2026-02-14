@@ -35,6 +35,7 @@
                 <button class="back-btn" type="button" onclick="hideAllForms()">← Назад к выбору</button>
                 <h3>👨‍🎓 Регистрация ученика</h3>
                 <form method="post" action="/api/Student/RegisterStudent">
+                    <input name = "UserName" type="text" placeholder="Никнейм" required>
                     <input name = "FirstName" type="text" placeholder="Фамилия" required>
                     <input name = "LastName" type="text" placeholder="Имя" required>
                     <select name = "Gender" required aria-placeholder="Пол">
@@ -63,6 +64,7 @@
                 <button class="back-btn" onclick="hideAllForms()">← Назад к выбору</button>
                 <h3>👨‍🏫 Заявка преподавателя</h3>
                 <form method="post" action="/api/Teacher/RegisterTeacher">
+                    <input name = "UserName" type="text" placeholder="Никнейм" required>
                     <input name = "FirstName" type="text" placeholder="Фамилия" required>
                     <input name = "LastName" type="text" placeholder="Имя" required>
                     <select name = "Gender" required aria-placeholder="Пол">
@@ -84,6 +86,7 @@
                 <button class="back-btn" onclick="hideAllForms()">← Назад к выбору</button>
                 <h3>🤝 Заявка на партнерство</h3>
                 <form method="post" action="/api/Partner/RegisterPartner">
+                    <input name = "UserName" type="text" placeholder="Никнейм" required>
                     <input name="Company" type="text" placeholder="Название компании/организации" required>
                     <input name = "FirstName" type="text" placeholder="Фамилия контактного лица" required>
                     <input name = "LastName" type="text" placeholder="Имя контактного лица" required>

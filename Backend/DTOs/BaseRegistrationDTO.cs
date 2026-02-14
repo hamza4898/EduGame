@@ -1,9 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace EduGame.DTOs
 {
     public abstract class BaseRegistrationDto
     {
-        public string? FirstName { get; set; }
+        public string? UserName { get; set; }
         
+        public string? FirstName { get; set; }
+         
         public string? LastName { get; set; }
 
         public DateTime DateOfBirth { get; set; }
