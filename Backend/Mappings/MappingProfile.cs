@@ -9,5 +9,6 @@ public class MappingProfile : Profile
         CreateMap<StudentDto, Student>().ReverseMap();
         CreateMap<TeacherDto, Teacher>().ReverseMap();
         CreateMap<PartnerDto, Partner>().ReverseMap();
+        CreateMap<BaseRegistrationDto, ApplicationUser>().ReverseMap();
     }
 }

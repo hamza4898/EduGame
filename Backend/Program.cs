@@ -24,6 +24,21 @@ builder.Services.AddDbContext<EduGameDbContext>(options =>
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")
 )));
 
+builder.Services.AddDbContext<EduGameIdentityContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")
+)));
+
+builder.Services.AddIdentityCore<ApplicationUser>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 3;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+})
+.AddEntityFrameworkStores<EduGameIdentityContext>();
+
 builder.Services.AddScoped(typeof(IRegistrationService<,>), typeof(RegistrationService<,>));
 
 builder.Services.AddAutoMapper(cfg =>
@@ -54,6 +69,10 @@ app.UseStaticFiles(new StaticFileOptions
 });
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapControllers();
 

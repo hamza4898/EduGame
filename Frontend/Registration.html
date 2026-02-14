@@ -31,32 +31,32 @@
                 </div>
             </div>
             
-                <div id="studentForm" class="role-form">
-                    <button class="back-btn" type="button" onclick="hideAllForms()">← Назад к выбору</button>
-                    <h3>👨‍🎓 Регистрация ученика</h3>
-                    <form method="post" action="/api/Student/RegisterStudent">
-                        <input name = "FirstName" type="text" placeholder="Фамилия" required>
-                        <input name = "LastName" type="text" placeholder="Имя" required>
-                        <select name = "Gender" required aria-placeholder="Пол">
-                            <option value="" selected disabled>Пол</option>
-                            <option value="Male">Мужской</option>
-                            <option value="Female">Женский</option>
-                        </select>
-                        <input name = "Phone" type="tel" placeholder="Телефон" required>
-                        <select name = "Education" required aria-placeholder = "Образование">
-                            <option value="" selected disabled>Образование</option>
-                            <option value="Pupil">Ученик начальной школы</option>
-                            <option value="Middle School">Ученик средней школы</option>
-                            <option value="High School">Ученик старшей школы</option>
-                            <option value="Student">Студент</option>
-                            <option value="Other">Другое</option>
-                        </select>
-                        <input name = "Email" type="email" placeholder="Email" required>
-                        <input name = "Password" type="password" placeholder="Пароль" required>
-                        <textarea name="Motivation" placeholder="В чем ваша мотивация?" rows="4" required></textarea>
-                        <button id="reg-btn" type="submit" class="submit-btn">Начать обучение</button>
-                    </form>
-                </div>
+            <div id="studentForm" class="role-form">
+                <button class="back-btn" type="button" onclick="hideAllForms()">← Назад к выбору</button>
+                <h3>👨‍🎓 Регистрация ученика</h3>
+                <form method="post" action="/api/Student/RegisterStudent">
+                    <input name = "FirstName" type="text" placeholder="Фамилия" required>
+                    <input name = "LastName" type="text" placeholder="Имя" required>
+                    <select name = "Gender" required aria-placeholder="Пол">
+                        <option value="" selected disabled>Пол</option>
+                        <option value="Male">Мужской</option>
+                        <option value="Female">Женский</option>
+                    </select>
+                    <input name = "PhoneNumber" type="tel" placeholder="Телефон" required>
+                    <select name = "Education" required aria-placeholder = "Образование">
+                        <option value="" selected disabled>Образование</option>
+                        <option value="Pupil">Ученик начальной школы</option>
+                        <option value="Middle School">Ученик средней школы</option>
+                        <option value="High School">Ученик старшей школы</option>
+                        <option value="Student">Студент</option>
+                        <option value="Other">Другое</option>
+                    </select>
+                    <input name = "Email" type="email" placeholder="Email" required>
+                    <input name = "Password" type="password" placeholder="Пароль" required>
+                    <textarea name="Motivation" placeholder="В чем ваша мотивация?" rows="4" required></textarea>
+                    <button id="reg-btn" type="submit" class="submit-btn">Начать обучение</button>
+                </form>
+            </div>
 
             <div id="teacherForm" class="role-form">
                 <button class="back-btn" onclick="hideAllForms()">← Назад к выбору</button>
@@ -69,7 +69,7 @@
                         <option value="Male">Мужской</option>
                         <option value="Female">Женский</option>
                     </select>
-                    <input name = "Phone" type="tel" placeholder="Телефон" required>
+                    <input name = "PhoneNumber" type="tel" placeholder="Телефон" required>
                     <input name = "Subject" type="text" placeholder="Предмет" required>
                     <input name = "Email" type="email" placeholder="Email" required>
                     <input name = "Password" type="password" placeholder="Пароль" required>
@@ -85,7 +85,7 @@
                     <input name="Company" type="text" placeholder="Название компании/организации" required>
                     <input name = "FirstName" type="text" placeholder="Фамилия контактного лица" required>
                     <input name = "LastName" type="text" placeholder="Имя контактного лица" required>
-                    <input name="Phone"type="tel" placeholder="Телефон" required>
+                    <input name="PhoneNumber"type="tel" placeholder="Телефон" required>
                     <select name="TypeOfCooperation" required aria-placeholder="Сотрудничество">
                         <option value="" selected disabled>Тип сотрудничества</option>
                         <option value="School">Школа</option>

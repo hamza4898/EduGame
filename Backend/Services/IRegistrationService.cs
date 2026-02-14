@@ -1,4 +1,5 @@
 using EduGame.DTOs;
+using EduGame.Entities;
 
 namespace EduGame.Services
 {

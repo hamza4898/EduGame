@@ -1,8 +1,9 @@
 using EduGame.Data;
 using AutoMapper;
-using BCrypt.Net;
 using EduGame.DTOs;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using EduGame.Entities;
 
 namespace EduGame.Services
 {
@@ -12,23 +13,29 @@ namespace EduGame.Services
     {
         private readonly EduGameDbContext _eduGameDbContext;
         private readonly IMapper _mapper;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public RegistrationService(EduGameDbContext eduGameDbContext, IMapper mapper)
+        public RegistrationService(EduGameDbContext eduGameDbContext, IMapper mapper, UserManager<ApplicationUser> userManager)
         {
             _eduGameDbContext = eduGameDbContext;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
-        public async Task<T> CreateUser(D userDTO)
+        public async Task<T> CreateUser(D userDto)
         {
-            var userEntity = _mapper.Map<T>(userDTO);
+            var identityUser = _mapper.Map<ApplicationUser>(userDto);
+            identityUser.UserName = identityUser.Email;
+            var result = await _userManager.CreateAsync(identityUser, userDto.Password);       
 
-            ((dynamic)userEntity).PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDTO.Password);
+            var userProfile = _mapper.Map<T>(userDto);
 
-            await _eduGameDbContext.AddAsync(userEntity);
+            ((dynamic)userProfile).ExternalId = identityUser.Id;
+
+            await _eduGameDbContext.Set<T>().AddAsync(userProfile);
             await _eduGameDbContext.SaveChangesAsync();
 
-            return userEntity;
+            return userProfile;
         }
 
         public async Task<T> GetUserByExternalId(Guid externalId)
