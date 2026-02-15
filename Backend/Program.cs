@@ -8,6 +8,8 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using EduGame.Services;
 using AutoMapper;
 using EduGame.Data;
+using Microsoft.AspNetCore.Mvc;
+using EduGame.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,11 +33,7 @@ builder.Services.AddDbContext<EduGameIdentityContext>(options =>
 
 builder.Services.AddIdentityCore<ApplicationUser>(options =>
 {
-    options.Password.RequireDigit = false;
-    options.Password.RequiredLength = 3;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequireLowercase = false;
+    options.User.RequireUniqueEmail = true;
 })
 .AddEntityFrameworkStores<EduGameIdentityContext>();
 
@@ -46,6 +44,18 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<MappingProfile>();
 });
 
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var errors = string.Join("\n", context.ModelState.Values
+            .SelectMany(x => x.Errors)
+            .Select(x => x.ErrorMessage));
+        
+        throw new ApplicationException(errors);
+    }; 
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -54,6 +64,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseDeveloperExceptionPage();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseDefaultFiles(new DefaultFilesOptions
 {

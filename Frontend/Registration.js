@@ -4,6 +4,11 @@ function hideAllForms() {
     });
 }
 
+function showForm(role) {
+    document.querySelectorAll('.role-form').forEach(f => f.classList.remove('active'));
+    document.getElementById(role + 'Form').classList.add('active');
+}
+
 document.addEventListener('submit', async (e) => {
     e.preventDefault(); 
 
@@ -21,14 +26,16 @@ document.addEventListener('submit', async (e) => {
         if (response.ok) {
             window.location.href = "/Profile.html";
         } else {
-            alert("Ошибка сервера: " + response.status);
+            const errorData = await response.json();
+            
+            if (errorData.errors) {
+                alert("Ошибки:\n" + errorData.errors.join("\n"));
+            } else {
+                alert("Ошибка сервера: " + response.status);
+            }
         }
     } catch (err) {
+        console.error(err);
         alert("Ошибка сети");
     }
 });
-
-function showForm(role) {
-    document.querySelectorAll('.role-form').forEach(f => f.classList.remove('active'));
-    document.getElementById(role + 'Form').classList.add('active');
-}

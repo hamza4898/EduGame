@@ -25,10 +25,21 @@ namespace EduGame.Services
         public async Task<T> CreateUser(D userDto)
         {
             var identityUser = _mapper.Map<ApplicationUser>(userDto);
-            var result = await _userManager.CreateAsync(identityUser, userDto.Password);       
+            var result = await _userManager.CreateAsync(identityUser, userDto.Password!);      
+
+            if (!result.Succeeded)
+            {
+                var errorMessages = result.Errors.Select(e => e.Code switch
+                {
+                    "DuplicateUserName" => "Этот никнейм уже занят!",
+                    "DuplicateEmail" => "Такая почта уже есть в системе!",
+                    _ => "Системная ошибка"
+                });
+
+                throw new ApplicationException(string.Join("\n", errorMessages));
+            } 
 
             var userProfile = _mapper.Map<T>(userDto);
-
             ((dynamic)userProfile).ExternalId = identityUser.Id;
 
             await _eduGameDbContext.Set<T>().AddAsync(userProfile);
@@ -39,8 +50,10 @@ namespace EduGame.Services
 
         public async Task<T> GetUserByExternalId(Guid externalId)
         {
-            return await _eduGameDbContext.Set<T>()
+            var user = await _eduGameDbContext.Set<T>()
                 .FirstOrDefaultAsync(user => EF.Property<Guid>(user, "ExternalId") == externalId);
+
+            return user ?? throw new ApplicationException("Объект не найден в базе данных");
         }
     }
 }
