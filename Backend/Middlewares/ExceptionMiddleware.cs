@@ -1,5 +1,6 @@
 using System.Net;
 using System.Text.Json;
+using EduGame.Exceptions;
 
 namespace EduGame.Middlewares
 {
@@ -18,7 +19,7 @@ namespace EduGame.Middlewares
             {
                 await _next(context);
             }
-            catch (ApplicationException ex)
+            catch (AuthException ex)
             {
                 await HandleExceptionAsync(context, ex.Message, HttpStatusCode.BadRequest);
             }

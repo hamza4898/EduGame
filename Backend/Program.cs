@@ -10,6 +10,7 @@ using AutoMapper;
 using EduGame.Data;
 using Microsoft.AspNetCore.Mvc;
 using EduGame.Middlewares;
+using EduGame.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,7 +53,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
             .SelectMany(x => x.Errors)
             .Select(x => x.ErrorMessage));
         
-        throw new ApplicationException(errors);
+        throw new AuthException(errors);
     }; 
 });
 

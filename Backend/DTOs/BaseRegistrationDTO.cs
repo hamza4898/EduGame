@@ -37,7 +37,7 @@ namespace EduGame.DTOs
 
         [Required(ErrorMessage = "Пароль обязателен!")]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,32}$", 
-            ErrorMessage = "Пароль должен быть от 8 до 32 символов и содержать: цифру, заглавную букву и спецсимвол (!@#$%^&*)")]
+            ErrorMessage = "Пароль должен быть от 8 до 32 символов и содержать: цифру, заглавную и строчную букву и спецсимвол (!@#$%^&*)")]
         public string? Password { get; set; }
 
         [MaxLength(200, ErrorMessage = "Слишком много символов!")]

@@ -4,6 +4,7 @@ using EduGame.DTOs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using EduGame.Entities;
+using EduGame.Exceptions;
 
 namespace EduGame.Services
 {
@@ -36,7 +37,7 @@ namespace EduGame.Services
                     _ => "Системная ошибка"
                 });
 
-                throw new ApplicationException(string.Join("\n", errorMessages));
+                throw new AuthException(string.Join("\n", errorMessages));
             } 
 
             var userProfile = _mapper.Map<T>(userDto);
@@ -53,7 +54,7 @@ namespace EduGame.Services
             var user = await _eduGameDbContext.Set<T>()
                 .FirstOrDefaultAsync(user => EF.Property<Guid>(user, "ExternalId") == externalId);
 
-            return user ?? throw new ApplicationException("Объект не найден в базе данных");
+            return user ?? throw new AuthException("Объект не найден в базе данных");
         }
     }
 }
