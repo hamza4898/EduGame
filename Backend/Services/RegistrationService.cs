@@ -8,53 +8,60 @@ using EduGame.Exceptions;
 
 namespace EduGame.Services
 {
-    public class RegistrationService<T, D> : IRegistrationService<T, D>
+    public class RegistrationService<T, D>(
+        EduGameDbContext eduGameDbContext,
+        IMapper mapper,
+        UserManager<ApplicationUser> userManager,
+        ILogger<RegistrationService<T, D>> logger
+    ) : IRegistrationService<T, D>
         where T: class
         where D: BaseRegistrationDto
     {
-        private readonly EduGameDbContext _eduGameDbContext;
-        private readonly IMapper _mapper;
-        private readonly UserManager<ApplicationUser> _userManager;
-
-        public RegistrationService(EduGameDbContext eduGameDbContext, IMapper mapper, UserManager<ApplicationUser> userManager)
-        {
-            _eduGameDbContext = eduGameDbContext;
-            _mapper = mapper;
-            _userManager = userManager;
-        }
-
         public async Task<T> CreateUser(D userDto)
         {
-            var identityUser = _mapper.Map<ApplicationUser>(userDto);
-            var result = await _userManager.CreateAsync(identityUser, userDto.Password!);      
+            var identityUser = mapper.Map<ApplicationUser>(userDto);
+
+            logger.LogInformation("Registration started for user with {ID} ID", identityUser.Id);
+
+            var result = await userManager.CreateAsync(identityUser, userDto.Password!);      
 
             if (!result.Succeeded)
             {
-                var errorMessages = result.Errors.Select(e => e.Code switch
+                var errorMessages = string.Join("\n", result.Errors.Select(e => e.Code switch
                 {
                     "DuplicateUserName" => "Этот никнейм уже занят!",
                     "DuplicateEmail" => "Такая почта уже есть в системе!",
                     _ => "Системная ошибка"
-                });
+                }));
 
-                throw new AuthException(string.Join("\n", errorMessages));
+                logger.LogWarning("Failed registration with Identity validation errors: {errorMessages} for user with {ID} ID", errorMessages, identityUser.Id);
+
+                throw new AuthException(errorMessages);
             } 
 
-            var userProfile = _mapper.Map<T>(userDto);
+            var userProfile = mapper.Map<T>(userDto);
             ((dynamic)userProfile).ExternalId = identityUser.Id;
 
-            await _eduGameDbContext.Set<T>().AddAsync(userProfile);
-            await _eduGameDbContext.SaveChangesAsync();
+            await eduGameDbContext.Set<T>().AddAsync(userProfile);
+            await eduGameDbContext.SaveChangesAsync();
+
+            logger.LogInformation("Added a new user with {ID} ID to database contexts", identityUser.Id);
 
             return userProfile;
         }
 
         public async Task<T> GetUserByExternalId(Guid externalId)
         {
-            var user = await _eduGameDbContext.Set<T>()
+            var user = await eduGameDbContext.Set<T>()
                 .FirstOrDefaultAsync(user => EF.Property<Guid>(user, "ExternalId") == externalId);
 
-            return user ?? throw new AuthException("Объект не найден в базе данных");
+            if (user == null)
+            {
+                logger.LogInformation("Failed to find user with {externalId} ID in database", externalId);
+                throw new AuthException("Объект не найден в базе данных");
+            }
+
+            return user;
         }
     }
 }

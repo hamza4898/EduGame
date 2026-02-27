@@ -11,12 +11,23 @@ using EduGame.Data;
 using Microsoft.AspNetCore.Mvc;
 using EduGame.Middlewares;
 using EduGame.Exceptions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+Log.Information("Starting application");
 
 var frontendPath = Path.Combine(builder.Environment.ContentRootPath, "../Frontend");
 
 builder.Services.AddControllers();
+
+builder.Host.UseSerilog();
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -31,6 +42,8 @@ builder.Services.AddDbContext<EduGameIdentityContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")
 )));
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddIdentityCore<ApplicationUser>(options =>
 {
@@ -53,11 +66,15 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
             .SelectMany(x => x.Errors)
             .Select(x => x.ErrorMessage));
         
+        Log.Warning("Failed Data Annotations validation with errors: {errors}", errors);
         throw new AuthException(errors);
     }; 
 });
 
 var app = builder.Build();
+
+app.UseMiddleware<CorrelationIdMiddleware>();
+app.UseSerilogRequestLogging();
 
 if (app.Environment.IsDevelopment())
 {

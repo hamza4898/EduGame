@@ -7,10 +7,12 @@ namespace EduGame.Middlewares
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionMiddleware> _logger;
 
-        public ExceptionMiddleware(RequestDelegate next)
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -23,8 +25,15 @@ namespace EduGame.Middlewares
             {
                 await HandleExceptionAsync(context, ex.Message, HttpStatusCode.BadRequest);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError("Server Error: {ex}, More info: {RequestDetails}", ex, new
+                {
+                    Path = context.Request.Path.ToString(),
+                    Method = context.Request.Method,
+                    Query = context.Request.Query.ToString()
+                });
+
                 await HandleExceptionAsync(context, "Внутренняя ошибка сервера", HttpStatusCode.InternalServerError);
             }
         }

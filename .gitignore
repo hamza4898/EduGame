@@ -30,3 +30,6 @@ Thumbs.db
 Frontend/node_modules/
 Frontend/dist/
 Frontend/build/
+
+Logs/
+*.log
