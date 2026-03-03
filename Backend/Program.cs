@@ -10,8 +10,8 @@ using AutoMapper;
 using EduGame.Data;
 using Microsoft.AspNetCore.Mvc;
 using EduGame.Middlewares;
-using EduGame.Exceptions;
 using Serilog;
+using EduGame.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +25,10 @@ Log.Information("Starting application");
 
 var frontendPath = Path.Combine(builder.Environment.ContentRootPath, "../Frontend");
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ResultValidationFilter>();
+});
 
 builder.Host.UseSerilog();
 
@@ -67,7 +70,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
             .Select(x => x.ErrorMessage));
         
         Log.Warning("Failed Data Annotations validation with errors: {errors}", errors);
-        throw new AuthException(errors);
+        return new BadRequestObjectResult(new {error = errors});
     }; 
 });
 

@@ -23,18 +23,18 @@ namespace EduGame.Controllers
         [ActionName("RegisterUser")]
         public virtual async Task<IActionResult> RegisterUser(D userDto)
         {
-            var user = await _registrationService.CreateUser(userDto);
+            var result = await _registrationService.CreateUser(userDto);
 
-            return CreatedAtRoute($"Get{typeof(T).Name}", new { externalId = ((dynamic)user).ExternalId }, user);
+            return CreatedAtRoute($"Get{typeof(T).Name}", new { externalId = ((dynamic)result.ValueOrDefault)?.ExternalId }, result);
         }
 
         [HttpGet("{externalId}")]
         [ActionName("GetUser")]
         public virtual async Task<IActionResult> GetUser(Guid externalId)
         {
-            var user = await _registrationService.GetUserByExternalId(externalId);
+            var result = await _registrationService.GetUserByExternalId(externalId);
 
-            return Ok(user);
+            return Ok(result);
         }
     }
 }

@@ -1,12 +1,13 @@
 using EduGame.DTOs;
 using EduGame.Entities;
+using FluentResults;
 
 namespace EduGame.Services
 {
     public interface IRegistrationService<T, D>
     {
-        Task<T> CreateUser(D userDTO);
+        Task<Result<T>> CreateUser(D userDTO);
 
-        Task<T> GetUserByExternalId(Guid externalId);
+        Task<Result<T>> GetUserByExternalId(Guid externalId);
     }
 }

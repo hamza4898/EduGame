@@ -4,7 +4,7 @@ using EduGame.DTOs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using EduGame.Entities;
-using EduGame.Exceptions;
+using FluentResults;
 
 namespace EduGame.Services
 {
@@ -17,7 +17,7 @@ namespace EduGame.Services
         where T: class
         where D: BaseRegistrationDto
     {
-        public async Task<T> CreateUser(D userDto)
+        public async Task<Result<T>> CreateUser(D userDto)
         {
             var identityUser = mapper.Map<ApplicationUser>(userDto);
 
@@ -36,7 +36,7 @@ namespace EduGame.Services
 
                 logger.LogWarning("Failed registration with Identity validation errors: {errorMessages} for user with {ID} ID", errorMessages, identityUser.Id);
 
-                throw new AuthException(errorMessages);
+                return Result.Fail(errorMessages);
             } 
 
             var userProfile = mapper.Map<T>(userDto);
@@ -47,10 +47,10 @@ namespace EduGame.Services
 
             logger.LogInformation("Added a new user with {ID} ID to database contexts", identityUser.Id);
 
-            return userProfile;
+            return Result.Ok(userProfile);
         }
 
-        public async Task<T> GetUserByExternalId(Guid externalId)
+        public async Task<Result<T>> GetUserByExternalId(Guid externalId)
         {
             var user = await eduGameDbContext.Set<T>()
                 .FirstOrDefaultAsync(user => EF.Property<Guid>(user, "ExternalId") == externalId);
@@ -58,10 +58,10 @@ namespace EduGame.Services
             if (user == null)
             {
                 logger.LogInformation("Failed to find user with {externalId} ID in database", externalId);
-                throw new AuthException("Объект не найден в базе данных");
+                return Result.Fail("Объект не найден в базе данных");
             }
 
-            return user;
+            return Result.Ok(user);
         }
     }
 }

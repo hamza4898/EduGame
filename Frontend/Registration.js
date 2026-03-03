@@ -28,8 +28,9 @@ document.addEventListener('submit', async (e) => {
         } else {
             const errorData = await response.json();
             
-            if (errorData.errors) {
-                alert("Ошибки:\n" + errorData.errors.join("\n"));
+            if (errorData && errorData.error) {
+                const messages = errorData.error;
+                alert("Ошибки:\n" + messages);
             } else {
                 alert("Ошибка сервера: " + response.status);
             }
