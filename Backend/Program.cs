@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using EduGame.Middlewares;
 using Serilog;
 using EduGame.Filters;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -74,9 +76,14 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
     }; 
 });
 
+builder.Services.AddFluentValidationAutoValidation();
+
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
 var app = builder.Build();
 
 app.UseMiddleware<CorrelationIdMiddleware>();
+
 app.UseSerilogRequestLogging();
 
 if (app.Environment.IsDevelopment())
