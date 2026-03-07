@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using EduGame.Services;
 using EduGame.DTOs;
 using EduGame.Entities;
-using System.Runtime.Versioning;
-using AutoMapper;
 
 namespace EduGame.Controllers
 {
@@ -11,7 +9,7 @@ namespace EduGame.Controllers
     [Route("api/partner/[action]")]
     public class PartnerController : RegisterController<Partner, PartnerDto>
     {
-       public PartnerController(IRegistrationService<Partner, PartnerDto> registrationService, IMapper mapper) : base(registrationService, mapper) {}
+       public PartnerController(IRegistrationService<Partner, PartnerDto> registrationService) : base(registrationService) {}
 
        [ActionName("RegisterPartner")]
        public override async Task<IActionResult> RegisterUser(PartnerDto partnerDto) => await base.RegisterUser(partnerDto);

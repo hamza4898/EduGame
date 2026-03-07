@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using EduGame.Services;
 using EduGame.DTOs;
 using EduGame.Entities;
-using AutoMapper;
 
 namespace EduGame.Controllers
 {
@@ -10,7 +9,7 @@ namespace EduGame.Controllers
     [Route("api/teacher/[action]")]
     public class TeacherController : RegisterController<Teacher, TeacherDto> 
     {
-        public TeacherController(IRegistrationService<Teacher, TeacherDto> registrationService, IMapper mapper) : base(registrationService, mapper) {}
+        public TeacherController(IRegistrationService<Teacher, TeacherDto> registrationService) : base(registrationService) {}
 
         [ActionName("RegisterTeacher")]
         public override async Task<IActionResult> RegisterUser(TeacherDto teacherDto) => await base.RegisterUser(teacherDto);

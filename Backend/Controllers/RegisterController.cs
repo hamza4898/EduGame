@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using EduGame.Services;
-using AutoMapper;
 using EduGame.DTOs;
 
 namespace EduGame.Controllers
@@ -11,13 +10,8 @@ namespace EduGame.Controllers
         where D: BaseRegistrationDto
     {
         protected readonly IRegistrationService<T, D> _registrationService;
-        protected readonly IMapper _mapper;
 
-        public RegisterController(IRegistrationService<T, D> registrationService, IMapper mapper)
-        {
-            _registrationService = registrationService;
-            _mapper = mapper;
-        }
+        public RegisterController(IRegistrationService<T, D> registrationService) => _registrationService = registrationService;
 
         [HttpPost]
         [ActionName("RegisterUser")]
