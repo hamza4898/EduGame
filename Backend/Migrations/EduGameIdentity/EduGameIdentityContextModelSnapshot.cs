@@ -65,7 +65,7 @@ namespace EduGameProject.Migrations.EduGameIdentity
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("RegisteredAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext");

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduGameProject.Migrations.EduGameIdentity
 {
     [DbContext(typeof(EduGameIdentityContext))]
-    [Migration("20260213172941_InitialIdentity")]
-    partial class InitialIdentity
+    [Migration("20260309181503_InitialIdentityContext")]
+    partial class InitialIdentityContext
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,7 +68,7 @@ namespace EduGameProject.Migrations.EduGameIdentity
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("RegisteredAt")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext");

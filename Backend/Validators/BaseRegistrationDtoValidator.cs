@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace EduGame.Validators
 {
-    public class BaseRegistrationDtoValidator<T> : AbstractValidator<T>
+    public abstract class BaseRegistrationDtoValidator<T> : AbstractValidator<T>
         where T : BaseRegistrationDto
     {
         public BaseRegistrationDtoValidator()
@@ -40,8 +40,9 @@ namespace EduGame.Validators
 
             RuleFor(s => s.Password)
                 .NotEmpty().WithMessage("Пароль обязателен!")
+                .Length(8, 32).WithMessage("Пароль должен быть от 8 до 32 символов")
                 .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,32}$")
-                .WithMessage("Пароль должен быть от 8 до 32 символов и содержать: цифру, заглавную и строчную букву и спецсимвол (!@#$%^&*)");
+                .WithMessage("Пароль должен содержать: цифру, заглавную и строчную букву и спецсимвол (!@#$%^&*)");
 
             RuleFor(s => s.Motivation)
                 .MaximumLength(200).WithMessage("Слишком много символов!")
