@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using EduGame.Services;
 using EduGame.DTOs;
+using Ardalis.Result;
 
 namespace EduGame.Controllers
 {
@@ -19,7 +20,7 @@ namespace EduGame.Controllers
         {
             var result = await _registrationService.CreateUser(userDto);
 
-            return CreatedAtRoute($"Get{typeof(T).Name}", new { externalId = ((dynamic)result.ValueOrDefault)?.ExternalId }, result);
+            return CreatedAtRoute($"Get{typeof(T).Name}", new { externalId = ((dynamic)result.Value)?.ExternalId }, result);
         }
 
         [HttpGet("{externalId}")]

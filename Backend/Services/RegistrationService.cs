@@ -4,7 +4,7 @@ using EduGame.DTOs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using EduGame.Entities;
-using FluentResults;
+using Ardalis.Result;
 
 namespace EduGame.Services
 {
@@ -36,7 +36,7 @@ namespace EduGame.Services
 
                 logger.LogWarning("Failed registration with Identity validation errors: {errorMessages} for user with {ID} ID", errorMessages, identityUser.Id);
 
-                return Result.Fail(errorMessages);
+                return Result.Invalid(new ValidationError(errorMessages));
             } 
 
             var userProfile = mapper.Map<T>(userDto);
@@ -47,7 +47,7 @@ namespace EduGame.Services
 
             logger.LogInformation("Added a new user with {ID} ID to database contexts", identityUser.Id);
 
-            return Result.Ok(userProfile);
+            return Result.Success(userProfile);
         }
 
         public async Task<Result<T>> GetUserByExternalId(Guid externalId)
@@ -58,10 +58,10 @@ namespace EduGame.Services
             if (user == null)
             {
                 logger.LogInformation("Failed to find user with {externalId} ID in database", externalId);
-                return Result.Fail("Объект не найден в базе данных");
+                return Result.NotFound("Объект не найден в базе данных");
             }
 
-            return Result.Ok(user);
+            return Result.Success(user);
         }
     }
 }

@@ -1,6 +1,6 @@
 using EduGame.DTOs;
 using EduGame.Entities;
-using FluentResults;
+using Ardalis.Result;
 
 namespace EduGame.Services
 {
