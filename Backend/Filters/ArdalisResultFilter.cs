@@ -10,7 +10,7 @@ namespace EduGame.Filters
         {
             var executedContext = await next();
 
-            if (executedContext.Result is ObjectResult obj && obj.Value is Ardalis.Result.IResult result)
+            if (executedContext.Result is ObjectResult objectResult && objectResult.Value is Ardalis.Result.IResult result)
             {
                 if (!(result.Status == ResultStatus.Ok))
                 {
@@ -28,7 +28,7 @@ namespace EduGame.Filters
                     };   
                 }
                 else
-                    obj.Value = (result as dynamic).Value;
+                    objectResult.Value = (result as dynamic).Value;
             }   
         }
     }

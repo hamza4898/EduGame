@@ -33,3 +33,7 @@ Frontend/build/
 
 Logs/
 *.log
+
+private.key
+public.key
+
