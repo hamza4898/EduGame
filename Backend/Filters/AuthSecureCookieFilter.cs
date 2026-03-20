@@ -22,6 +22,8 @@ namespace EduGame.Filters
         {
             if (context.Result is ObjectResult objectResult && objectResult.Value is Result<string> objectValue)
             {
+                if (!objectValue.IsSuccess) return;
+                
                 string token = objectValue.Value;
 
                 context.HttpContext.Response.Cookies.Append("EduGame-Access-Token", token, new CookieOptions

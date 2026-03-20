@@ -138,6 +138,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddScoped<ILoginService, LoginService>();
+
 var app = builder.Build();
 
 app.UseMiddleware<CorrelationIdMiddleware>();

@@ -35,7 +35,7 @@ namespace EduGame.Validators
 
             RuleFor(s => s.Email)
                 .NotEmpty().WithMessage("Email обязателен!")
-                .EmailAddress().WithMessage("Неверный формал Email!")
+                .EmailAddress().WithMessage("Неверный формат Email!")
                 .MaximumLength(50).WithMessage("Слишком много символов для Email!");
 
             RuleFor(s => s.Password)
