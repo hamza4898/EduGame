@@ -4,34 +4,36 @@ using System.IO.Pipelines;
 using System.Security;
 using System.Security.Cryptography;
 using Ardalis.Result;
+using EduGame.DTOs;
 
 namespace EduGame.Filters
 {
     public class AuthSecureCookieFilter : IActionFilter
-    {
-        private readonly ILogger<AuthSecureCookieFilter> _logger;
-
-        public AuthSecureCookieFilter(ILogger<AuthSecureCookieFilter> logger)
-        {
-            _logger = logger;
-        }
-        
+    {       
         public void OnActionExecuting(ActionExecutingContext context) {}
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            if (context.Result is ObjectResult objectResult && objectResult.Value is Result<string> objectValue)
+            if (context.Result is ObjectResult objectResult && objectResult.Value is Result<TokenResponseDto> result)
             {
-                if (!objectValue.IsSuccess) return;
+                if (!result.IsSuccess) return;
                 
-                string token = objectValue.Value;
+                var tokenData = result.Value;
 
-                context.HttpContext.Response.Cookies.Append("EduGame-Access-Token", token, new CookieOptions
+                context.HttpContext.Response.Cookies.Append("EduGame-Access-Token", tokenData.AccessToken, new CookieOptions
                 {
                     HttpOnly = true,
                     Secure = true,
                     SameSite = SameSiteMode.Strict,
                     Expires = DateTime.UtcNow.AddMinutes(15)
+                });
+
+                context.HttpContext.Response.Cookies.Append("EduGame-Refresh-Token", tokenData.RefreshToken, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTime.UtcNow.AddDays(7)
                 });
 
                 objectResult.Value = Result.Success("Авторизация в EduGame прошла успешно!");

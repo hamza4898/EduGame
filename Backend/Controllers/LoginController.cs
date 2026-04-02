@@ -23,5 +23,17 @@ namespace EduGame.Controllers
 
             return Ok(user);
         }
+
+        [HttpPost]
+        [ActionName("RefreshTokens")]
+        [TypeFilter(typeof(AuthSecureCookieFilter))]
+        public async Task<IActionResult> RefreshTokens()
+        {
+            var refreshToken = Request.Cookies["EduGame-Refresh-Token"];
+
+            var newTokens = await _loginService.RefreshTokens(refreshToken);
+
+            return Ok(newTokens);
+        }
     }
 }

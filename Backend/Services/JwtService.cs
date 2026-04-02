@@ -1,10 +1,12 @@
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using Ardalis.Result;
 using EduGame.Entities;
 using System.IO;
 using System.Security.Cryptography;
 using System.Security.Claims;
+using EduGame.Data;
+using EduGame.DTOs;
+using System.Text;
 
 namespace EduGame.Services
 {
@@ -21,7 +23,7 @@ namespace EduGame.Services
             _key = new ECDsaSecurityKey(ecdsa);
         }
 
-        public Result<string> GenerateToken(ApplicationUser user)
+        public string GenerateAccessToken(ApplicationUser user)
         {
             var creds = new SigningCredentials(_key, SecurityAlgorithms.EcdsaSha256);
 
@@ -41,9 +43,36 @@ namespace EduGame.Services
             );
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var tokenString = tokenHandler.WriteToken(tokenDescriptor);
+            var accessToken = tokenHandler.WriteToken(tokenDescriptor);
 
-            return Result.Success(tokenString);
+            return accessToken;
+        }
+
+        public RefreshTokenResponseDto GenerateRefreshToken()
+        {
+            var randomNumber = new byte[64];
+
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+            }
+
+            var refreshToken = Convert.ToBase64String(randomNumber);
+
+            var hashedRefreshToken = HashToken(refreshToken);   
+
+            return new RefreshTokenResponseDto(refreshToken, hashedRefreshToken);
+        }
+
+        public string HashToken(string token)
+        {
+            using var sha256 = SHA256.Create();
+
+            var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(token));
+
+            var hashedRefreshToken = Convert.ToBase64String(hashedBytes); 
+
+            return hashedRefreshToken;
         }
     }
 }

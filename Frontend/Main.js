@@ -21,3 +21,20 @@ function showAuthButtons() {
         
     }, 500);
 }
+
+window.apiFetch = async (url, options = {}) => {
+    options.credentials = 'include'; 
+    
+    let response = await fetch(url, options);
+
+    if (response.status === 401) {
+        const refreshRes = await fetch('/api/login/RefreshTokens', { method: 'POST', credentials: 'include' });
+        if (refreshRes.ok) {
+            return await fetch(url, options);
+        } else {
+            window.location.href = '/Login.html';
+        }
+    }
+    return response;
+};
+

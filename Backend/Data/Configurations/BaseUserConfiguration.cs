@@ -5,7 +5,7 @@ using EduGame.Entities;
 
 namespace EduGame.Data.Configurations
 {
-    public abstract class BaseConfiguration<T> : IEntityTypeConfiguration<T>
+    public abstract class BaseUserConfiguration<T> : IEntityTypeConfiguration<T>
         where T: BaseUser
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)

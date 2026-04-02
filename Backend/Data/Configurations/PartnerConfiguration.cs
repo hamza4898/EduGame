@@ -4,7 +4,7 @@ using EduGame.Entities;
 
 namespace EduGame.Data.Configurations
 {
-    public class PartnerConfiguration : BaseConfiguration<Partner>
+    public class PartnerConfiguration : BaseUserConfiguration<Partner>
     {
         public override void Configure(EntityTypeBuilder<Partner> builder)
         {

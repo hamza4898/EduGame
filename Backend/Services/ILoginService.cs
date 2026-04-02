@@ -5,6 +5,8 @@ namespace EduGame.Services
 {
     public interface ILoginService
     {
-        Task<Result<string>> LoginUser(LoginDto loginDto);
+        Task<Result<TokenResponseDto>> LoginUser(LoginDto loginDto);
+
+        Task<Result<TokenResponseDto>> RefreshTokens(string? token);
     }
 }

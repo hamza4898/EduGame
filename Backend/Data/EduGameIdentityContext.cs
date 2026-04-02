@@ -17,5 +17,7 @@ namespace EduGame.Data
                 .HasColumnType("datetime")
                 .IsRequired();
         }
+
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
     }
 }

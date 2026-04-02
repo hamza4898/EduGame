@@ -1,10 +1,15 @@
 using Ardalis.Result;
 using EduGame.Entities;
+using EduGame.DTOs;
 
 namespace EduGame.Services
 {
     public interface IJwtService
     {
-        Result<string> GenerateToken(ApplicationUser user);
+        string GenerateAccessToken(ApplicationUser user);
+
+        RefreshTokenResponseDto GenerateRefreshToken();
+
+        string HashToken(string token);
     }
 }
