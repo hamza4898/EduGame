@@ -7,15 +7,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <script src="Login.js"></script>
 </head>
-<body style = "background-color: black;">
+<body>
     <section id="cooperation">
         <div class="container">      
-            <div id="userForm" class="role-form animate__animated animate__fadeIn">
+            <div class="role-form animate__animated animate__fadeIn">
                 <h3>Войти в EduGame</h3>
-                <form id="loginForm">
-                    <input name = "Email" type="email" placeholder="Email" required>
-                    <input name = "Password" type="password" placeholder="Пароль" required>
-                    <button type="button" class="submit-btn" onclick="loginUser('loginForm')">Войти</button>
+                <form id="login-form">
+                    <div class="input-group">
+                        <input class="form-input" name = "Email" type="email" placeholder="Email" required>                      
+                    </div>
+                    <div class="input-group">
+                        <input name = "Password" type="password" class="form-input" placeholder="Пароль" required>
+                        <button type="button" class="toggle-password" onclick="togglePass(this)">👁️</button>
+                    </div>
+                    <a href="#" class="forgot-password">Забыли пароль?</a>
+                    <button type="button" class="btn btn-primary" onclick="loginUser('loginForm')">Войти</button>
+                    <div class="divider">Или</div>
+                    <button type="button" class="btn btn-outline btn-google"><img src="images/googleLogo.jpg" alt="">Войти через Google</button>
+                    <p class="form-footer">Нет аккаунта? <a href="Registration.html">Зарегистрироваться</a></p>
                 </form>
             </div>
         </div>

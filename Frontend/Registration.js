@@ -40,3 +40,15 @@ document.addEventListener('submit', async (e) => {
         alert("Ошибка сети");
     }
 });
+
+function togglePass(btn) {
+    const input = btn.previousElementSibling;
+    
+    if (input.getAttribute('type') === 'password') {
+        input.setAttribute('type', 'text');
+        btn.textContent = '🙈'; 
+    } else {
+        input.setAttribute('type', 'password');
+        btn.textContent = '👁️';
+    }
+}

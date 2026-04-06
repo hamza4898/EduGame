@@ -25,3 +25,15 @@ async function loginUser(formId) {
         console.error("Ошибка запроса:", err);
     }
 }
+
+function togglePass(btn) {
+    const input = btn.previousElementSibling;
+    
+    if (input.getAttribute('type') === 'password') {
+        input.setAttribute('type', 'text');
+        btn.textContent = '🙈'; 
+    } else {
+        input.setAttribute('type', 'password');
+        btn.textContent = '👁️';
+    }
+}
