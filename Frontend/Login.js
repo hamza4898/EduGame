@@ -37,3 +37,13 @@ function togglePass(btn) {
         btn.textContent = '👁️';
     }
 }
+
+function fadeOutAndRedirect(url) {
+    const form = document.querySelector('.login-card');
+    
+    form.classList.add('animate__animated', 'animate__fadeOutLeft');
+
+    setTimeout(() => {
+        window.location.href = url;
+    }, 500);
+}

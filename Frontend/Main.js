@@ -37,4 +37,3 @@ window.apiFetch = async (url, options = {}) => {
     }
     return response;
 };
-
