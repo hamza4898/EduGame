@@ -1,0 +1,193 @@
+.create-course-modal {
+    display: flex;
+    flex-direction: column;
+    width: min(920px, calc(100vw - 32px));
+    max-width: 920px;
+    max-height: min(90vh, 900px);
+    padding: 0;
+    overflow: hidden;
+    border-color: var(--border-violet);
+    background: #0f1424;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .7), 0 0 45px rgba(168, 85, 247, .16);
+    text-align: left;
+    animation: none;
+}
+
+.search-modal-header {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 26px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255, 255, 255, .02);
+}
+
+.search-modal-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.btn-close-search {
+    display: grid;
+    flex: 0 0 36px;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .04);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color .2s, border-color .2s, background .2s;
+}
+
+.btn-close-search:hover {
+    border-color: rgba(168, 85, 247, .45);
+    background: rgba(168, 85, 247, .12);
+    color: white;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px 26px 26px;
+    overflow-y: auto;
+}
+
+.create-form .form-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.create-form .form-col {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.create-form .instr-input,
+.create-form .instr-textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 13px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    outline: none;
+    background: rgba(0, 0, 0, .22);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 13px;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.create-form .instr-input:focus,
+.create-form .instr-textarea:focus {
+    border-color: var(--violet-primary);
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, .12);
+}
+
+.create-form .instr-input:focus-visible,
+.create-form .instr-textarea:focus-visible,
+.create-form .switch-row input:focus-visible,
+.btn-close-search:focus-visible,
+.create-form > .hud-btn-premium:focus-visible {
+    outline: 2px solid #c084fc;
+    outline-offset: 2px;
+}
+
+.create-form .instr-input:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.create-form .instr-textarea {
+    min-height: 78px;
+    resize: vertical;
+    line-height: 1.55;
+}
+
+.create-form .switch-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    min-height: 42px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.create-form .switch-row input {
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    accent-color: var(--violet-primary);
+}
+
+.course-community-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px;
+    border: 1px solid rgba(168, 85, 247, .2);
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(168, 85, 247, .07), rgba(15, 20, 36, .25));
+}
+
+.course-community-panel .form-row {
+    align-items: flex-start;
+}
+
+.course-community-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.course-community-icon {
+    display: grid;
+    flex: 0 0 40px;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(168, 85, 247, .3);
+    border-radius: 12px;
+    background: rgba(168, 85, 247, .12);
+    color: #c084fc;
+}
+
+.course-community-heading strong {
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.course-community-heading p {
+    margin: 4px 0 0;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.create-form > .hud-btn-premium {
+    width: 100%;
+    flex: 0 0 auto;
+    margin-top: 0 !important;
+}
+
+.hud-modal-overlay.open .create-course-modal {
+    animation: zoomIn .25s ease both;
+}
+
+.hud-modal-overlay.open {
+    padding: 18px;
+}

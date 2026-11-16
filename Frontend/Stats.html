@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGame | Кибер-Статистика</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="Stats.css"> 
+</head>
+<body class="app animate__animated animate__fadeIn">
+
+    <div class="hub-bg-logo"><img src="images/hamzaBro3.png" alt="EduGame Mascot" onerror="this.style.display='none'"></div>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <header class="saas-topbar">
+        <div class="saas-topbar-left">
+            <div class="saas-workspace-selector" onclick="window.location.href='Main.html'">
+                <div class="workspace-avatar"><i class="fa-solid fa-terminal" style="color: #10b981;"></i></div>
+                <div class="workspace-meta">
+                    <span class="workspace-name">EduGame Статистика</span>
+                    <span class="workspace-plan">Метрики и Дерево Фокусов</span>
+                </div>
+            </div>
+        </div>
+        <div class="saas-topbar-actions">
+            <span class="saas-username-display" id="statsUsernameDisplay">Хамза (Ты)</span>
+            <div class="saas-avatar-mini"></div>
+        </div>
+    </header>
+
+    <main class="stats-hub-grid animate__animated animate__fadeInUp">
+        <div class="stats-glass-card border-neon-green">
+            <div class="card-glow-edge-green"></div>
+            <div class="stats-card-header">
+                <div class="stats-icon-wrapper-green"><i class="fa-solid fa-layer-group"></i></div>
+                <h3>Сферы Обучения</h3>
+            </div>
+            
+            <div class="rpg-stats-container">
+                <div class="rpg-stat-row">
+                    <span>Текущий Ранг</span>
+                    <span class="neon-green-text" id="statsUserLevel">Lvl 12 Мастер</span>
+                </div>
+                
+                <div class="xp-bar-wrapper">
+                    <div class="xp-bar-text"><span>Глобальный Опыт</span><span id="xpBarValues">750 / 1000</span></div>
+                    <div class="xp-bar-track"><div class="xp-bar-fill-neon" id="xpBarFill" style="width: 75%;"></div></div>
+                </div>
+
+                <div class="subject-skills-grid" id="sectionsSkillList"></div>
+            </div>
+            
+            <button class="btn-card-action-green" onclick="openFocusTree('tree-mega')">
+                <i class="fa-solid fa-sitemap"></i> Открыть глобальные фокусы
+            </button>
+        </div>
+
+        <div class="stats-glass-card border-neon-green">
+            <div class="card-glow-edge-green"></div>
+            <div class="stats-card-header">
+                <div class="stats-icon-wrapper-green"><i class="fa-solid fa-trophy"></i></div>
+                <h3>Достижения</h3>
+            </div>
+            <div class="achievements-scroll-area">
+                <div class="achieve-section">
+                    <h4><i class="fa-solid fa-certificate" style="color: #10b981;"></i> Из курсов</h4>
+                    <div class="achieve-item" onclick="openAchievementsDetail('courses')">
+                        <i class="fa-solid fa-graduation-cap item-icon-green"></i>
+                        <div>
+                            <strong>Сертификаты за курсы</strong>
+                            <p class="achieve-hint">Награды за пройденные курсы и модули</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="achieve-section" style="margin-top: 14px;">
+                    <h4><i class="fa-solid fa-medal" style="color: #f59e0b;"></i> От EduGame</h4>
+                    <div class="achieve-item" onclick="openAchievementsDetail('edugame')">
+                        <i class="fa-solid fa-award item-icon-green"></i>
+                        <div>
+                            <strong>Системные достижения</strong>
+                            <p class="achieve-hint">Особые награды платформы</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-card-action-green" onclick="openAchievementsDetail('all')">
+                <i class="fa-solid fa-trophy"></i> Все достижения
+            </button>
+        </div>
+
+        <div class="stats-glass-card border-neon-green">
+            <div class="card-glow-edge-green"></div>
+            <div class="stats-card-header">
+                <div class="stats-icon-wrapper-green"><i class="fa-solid fa-ranking-star"></i></div>
+                <h3>Рейтинги</h3>
+            </div>
+            <div class="leaderboard-tabs">
+                <button class="tab-chip active" id="chip-global" onclick="switchLeaderboardTab('global')">Студенты</button>
+                <button class="tab-chip" id="chip-vuz" onclick="switchLeaderboardTab('vuz')">Сообщества</button>
+                <button class="tab-chip" id="chip-weekly" onclick="switchLeaderboardTab('weekly')">Курсы</button>
+            </div>
+
+            <div class="leaderboard-table" id="statsLeaderboardTable"></div>
+        </div>
+    </main>
+
+    <div class="courses-modal-overlay" id="coursesSectionModal">
+        <div class="courses-modal-window courses-modal-wide animate__animated animate__fadeIn animate__faster">
+            <h3 id="coursesModalTitle"><i class="fa-solid fa-graduation-cap" style="color:#10b981;"></i> Курсы раздела</h3>
+            <div class="courses-modal-summary" id="coursesModalSummary"></div>
+            <div class="courses-list" id="coursesModalList"></div>
+            <button class="btn-close-courses" onclick="closeCoursesModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <div class="courses-modal-overlay" id="achievementsModal">
+        <div class="courses-modal-window courses-modal-wide animate__animated animate__fadeIn animate__faster">
+            <h3 id="achievementsModalTitle"><i class="fa-solid fa-trophy" style="color:#10b981;"></i> Достижения</h3>
+            <div class="achievements-detail-list" id="achievementsDetailList"></div>
+            <button class="btn-close-courses" onclick="closeAchievementsModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <div class="focus-tree-overlay" id="tree-mega">
+        <div class="focus-tree-window select-sphere-window animate__animated animate__fadeIn animate__faster">
+            <div class="focus-tree-header">
+                <h2><i class="fa-solid fa-layer-group" style="color: #10b981;"></i> ВЫБЕРИТЕ СФЕРУ ДЛЯ ПРОСМОТРА НАЦИОНАЛЬНЫХ ФОКУСОВ</h2>
+                <button class="btn-close-tree" onclick="closeFocusTree('tree-mega')"><i class="fa-solid fa-xmark"></i> Закрыть</button>
+            </div>
+            
+            <div class="spheres-slider-carousel">
+                <div class="sphere-card-item card-it">
+                    <div class="sphere-card-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>Сфера IT & Разработки</h3>
+                    <p>Фундаментальный хаб: Backend, Frontend, Искусственный Интеллект (ИИ) и Информационная Безопасность.</p>
+                    <button class="btn-enter-branch-tree" onclick="openSpecificTree('it-specific-tree')">Войти в дерево IT <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="sphere-card-item card-design">
+                    <div class="sphere-card-icon"><i class="fa-solid fa-palette"></i></div>
+                    <h3>Творчество и Дизайн</h3>
+                    <p>Ветви UI/UX проектирования интерфейсов, 3D-моделирования в Blender и игрового дизайна на Unity / Unreal Engine.</p>
+                    <button class="btn-enter-branch-tree" onclick="openSpecificTree('design-specific-tree')">Войти в дерево Дизайна <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="sphere-card-item card-lang">
+                    <div class="sphere-card-icon"><i class="fa-solid fa-language"></i></div>
+                    <h3>Иностранные Языки</h3>
+                    <p>Изучение технического английского языка для чтения PR, документации и ведения международных переговоров.</p>
+                    <button class="btn-enter-branch-tree" onclick="openSpecificTree('lang-specific-tree')">Войти в дерево Языков <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="sphere-card-item card-business" style="border-color: rgba(245, 158, 11, 0.15);">
+                    <div class="sphere-card-icon" style="color: #f59e0b;"><i class="fa-solid fa-briefcase"></i></div>
+                    <h3>Бизнес & Менеджмент</h3>
+                    <p>Управление ИТ-продуктами (Product Management), продуктовая аналитика, BI-аналитика и управление командами.</p>
+                    <button class="btn-enter-branch-tree" onclick="openSpecificTree('business-specific-tree')">Войти в Менеджмент <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="sphere-card-item card-eng" style="border-color: rgba(6, 182, 212, 0.15);">
+                    <div class="sphere-card-icon" style="color: #06b6d4;"><i class="fa-solid fa-gears"></i></div>
+                    <h3>Архитектура & Инженерия</h3>
+                    <p>Проектирование сложных систем, промышленная инженерия, чертежи, системный анализ и архитектурные паттерны.</p>
+                    <button class="btn-enter-branch-tree" onclick="openSpecificTree('eng-specific-tree')">Войти в Инженерию <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="sphere-card-item card-growth" style="border-color: rgba(239, 68, 68, 0.15);">
+                    <div class="sphere-card-icon" style="color: #ef4444;"><i class="fa-solid fa-arrow-up-right-dots"></i></div>
+                    <h3>Личностный Рост</h3>
+                    <p>Развитие Soft Skills, тайм-менеджмент, ораторское искусство и подготовка к жестким собеседованиям в ИТ.</p>
+                    <button class="btn-enter-branch-tree" onclick="openSpecificTree('growth-specific-tree')">Войти в Развитие <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <div class="specific-tree-overlay" id="it-specific-tree">
+        <div class="specific-tree-window panorama-window animate__animated animate__fadeIn animate__faster">
+            <div class="focus-tree-header">
+                <h2><i class="fa-solid fa-laptop-code" style="color: #06b6d4;"></i> ПУТЬ IT: РАЗРАБОТКА, ДАННЫЕ И КИБЕРБЕЗ</h2>
+                <div class="header-right-group">
+                    <div class="section-xp-chip"><i class="fa-solid fa-coins"></i> <span id="secXp-it">0</span> XP раздела</div>
+                    <button class="btn-close-tree" onclick="closeSpecificTree('it-specific-tree')"><i class="fa-solid fa-arrow-left"></i> Назад к сферам</button>
+                </div>
+            </div>
+            <div class="focus-canvas-scroll">
+                <div class="focus-canvas-content interactive-map" id="itMapCanvas" style="min-width: 1500px !important;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="specific-tree-overlay" id="design-specific-tree">
+        <div class="specific-tree-window panorama-window animate__animated animate__fadeIn animate__faster">
+            <div class="focus-tree-header">
+                <h2><i class="fa-solid fa-palette" style="color: #10b981;"></i> ПУТЬ ТВОРЦА: ВИЗУАЛ, АРТ И МЕДИА</h2>
+                <div class="header-right-group">
+                    <div class="section-xp-chip"><i class="fa-solid fa-coins"></i> <span id="secXp-design">0</span> XP раздела</div>
+                    <button class="btn-close-tree" onclick="closeSpecificTree('design-specific-tree')"><i class="fa-solid fa-arrow-left"></i> Назад к сферам</button>
+                </div>
+            </div>
+            <div class="focus-canvas-scroll">
+                <div class="focus-canvas-content interactive-map" id="designMapCanvas" style="min-width: 1500px !important;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="specific-tree-overlay" id="lang-specific-tree">
+        <div class="specific-tree-window panorama-window animate__animated animate__fadeIn animate__faster">
+            <div class="focus-tree-header">
+                <h2><i class="fa-solid fa-language" style="color: #a855f7;"></i> ПУТЬ ПОЛИГЛОТА: ОТ ПЕРВЫХ СЛОВ ДО СВОБОДЫ</h2>
+                <div class="header-right-group">
+                    <div class="section-xp-chip"><i class="fa-solid fa-coins"></i> <span id="secXp-lang">0</span> XP раздела</div>
+                    <button class="btn-close-tree" onclick="closeSpecificTree('lang-specific-tree')"><i class="fa-solid fa-arrow-left"></i> Назад к сферам</button>
+                </div>
+            </div>
+            <div class="focus-canvas-scroll">
+                <div class="focus-canvas-content interactive-map" id="langMapCanvas" style="min-width: 1500px !important;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="specific-tree-overlay" id="business-specific-tree">
+        <div class="specific-tree-window panorama-window animate__animated animate__fadeIn animate__faster">
+            <div class="focus-tree-header">
+                <h2><i class="fa-solid fa-chess" style="color: #f59e0b;"></i> ПУТЬ СТРАТЕГА: БИЗНЕС, МЕНЕДЖМЕНТ, МАРКЕТИНГ</h2>
+                <div class="header-right-group">
+                    <div class="section-xp-chip"><i class="fa-solid fa-coins"></i> <span id="secXp-business">0</span> XP раздела</div>
+                    <button class="btn-close-tree" onclick="closeSpecificTree('business-specific-tree')"><i class="fa-solid fa-arrow-left"></i> Назад к сферам</button>
+                </div>
+            </div>
+            <div class="focus-canvas-scroll">
+                <div class="focus-canvas-content interactive-map" id="businessMapCanvas" style="min-width: 1500px !important;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="specific-tree-overlay" id="eng-specific-tree">
+        <div class="specific-tree-window panorama-window animate__animated animate__fadeIn animate__faster">
+            <div class="focus-tree-header">
+                <h2><i class="fa-solid fa-compass-drafting" style="color: #06b6d4;"></i> ПУТЬ ЗОДЧЕГО: АРХИТЕКТУРА И ИНЖЕНЕРИЯ</h2>
+                <div class="header-right-group">
+                    <div class="section-xp-chip"><i class="fa-solid fa-coins"></i> <span id="secXp-eng">0</span> XP раздела</div>
+                    <button class="btn-close-tree" onclick="closeSpecificTree('eng-specific-tree')"><i class="fa-solid fa-arrow-left"></i> Назад к сферам</button>
+                </div>
+            </div>
+            <div class="focus-canvas-scroll">
+                <div class="focus-canvas-content interactive-map" id="engMapCanvas" style="min-width: 1500px !important;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="specific-tree-overlay" id="growth-specific-tree">
+        <div class="specific-tree-window panorama-window animate__animated animate__fadeIn animate__faster">
+            <div class="focus-tree-header">
+                <h2><i class="fa-solid fa-arrow-up-right-dots" style="color: #ef4444;"></i> ПУТЬ ВОСХОЖДЕНИЯ: МЫШЛЕНИЕ, ЭМОЦИИ, ЦЕЛИ</h2>
+                <div class="header-right-group">
+                    <div class="section-xp-chip"><i class="fa-solid fa-coins"></i> <span id="secXp-growth">0</span> XP раздела</div>
+                    <button class="btn-close-tree" onclick="closeSpecificTree('growth-specific-tree')"><i class="fa-solid fa-arrow-left"></i> Назад к сферам</button>
+                </div>
+            </div>
+            <div class="focus-canvas-scroll">
+                <div class="focus-canvas-content interactive-map" id="growthMapCanvas" style="min-width: 1500px !important;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Api-client.js"></script>
+    <script src="stats/core.js"></script>
+    <script src="stats/utils.js"></script>
+    <script src="stats/achievements.js"></script>
+    <script src="stats/focus-tree.js"></script>
+    <script src="stats/sections.js"></script>
+    <script src="stats/leaderboard.js"></script>
+    <script src="stats/windows.js"></script>
+    <script src="stats/init.js"></script>
+    <script src="Stats.js"></script>
+</body>
+</html>

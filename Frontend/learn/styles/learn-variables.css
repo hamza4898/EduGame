@@ -1,0 +1,7 @@
+:root {
+    --violet-primary: #a855f7;
+    --violet-dark: #6c5ce7;
+    --violet-glow: rgba(168, 85, 247, 0.25);
+    --bg-card-dark: rgba(15, 20, 36, 0.85);
+    --border-violet: rgba(168, 85, 247, 0.15);
+}

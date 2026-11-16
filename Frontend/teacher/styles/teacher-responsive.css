@@ -1,0 +1,94 @@
+@media (max-width: 900px) {
+    .instructor-sidebar {
+        max-height: 280px;
+    }
+
+    .instructor-panel {
+        min-height: 420px;
+    }
+
+    .teacher-dashboard .active-course-hero-card {
+        padding: 26px;
+    }
+}
+
+@media (max-width: 600px) {
+    .create-course-modal {
+        width: calc(100vw - 20px);
+        max-height: 94vh;
+    }
+
+    .search-modal-header,
+    .create-form {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    .create-form .form-row {
+        flex-direction: column;
+    }
+
+    .hud-modal-overlay.open {
+        padding: 10px;
+    }
+
+    .course-community-panel {
+        padding: 14px;
+    }
+
+    .instructor-panel {
+        padding: 18px;
+    }
+
+    .instructor-panel .panel-head,
+    .instructor-panel .form-row,
+    .instructor-panel .module-title,
+    .instructor-panel .lesson-row-editor,
+    .instructor-panel .lesson-block-heading {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .instructor-panel .quiz-option-row {
+        grid-template-columns: minmax(0, 1fr) 38px;
+    }
+
+    .instructor-panel .quiz-correct-choice {
+        grid-column: 1 / -1;
+    }
+
+    .instructor-panel .panel-sub {
+        text-align: left;
+    }
+
+    .instructor-panel .lesson-editor-toolbar,
+    .instructor-panel .lesson-block-actions {
+        flex-wrap: wrap;
+    }
+
+    .teacher-dashboard .active-course-hero-card {
+        padding: 22px;
+    }
+
+    .teacher-dashboard .active-course-hero-card h2 {
+        font-size: 22px;
+    }
+
+    .teacher-dashboard .dashboard-filters-zone {
+        gap: 8px;
+    }
+
+    .teacher-dashboard .filter-chip {
+        justify-content: center;
+        flex: 1 1 auto;
+        white-space: nowrap;
+    }
+
+    .teacher-course-card {
+        flex-basis: min(300px, calc(100vw - 72px));
+    }
+
+    .teacher-course-card .rail-card-actions {
+        flex-direction: column;
+    }
+}

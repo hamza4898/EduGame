@@ -1,0 +1,432 @@
+body,
+body.app {
+    background: #030712 !important;
+    color: #f8fafc !important;
+}
+
+.saas-avatar-mini {
+    display: inline-block !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+}
+
+body.teacher-mode .status-pulse-dot {
+    background: #f59e0b;
+    box-shadow: 0 0 10px #f59e0b;
+}
+
+body.teacher-mode .saas-system-status {
+    background: rgba(245, 158, 11, 0.06);
+    border-color: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+}
+
+body.teacher-mode .workspace-plan {
+    color: #f59e0b;
+}
+
+.item-icon-amber {
+    color: #f59e0b !important;
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+.teacher-achievement {
+    align-items: flex-start;
+}
+
+.teacher-achievement strong {
+    color: #e2e8f0;
+}
+
+.teacher-achievement p {
+    margin: 3px 0 0;
+}
+
+.teacher-achievement.locked {
+    opacity: 0.62;
+}
+
+.teacher-achievement.unlocked {
+    border-color: rgba(16, 185, 129, 0.22);
+    background: rgba(16, 185, 129, 0.06);
+}
+
+.achievement-progress {
+    display: inline-block;
+    margin-top: 7px;
+    color: #10b981;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.teacher-xp-rules {
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    border: 1px solid rgba(16, 185, 129, 0.12);
+    border-radius: 10px;
+    background: rgba(16, 185, 129, 0.035);
+}
+
+.teacher-xp-rules p {
+    margin: 0 0 8px;
+    color: #94a3b8;
+    font-size: 10.5px;
+    line-height: 1.45;
+}
+
+.teacher-xp-rules p:last-child {
+    margin-bottom: 0;
+}
+
+.teacher-xp-rules strong {
+    color: #10b981;
+}
+
+.teacher-earned-heading {
+    margin-top: 12px;
+}
+
+.teacher-summary-chips {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.teacher-chip {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    padding: 12px 6px;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.teacher-chip b {
+    font-size: 17px;
+    color: #fff;
+}
+
+.teacher-chip i {
+    font-size: 13px;
+    color: #10b981;
+}
+
+.teacher-chip.chip-amber i {
+    color: #f59e0b;
+}
+
+.teacher-chip.chip-red i {
+    color: #ef4444;
+}
+
+.stat-cards-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.courses-modal-window .stat-cards-row {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.stat-card {
+    background: rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+}
+
+.stat-card b {
+    font-size: 20px;
+    color: #fff;
+}
+
+.stat-card span {
+    font-size: 9.5px;
+    color: #64748b;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.analytics-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.analytics-block h4 {
+    font-size: 11px;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.bars-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 120px;
+    padding-top: 8px;
+}
+
+.bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+}
+
+.bar-fill {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    background: linear-gradient(180deg, #a855f7, #6c5ce7);
+    margin-top: auto;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+    transition: height 0.5s ease;
+}
+
+.bar-label {
+    font-size: 9px;
+    color: #64748b;
+    font-weight: 700;
+}
+
+.grades-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.grades-table th,
+.grades-table td {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.grades-table th {
+    color: #64748b;
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.grades-table td:first-child {
+    text-align: left;
+    color: #fff;
+    font-weight: 600;
+}
+
+.g-high {
+    color: #10b981;
+    font-weight: 700;
+}
+
+.g-mid {
+    color: #f59e0b;
+    font-weight: 700;
+}
+
+.g-low {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+.student-row-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+}
+
+.student-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.student-row-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+.student-row-sub {
+    font-size: 10px;
+    color: #64748b;
+}
+
+.teacher-student-profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.teacher-student-profile:hover .student-row-name {
+    color: #10b981;
+}
+
+.teacher-student-profile img,
+.teacher-leader-avatar {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    flex: 0 0 auto;
+}
+
+.teacher-leader-avatar {
+    width: 24px;
+    height: 24px;
+}
+
+.teacher-student-progress {
+    height: 5px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.14);
+}
+
+.teacher-student-progress span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.leader-row-item .leader-name a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.leader-row-item .leader-name a:hover {
+    color: #10b981;
+}
+
+.student-status-chip {
+    font-size: 8.5px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+.student-status-chip.st-top {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: #f59e0b;
+}
+
+.student-status-chip.st-ok {
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: #10b981;
+}
+
+.student-status-chip.st-risk {
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+.list-item {
+    background: rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12.5px;
+    color: #94a3b8;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.list-item .li-head {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.list-item .li-head strong {
+    color: #fff;
+}
+
+.list-item .li-head span {
+    color: #64748b;
+    font-size: 10.5px;
+}
+
+.empty-note {
+    font-size: 12.5px;
+    color: #64748b;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.btn-sm {
+    border: none;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.btn-sm.violet {
+    background: rgba(168, 85, 247, 0.12);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    color: #a855f7;
+}
+
+.btn-sm.violet:hover {
+    background: #a855f7;
+    color: #fff;
+}

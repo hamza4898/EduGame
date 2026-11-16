@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.app {
+    font-family: 'Inter', sans-serif !important;
+    background: #030712 !important;
+    color: #f8fafc !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+.hub-bg-logo {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 1;
+    animation: backgroundBreathe 16s ease-in-out infinite alternate;
+}
+
+.hub-bg-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes backgroundBreathe {
+    0% {
+        transform: scale(1);
+        opacity: 0.03;
+    }
+    100% {
+        transform: scale(1.03);
+        opacity: 0.06;
+    }
+}
+
+.saas-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(15, 20, 36, 0.7) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    z-index: 100;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.saas-workspace-selector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.workspace-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.workspace-meta {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.workspace-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+}
+
+.workspace-plan {
+    font-size: 10px;
+    color: #10b981;
+}
+
+.saas-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.saas-system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #94a3b8;
+    background: rgba(16, 185, 129, 0.06);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.status-pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #10b981;
+    animation: statusBlink 2s infinite;
+}
+
+@keyframes statusBlink {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.saas-username-display {
+    font-size: 13px;
+    font-weight: 500;
+    color: #94a3b8;
+}
+
+.saas-avatar-mini {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    flex-shrink: 0 !important;
+}
+
+.menu-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 14px;
+}
+
+.stats-hub-grid {
+    position: fixed !important;
+    top: 95px !important;
+    left: 24px !important;
+    right: 24px !important;
+    bottom: 24px !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+    z-index: 10 !important;
+}
+
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -280px;
+    width: 280px;
+    background: #0f1424;
+    z-index: 1000;
+    transition: left 0.3s;
+}
+
+.sidebar-menu.open {
+    left: 0;
+}
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 990;
+    transition: opacity 0.3s;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}

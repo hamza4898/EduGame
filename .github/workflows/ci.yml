@@ -1,0 +1,28 @@
+name: EduGame CI (Run Tests)
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 9 SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore NuGet packages
+      run: dotnet restore EduGame.sln
+
+    - name: Build C# Solution
+      run: dotnet build EduGame.sln --configuration Release --no-restore
+
+    - name: Run Unit Tests
+      run: dotnet test EduGame.sln --configuration Release --no-build --verbosity normal

@@ -1,0 +1,119 @@
+.streak-calendar-grid .cal-day {
+    padding: 6px 0 !important;
+    border-radius: 6px !important;
+    background: rgba(255, 255, 255, 0.02);
+    color: #64748b;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.streak-calendar-grid .cal-day:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.streak-calendar-grid .cal-day.active-day {
+    background: rgba(16, 185, 129, 0.08) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(16, 185, 129, 0.25) !important;
+    text-shadow: 0 0 6px rgba(52, 211, 153, 0.5) !important;
+}
+
+.hud-dropdown-panel {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(168, 85, 247, 0.1) !important;
+}
+
+#hubOptionsSubMenu {
+    z-index: 1000000 !important;
+}
+
+#notificationsFeedContainer div:hover {
+    background: rgba(168, 85, 247, 0.03) !important;
+    border-color: rgba(168, 85, 247, 0.15) !important;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.05);
+    transform: translateY(-1px);
+}
+
+#notificationsFeedContainer::-webkit-scrollbar {
+    width: 4px;
+}
+
+#notificationsFeedContainer::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+#notificationsFeedContainer::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.2);
+    border-radius: 10px;
+}
+
+.notif-feed-card {
+    display: flex !important;
+    gap: 14px !important;
+    padding: 16px 20px !important;
+    border-radius: var(--radius-sm) !important;
+    align-items: flex-start !important;
+    position: relative !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.notif-feed-card.unread-glow {
+    background: rgba(168, 85, 247, 0.03) !important;
+    border: 1px solid rgba(168, 85, 247, 0.25) !important;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.08);
+}
+
+.notif-feed-card.unread-glow:hover {
+    background: rgba(168, 85, 247, 0.06) !important;
+    border-color: var(--violet-primary) !important;
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.15);
+    transform: translateY(-2px);
+}
+
+.notif-feed-card.read-dim {
+    background: rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.02) !important;
+    opacity: 0.65;
+}
+
+.notif-feed-card.read-dim:hover {
+    background: rgba(255, 255, 255, 0.01) !important;
+    opacity: 0.9;
+}
+
+.friend-feed-card {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.friend-feed-card:hover {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-color: rgba(52, 211, 153, 0.2) !important;
+    box-shadow: 0 0 15px rgba(52, 211, 153, 0.05);
+    transform: translateY(-2px);
+}
+
+.friends-tabs-zone .filter-chip {
+    transition: all 0.2s ease !important;
+}
+
+.friends-tabs-zone .filter-chip.active {
+    background: rgba(52, 211, 153, 0.08) !important;
+    border-color: #34d399 !important;
+    color: white !important;
+    box-shadow: 0 0 12px rgba(52, 211, 153, 0.2);
+}
+
+#friendsFeedContainer::-webkit-scrollbar {
+    width: 4px;
+}
+
+#friendsFeedContainer::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+#friendsFeedContainer::-webkit-scrollbar-thumb {
+    background: rgba(52, 211, 153, 0.2);
+    border-radius: 10px;
+}

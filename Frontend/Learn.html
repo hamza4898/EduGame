@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGame — Академия Курсов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="Learn.css">
+</head>
+<body class="app animate__animated animate__fadeIn">
+
+    <div class="hub-bg-logo"><img src="images/hamzaBro3.png" alt="EduGame Mascot"></div>
+
+    <header class="saas-topbar animate__animated animate__fadeInDown">
+        <div class="saas-workspace-selector" onclick="window.location.href='Main.html'">
+            <div class="workspace-avatar back-hub"><i class="fa-solid fa-arrow-left"></i></div>
+            <div class="workspace-meta">
+                <span class="workspace-name">Вернуться в Хаб</span>
+                <span class="workspace-plan">Модуль: Обучение</span>
+            </div>
+        </div>
+        <div class="saas-topbar-actions">
+            <div class="hud-gamification-widgets">
+                <div class="hud-coins-badge" title="Ваш баланс монет">
+                    <i class="fa-solid fa-coins"></i>
+                    <span id="hudUserCoinsDisplay">350</span>
+                </div>
+            </div>
+            <div class="saas-user-profile-trigger">
+                <div class="hud-level-badge" id="userLevel" style="background:rgba(168,85,247,0.1); border-color:#a855f7; color:#a855f7;"></div>
+                <span class="saas-username-display" id="userNickname"></span>
+                <div class="saas-avatar-mini" onclick="window.location.href = 'Profile.html'"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="learn-main-wrapper">
+
+        <section class="learn-dashboard-view" id="dashboardView">
+
+            <div class="active-course-hero-card" id="activeCourseZone">
+                <div class="hero-card-inner">
+                    <span class="hero-badge">ТЕКУЩИЙ КВЕСТ</span>
+                    <h2 id="heroCourseTitle">Основы C#</h2>
+                    <p id="heroCourseHint">Ты остановился на этапе: <strong>Модуль 1 · Урок 2</strong>. Пройди и забери награду.</p>
+                    <div class="hero-progress-container">
+                        <div class="hero-progress-bar" id="heroProgressBar" style="width: 35%;"></div>
+                        <span class="hero-progress-text" id="heroProgressText">35% курса пройдено</span>
+                    </div>
+                    <button class="btn-resume-raid" id="btnResumeActiveRaid">
+                        <i class="fa-solid fa-play"></i> Продолжить прохождение
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-filters-zone">
+                <button class="filter-chip tab-filter active" data-collection="all">
+                    <i class="fa-solid fa-book-open text-violet"></i> Продолжаю проходить
+                </button>
+                <button class="filter-chip tab-filter" data-collection="liked">
+                    <i class="fa-solid fa-heart text-red"></i> Избранные курсы
+                </button>
+                <button class="filter-chip tab-filter" data-collection="archived">
+                    <i class="fa-solid fa-box-archive text-muted"></i> Архив курсов
+                </button>
+            </div>
+
+            <div class="courses-rail-wrap">
+                <button class="rail-arrow rail-prev" id="railPrev"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="courses-rail" id="mainCoursesRail"></div>
+                <button class="rail-arrow rail-next" id="railNext"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+            <div class="bottom-search-trigger-zone">
+                <button class="btn-global-search-trigger" id="btnOpenCatalog">
+                    <i class="fa-solid fa-store"></i> Найти новый курс по знаниям...
+                </button>
+            </div>
+        </section>
+
+        <section class="lesson-section hidden" id="lessonView" style="display: none;">
+            <div class="learn-tab-back-panel">
+                <button class="btn-back-to-dash" id="btnLeaveLesson">
+                    <i class="fa-solid fa-chevron-left"></i> Вернуться к списку курсов
+                </button>
+            </div>
+
+            <section class="course-completion-view hidden" id="courseCompletionView" aria-live="polite">
+                <div class="course-completion-card">
+                    <div class="completion-emblem"><i class="fa-solid fa-trophy"></i></div>
+                    <span class="completion-eyebrow"><i class="fa-solid fa-circle-check"></i> КУРС ЗАВЕРШЁН</span>
+                    <h1 id="completionCourseTitle">Курс завершён!</h1>
+                    <p class="completion-message">Ты прошёл весь путь и закрыл каждый урок. Отличная работа — знания теперь с тобой!</p>
+                    <div class="completion-progress">
+                        <div class="completion-progress-track"><span></span></div>
+                        <strong>100% курса пройдено</strong>
+                    </div>
+                    <div class="completion-stats" id="completionStats"></div>
+                    <div class="completion-actions">
+                        <button class="hud-btn-premium" id="btnCompletionDashboard"><i class="fa-solid fa-house"></i> К моим курсам</button>
+                        <button class="completion-secondary-button" id="btnReviewLessons"><i class="fa-solid fa-book-open"></i> Пересмотреть уроки</button>
+                    </div>
+                    <div class="completion-review" id="courseFeedback">
+                        <div class="completion-review-heading">
+                            <span class="completion-review-icon"><i class="fa-solid fa-star"></i></span>
+                            <div>
+                                <h2>Поделись впечатлениями</h2>
+                                <p>Твой отзыв поможет другим выбрать курс.</p>
+                            </div>
+                        </div>
+                        <div class="completion-review-fields">
+                            <label class="form-col">Оценка
+                                <select id="courseReviewStars" class="course-review-input">
+                                    <option value="5">5 звёзд</option><option value="4">4 звезды</option>
+                                    <option value="3">3 звезды</option><option value="2">2 звезды</option><option value="1">1 звезда</option>
+                                </select>
+                            </label>
+                            <label class="form-col">Отзыв<textarea id="courseReviewText" class="course-review-input course-review-textarea" rows="3" maxlength="1000" placeholder="Что было полезно?"></textarea></label>
+                        </div>
+                        <div class="completion-review-actions">
+                            <button class="course-review-submit" id="btnSubmitCourseReview"><i class="fa-solid fa-paper-plane"></i> Отправить отзыв</button>
+                            <button class="course-review-certificate" id="btnDownloadCertificate"><i class="fa-solid fa-certificate"></i> Скачать сертификат PDF</button>
+                        </div>
+                        <p class="course-review-status" id="courseReviewStatus" role="status" aria-live="polite"></p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="learn-layout-container">
+                <aside class="learn-sidebar">
+                    <div class="sidebar-header">
+                        <h3><i class="fa-solid fa-layer-group"></i> <span id="sidebarCourseName">Структура курса</span></h3>
+                    </div>
+                    <div class="quest-tree" id="questTree"></div>
+                </aside>
+
+                <main class="learn-main-content">
+                    <div class="lesson-card">
+                        <div class="lesson-header-row">
+                            <div class="lesson-header-titles">
+                                <span class="lesson-category" id="lessonModuleLabel">МОДУЛЬ 1</span>
+                                <h1 id="lessonMainTitle">Название урока</h1>
+                            </div>
+                            <div class="lesson-header-actions">
+                                <button class="hud-btn-chat-link" id="btnCourseChatTop">
+                                    <i class="fa-regular fa-comments"></i> Чат Сообщества Курса
+                                </button>
+                                <button class="hud-btn-chat-link" id="btnCourseNews">
+                                    <i class="fa-solid fa-bullhorn"></i> Новости курса
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-body-text" id="lessonBody"></div>
+
+                        <div class="lesson-task-zone" id="lessonTaskZone"></div>
+
+                        <div class="lesson-actions-zone">
+                            <button class="hud-btn-discuss" id="btnDiscussLesson">
+                                <i class="fa-regular fa-comments"></i> Обсудить этот урок в чате
+                            </button>
+                            <button id="btnCompleteQuest" class="hud-btn-premium">
+                                <i class="fa-solid fa-bolt"></i> Завершить квест и забрать награду
+                            </button>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </section>
+
+        <section class="catalog-section hidden" id="catalogView" style="display: none;">
+            <div class="learn-tab-back-panel">
+                <button class="btn-back-to-dash" id="btnLeaveCatalog">
+                    <i class="fa-solid fa-chevron-left"></i> Назад к моим курсам
+                </button>
+            </div>
+
+            <div class="catalog-layout">
+                <aside class="catalog-filters">
+                    <div class="catalog-filters-head">
+                        <h3><i class="fa-solid fa-sliders"></i> Фильтры</h3>
+                        <button class="catalog-reset" id="catalogReset">Сбросить</button>
+                    </div>
+                    <div class="catalog-search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="catalogSearch" placeholder="Поиск по курсам...">
+                    </div>
+                    <div class="catalog-paths" id="catalogPaths"></div>
+                </aside>
+
+                <div class="catalog-main">
+                    <div class="catalog-results-head">
+                        <h2 id="catalogResultsTitle">Все курсы</h2>
+                        <span class="catalog-results-count" id="catalogResultsCount"></span>
+                    </div>
+                    <div class="catalog-grid" id="catalogGrid"></div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+<div class="hud-modal-overlay" id="modalCourseDetails">
+    <div class="hud-modal-content course-details-modal animate__animated animate__zoomIn animate__fast">
+
+        <div class="details-cover" id="detailsCover">
+            <div class="details-cover-top">
+                <span class="category-badge" id="detailsCourseCategory">Путь IT</span>
+                <button class="btn-close-details" id="btnCloseDetailsModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <h2 id="detailsCourseTitle">Название курса</h2>
+            <div class="details-cover-stats" id="detailsCoverStats"></div>
+        </div>
+
+        <div class="details-modal-scroll-body">
+
+            <div class="details-section-box">
+                <h4><i class="fa-solid fa-circle-info text-violet"></i> Описание курса</h4>
+                <p id="detailsCourseDesc" class="details-desc-clamped"></p>
+                <button class="details-more-btn" id="detailsMoreBtn">Подробнее</button>
+            </div>
+
+            <div class="details-section-box">
+                <h4><i class="fa-solid fa-layer-group text-violet"></i> Что внутри</h4>
+                <div id="detailsCourseModules"></div>
+            </div>
+
+            <div class="details-section-box">
+                <h4><i class="fa-solid fa-user-shield text-violet"></i> Организатор трека</h4>
+                <div class="details-author-card">
+                    <div class="details-author-avatar" id="detailsAuthorAvatar"></div>
+                    <div class="details-author-info">
+                        <strong id="detailsAuthorName"></strong>
+                        <p id="detailsAuthorRole">Проверенный контент EduGame.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-section-box">
+                <h4><i class="fa-solid fa-star text-gold"></i> Отзывы студентов</h4>
+                <div class="details-reviews-wall" id="detailsReviewsWall"></div>
+            </div>
+        </div>
+
+        <div class="details-modal-footer-action" id="detailsFooter"></div>
+    </div>
+</div>
+
+<div class="hud-modal-overlay" id="modalCourseNews" role="dialog" aria-modal="true" aria-labelledby="courseNewsTitle">
+    <div class="hud-modal-content course-news-modal">
+        <div class="course-news-heading">
+            <div>
+                <span class="course-news-eyebrow"><i class="fa-solid fa-bullhorn"></i> ОБНОВЛЕНИЯ</span>
+                <h2 id="courseNewsTitle">Новости курса</h2>
+                <p id="courseNewsCourseName"></p>
+            </div>
+            <button type="button" class="btn-close-details" id="btnCloseCourseNews" aria-label="Закрыть новости">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="course-news-list" id="courseNewsList" aria-live="polite"></div>
+    </div>
+</div>
+
+    <div class="game-toast-container" id="gameToast">
+        <div class="game-toast-content">
+            <div class="toast-icon-box"><i class="fa-solid fa-trophy"></i></div>
+            <div class="toast-text-box">
+                <h4 id="toastTitle">Квест пройден!</h4>
+                <p id="toastMessage">+50 XP и +5 монет</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="Api-client.js"></script>
+    <script src="LearnData.js"></script>
+    <script src="learn/scripts/core.js"></script>
+    <script src="learn/scripts/dom.js"></script>
+    <script src="learn/scripts/utils.js"></script>
+    <script src="learn/scripts/api.js"></script>
+    <script src="learn/scripts/passport.js"></script>
+    <script src="learn/scripts/views.js"></script>
+    <script src="learn/scripts/hero.js"></script>
+    <script src="learn/scripts/rail.js"></script>
+    <script src="learn/scripts/purchase.js"></script>
+    <script src="learn/scripts/lesson.js"></script>
+    <script src="learn/scripts/course-chat.js"></script>
+    <script src="learn/scripts/course-news.js"></script>
+    <script src="learn/scripts/completion.js"></script>
+    <script src="learn/scripts/quest.js"></script>
+    <script src="learn/scripts/flow.js"></script>
+    <script src="learn/scripts/details.js"></script>
+    <script src="learn/scripts/catalog.js"></script>
+    <script src="Learn.js"></script>
+</body>
+</html>

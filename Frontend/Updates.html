@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGame | Лог обновлений</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="Updates.css">
+</head>
+<body>
+
+    <div class="back-button-wrapper">
+        <a href="Main.html" class="back-button">
+            <i class="fa-solid fa-arrow-left"></i> Вернуться в главный хаб
+        </a>
+    </div>
+
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fa-solid fa-code-branch"></i> Бортовой журнал обновлений
+        </h1>
+    </div>
+
+    <div id="developerUpdatesFeed" class="updates-container animate__animated animate__fadeIn" aria-live="polite">
+        <p class="updates-loading">Загружаем публикации...</p>
+    </div>
+
+    <section id="developerUpdateEditor" class="developer-update-editor" style="display: none;">
+        <div>
+            <span class="patch-tag">ПАНЕЛЬ РАЗРАБОТЧИКА</span>
+            <h2>Опубликовать обновление</h2>
+            <p>Публикация сразу появится в журнале у всех пользователей EduGame.</p>
+        </div>
+        <form id="developerUpdateForm">
+            <label for="updateTitle">Заголовок</label>
+            <input id="updateTitle" name="title" maxlength="120" minlength="3" required placeholder="Например: EduGame получил новые возможности">
+            
+            <label for="updateCategory">Метка публикации</label>
+            <input id="updateCategory" name="category" maxlength="32" minlength="2" required value="Обновление">
+            
+            <label for="updateContent">Текст статьи</label>
+            <textarea id="updateContent" name="content" maxlength="10000" minlength="10" required placeholder="Расскажите, что изменилось..."></textarea>
+            
+            <button type="submit"><i class="fa-solid fa-paper-plane"></i> Опубликовать статью</button>
+            <p id="developerUpdateStatus" role="status"></p>
+        </form>
+    </section>
+
+    <script type="module" src="Api-client.js"></script>
+    <script type="module" src="Updates.js"></script>
+</body>
+</html>

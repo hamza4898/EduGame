@@ -1,0 +1,63 @@
+.security-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.sec-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+}
+
+.sec-badges {
+    display: flex;
+    gap: 14px;
+}
+
+.sec-badge {
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+.b1 {
+    background: rgba(168, 85, 247, 0.15);
+    color: var(--violet);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+.b2 {
+    background: rgba(6, 182, 212, 0.15);
+    color: var(--cyan);
+    border: 1px solid rgba(6, 182, 212, 0.4);
+}
+
+.b3 {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--green);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.sec-text h3 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+.sec-text p:not(.kicker) {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 22px;
+}

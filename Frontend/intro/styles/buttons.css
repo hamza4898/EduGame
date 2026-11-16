@@ -1,0 +1,102 @@
+.btn-pill {
+    display: inline-block;
+    padding: 12px 26px;
+    border-radius: 100px;
+    border: 1px solid transparent;
+    background: linear-gradient(var(--bg), var(--bg)) padding-box,
+                linear-gradient(90deg, var(--violet), var(--pink)) border-box;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+}
+
+.btn-pill:hover {
+    box-shadow: 0 0 22px rgba(168, 85, 247, 0.35);
+    transform: translateY(-2px);
+}
+
+.btn-pill-small {
+    padding: 8px 18px;
+    font-size: 12px;
+}
+
+.btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 26px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s;
+}
+
+.btn-dark:hover {
+    border-color: var(--violet);
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.25);
+}
+
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 34px;
+    border-radius: 100px;
+    background: white;
+    color: #05060b;
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 10px 40px rgba(168, 85, 247, 0.35);
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+.auth-container {
+    display: none;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 26px;
+    flex-wrap: wrap;
+}
+
+.auth-btn {
+    padding: 15px 60px;
+    min-width: 200px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 100px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    transition: all 0.3s;
+}
+
+.auth-login {
+    background: linear-gradient(135deg, #6c5ce7, #a855f7);
+    box-shadow: 0 8px 26px rgba(168, 85, 247, 0.35);
+}
+
+.auth-reg {
+    background: linear-gradient(135deg, #f59e0b, #ec4899);
+    box-shadow: 0 8px 26px rgba(236, 72, 153, 0.35);
+}
+
+.auth-btn:hover {
+    transform: scale(1.08) translateY(-4px);
+    filter: brightness(1.1);
+}
+
+.auth-btn:active {
+    transform: scale(0.96);
+}

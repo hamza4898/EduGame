@@ -1,0 +1,412 @@
+.lesson-section {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-back-to-dash {
+    background: transparent;
+    border: none;
+    color: var(--violet-primary);
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.learn-layout-container {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    height: calc(100vh - 180px);
+}
+
+.learn-sidebar {
+    width: 330px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.sidebar-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quest-tree {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+}
+
+.module-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.module-group-title {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--violet-primary);
+    padding: 6px 10px;
+}
+
+.quest-node {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.quest-node:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.quest-node.completed {
+    background: rgba(16, 185, 129, 0.04);
+    border-color: rgba(16, 185, 129, 0.12);
+}
+
+.quest-node.completed .node-status-icon {
+    color: var(--green);
+}
+
+.quest-node.active {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.12);
+}
+
+.quest-node.active .node-status-icon {
+    color: var(--violet-primary);
+}
+
+.quest-node.locked {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.node-status-icon {
+    font-size: 14px;
+    width: 18px;
+    text-align: center;
+}
+
+.node-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.node-title {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.node-reward-tag {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.node-reward-tag.gold {
+    color: #eab308;
+    font-weight: 700;
+}
+
+.learn-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.lesson-card {
+    background: var(--bg-card-dark);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 32px;
+}
+
+.lesson-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+}
+
+.lesson-category {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    color: var(--violet-primary);
+    text-transform: uppercase;
+}
+
+.lesson-header-titles h1 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-top: 6px;
+}
+
+.lesson-header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.hud-btn-chat-link {
+    background: rgba(168, 85, 247, 0.08);
+    border: 1px solid var(--border-violet);
+    color: var(--violet-primary);
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.hud-btn-chat-link:hover {
+    background: rgba(168, 85, 247, 0.16);
+}
+
+.lesson-body-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.lesson-body-text p {
+    margin-bottom: 14px;
+}
+
+.lesson-body-text code {
+    background: rgba(168, 85, 247, 0.12);
+    color: #d8b4fe;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: 'Consolas', monospace;
+    font-size: 13px;
+}
+
+.lesson-video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 18px;
+    background: #000;
+}
+
+.code-block-mock {
+    background: #020408;
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    font-family: 'Consolas', monospace;
+    font-size: 13px;
+    color: #a7f3d0;
+    border-left: 3px solid var(--violet-primary);
+    margin: 16px 0;
+    white-space: pre-wrap;
+}
+
+.lesson-task-zone {
+    margin-top: 24px;
+    padding: 22px;
+    background: rgba(168, 85, 247, 0.05);
+    border: 1px solid var(--border-violet);
+    border-radius: var(--radius);
+}
+
+.task-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--violet-primary);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-question {
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.task-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all .2s;
+}
+
+.task-option:hover {
+    border-color: var(--violet-primary);
+    background: rgba(168, 85, 247, 0.08);
+}
+
+.task-option.correct {
+    border-color: var(--green);
+    background: rgba(16, 185, 129, 0.12);
+    color: #6ee7b7;
+}
+
+.task-option.wrong {
+    border-color: #e63946;
+    background: rgba(230, 57, 70, 0.1);
+    color: #fca5a5;
+}
+
+.task-option input {
+    accent-color: var(--violet-primary);
+}
+
+.task-textarea {
+    width: 100%;
+    min-height: 120px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: #a7f3d0;
+    font-family: 'Consolas', monospace;
+    font-size: 13px;
+    padding: 14px;
+    resize: vertical;
+    outline: none;
+}
+
+.task-textarea:focus {
+    border-color: var(--violet-primary);
+}
+
+.task-submit-teacher {
+    margin-top: 12px;
+    padding: 11px 22px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #070a13;
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-feedback {
+    margin-top: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    display: none;
+}
+
+.task-feedback.ok {
+    display: block;
+    background: rgba(16, 185, 129, 0.12);
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.task-feedback.err {
+    display: block;
+    background: rgba(230, 57, 70, 0.1);
+    color: #fca5a5;
+    border: 1px solid rgba(230, 57, 70, 0.3);
+}
+
+.lesson-actions-zone {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.hud-btn-discuss {
+    flex: 0 0 auto;
+    padding: 16px 22px;
+    border-radius: var(--radius-sm);
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.35);
+    color: #22d3ee;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all .2s;
+}
+
+.hud-btn-discuss:hover {
+    background: rgba(6, 182, 212, 0.18);
+    transform: translateY(-2px);
+}
+
+.hud-btn-premium {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--violet-dark), var(--violet-primary));
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.hud-btn-premium:hover {
+    filter: brightness(1.08);
+}

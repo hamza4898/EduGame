@@ -1,34 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Логин</title>
-    <link rel = "stylesheet" href = "Login.css">
+    <title>EduGame — Вход</title>
+    <link rel="stylesheet" href="Login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src="Login.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/hamzaBro3.png">
 </head>
 <body>
     <section id="cooperation">
-        <div class="container">      
-            <div class="role-form animate__animated animate__fadeIn">
-                <h3>Войти в EduGame</h3>
+        <div class="container">
+            <div class="role-form animate__animated animate__fadeInUp">
+                <p class="login-kicker">С возвращением, боец</p>
+                <h3>Войти в <span class="grad">EduGame</span></h3>
+
                 <form id="login-form">
                     <div class="input-group">
-                        <input class="form-input" name = "Email" type="email" placeholder="Email" required>                      
+                        <i class="fa-solid fa-envelope field-icon"></i>
+                        <input class="form-input" name="Email" type="email" placeholder="Email" required>
                     </div>
+
                     <div class="input-group">
-                        <input name = "Password" type="password" class="form-input" placeholder="Пароль" required>
+                        <i class="fa-solid fa-lock field-icon"></i>
+                        <input name="Password" type="password" class="form-input" placeholder="Пароль" required>
                         <button type="button" class="toggle-password" onclick="togglePass(this)">👁️</button>
                     </div>
+
+                    <p class="secure-hint">
+                        <span class="icon-pair"><i class="fa-solid fa-key"></i><i class="fa-solid fa-lock"></i></span>
+                        Сессия под защитой: HttpOnly-cookie
+                    </p>
+
                     <a href="ForgotPassword.html" class="forgot-password">Забыли пароль?</a>
-                    <button type="button" class="btn btn-primary" onclick="loginUser('login-form')">Войти</button>
+
+                    <button type="button" class="btn btn-primary" onclick="loginUser('login-form')">
+                        <i class="fa-solid fa-right-to-bracket"></i> Войти
+                    </button>
+
                     <div class="divider">Или</div>
-                    <button type="button" class="btn btn-outline btn-google"><img src="images/googleLogo.jpg" alt="">Войти через Google</button>
+
+                    <button id="google-login-btn" type="button" class="btn btn-google" onclick="googleAuthUniversal()">
+                        <i class="fa-brands fa-google"></i> Войти через Google
+                    </button>
+
                     <p class="form-footer">Нет аккаунта? <a href="Registration.html">Зарегистрироваться</a></p>
                 </form>
             </div>
         </div>
     </section>
+
+    <footer class="login-footer">2026 EduGame · Игровая образовательная платформа. Все права защищены</footer>
+
+    <script src="Api-client.js"></script>
+    <script src="Login.js"></script>
+    <script src="google-auth.js"></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
 </body>
 </html>

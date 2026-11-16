@@ -1,0 +1,12 @@
+:root {
+    --bg-primary: #070a13 !important;
+    --bg-secondary: #0f1424 !important;
+    --green-neon: #10b981 !important;
+    --text-primary: #f8fafc !important;
+    --text-secondary: #94a3b8 !important;
+    --text-muted: #475569 !important;
+    --border: rgba(255, 255, 255, 0.06) !important;
+    --glass: rgba(11, 16, 33, 0.85) !important;
+    --radius: 20px !important;
+    --radius-sm: 10px !important;
+}

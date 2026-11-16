@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGame Настройки</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="Settings.css">
+</head>
+<body>
+
+  <div class="settings-bg-logo">
+    <img src="images/hamzaBro3.png" alt="EduGame Mascot">
+  </div>
+
+  <div class="back-to-hub-container animate__animated animate__fadeInDown">
+    <button class="back-hub-btn" onclick="window.location.href='Main.html'">
+      <i class="fa-solid fa-arrow-left-long"></i> Вернуться в Главный Хаб
+    </button>
+  </div>
+
+  <main class="settings-main-wrapper animate__animated animate__zoomIn animate__fast">
+    
+    <div class="settings-header-zone">
+      <h2><i class="fa-solid fa-shield-halved"></i> Безопасность и конфиденциальность</h2>
+      <p>Управление защитой персональных данных SaaS-аккаунта</p>
+    </div>
+
+    <section class="settings-card-section">
+      <div class="section-row-header">
+        <span class="section-title-text"><i class="fa-solid fa-key"></i> Двухэтапная проверка (2FA)</span>
+        <span class="status-badge status-disabled" id="status2faDisplay">Отключена</span>
+      </div>
+      <p class="section-description-text">
+        Привязка TOTP доступна в настройках, но код пока не запрашивается при обычном входе. Не считайте этот переключатель дополнительной защитой входа до завершения серверной проверки.
+      </p>
+      <button class="settings-action-btn toggle-2fa-action" id="action2faBtn" onclick="initializeTwoFactor()">
+        Включить 2FA защиту
+      </button>
+    </section>
+
+    <section class="settings-card-section">
+      <div class="section-row-header">
+        <span class="section-title-text"><i class="fa-brands fa-google"></i> Привязка Google аккаунта</span>
+        <span class="status-badge status-disabled" id="googleLinkStatus">Не привязан</span>
+      </div>
+      <p class="section-description-text">
+        Привяжите Google аккаунт, чтобы входить в EduGame в один клик без пароля и не потерять профиль, если забудете пароль. Если привязка уже есть — здесь же можно отвязать её.
+      </p>
+      <button class="settings-action-btn google-link-btn" id="googleLinkBtn" onclick="googleLinkCurrentAccount()">
+        <i class="fa-brands fa-google"></i> Привязать Google аккаунт
+      </button>
+    </section>
+    
+    <section class="settings-card-section">
+      <div class="section-row-header">
+        <span class="section-title-text"><i class="fa-regular fa-envelope"></i> Основной Email для уведомлений</span>
+        <span class="status-badge status-enabled" id="emailStatusBadge">Подтверждён</span>
+      </div>
+      <p class="section-description-text">
+        Используется системой для авторизации. Из соображений безопасности, смена адреса требует обязательного подтверждения вашей личности текущим паролем.
+      </p>
+      <div class="settings-input-combo-group">
+        <input type="email" id="settingsEmailInput" disabled style="opacity: 0.5; cursor: not-allowed;">
+        <button class="settings-action-btn save-phone-action" id="triggerEmailModalBtn">
+          <i class="fa-solid fa-pen-to-square"></i> Изменить Email
+        </button>
+      </div>
+    </section>
+
+    <section class="settings-danger-zone-card">
+      <div class="danger-zone-title">Управление учетной записью</div>
+      <p class="danger-zone-desc">Прерывание текущих сессий или безвозвратное уничтожение записей из базы данных.</p>
+      
+      <div class="danger-zone-buttons-row">
+        <button class="danger-row-btn logout-system-btn" id="actionLogoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Выйти с аккаунта
+        </button>
+        <button class="danger-row-btn delete-profile-btn" id="actionDeleteBtn">
+          <i class="fa-regular fa-trash-can"></i> Удалить аккаунт
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="secure-modal-overlay" id="emailSecureModal">
+    <div class="secure-modal-content animate__animated animate__zoomIn animate__fast">
+      <div class="secure-modal-icon"><i class="fa-solid fa-user-lock"></i></div>
+      <h3>Подтверждение личности</h3>
+      <p>Введите текущий пароль от аккаунта и новый адрес электронной почты, чтобы бэкенд выслал токен смены.</p>
+      
+      <div class="secure-modal-form">
+        <div class="secure-input-wrapper">
+          <label><i class="fa-solid fa-lock"></i> Текущий пароль</label>
+          <input type="password" id="secureCurrentPassword" placeholder="••••••••••••">
+        </div>
+        
+        <div class="secure-input-wrapper">
+          <label><i class="fa-regular fa-envelope"></i> Новый Email адрес</label>
+          <input type="email" id="secureNewEmail" placeholder="new-login@edugame.dev">
+        </div>
+      </div>
+
+      <div class="secure-modal-actions">
+        <button class="secure-btn confirm" id="submitSecureEmailBtn">Подтвердить на сервере</button>
+        <button class="secure-btn cancel" id="closeSecureEmailBtn">Отмена</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="secure-modal-overlay deep-fog-overlay" id="qrSecureModal">
+    <div class="secure-modal-content mega-panorama-window animate__animated animate__fadeInUp animate__fast">
+      <div class="security-glow-orange"></div>
+      
+      <div class="focus-tree-header">
+        <h2 style="color: #fff; font-family: 'Inter', sans-serif;"><i class="fa-solid fa-shield-halved" style="color: #f59e0b;"></i> СИСТЕМНЫЙ ПРОТОКОЛ: ИНИЦИАЛИЗАЦИЯ КИБЕР-ЩИТА</h2>
+        <button id="btn-close-tree-trigger" class="btn-close-tree"><i class="fa-solid fa-xmark"></i> Игнорировать протокол</button>
+      </div>
+
+      <div class="security-panorama-layout">
+        
+        <div class="security-text-side">
+          <h3 class="cyber-alert-title">ЖЕЛАЕТЕ УСИЛИТЬ БЕЗОПАСНОСТЬ ЯДРА?</h3>
+          <p class="cyber-alert-desc">
+            TOTP-код можно привязать, но текущий вход в EduGame пока не требует этот код. До завершения серверной интеграции не полагайтесь на настройку как на второй фактор.
+          </p>
+          <div class="security-bullet-card">
+            <div class="bullet-item">
+              <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> 
+              <span>Пароль остаётся единственной проверкой при обычном входе, даже если TOTP включён в профиле.</span>
+            </div>
+            <div class="bullet-item">
+              <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> 
+              <span>Перед публикацией нужно связать проверку TOTP с выдачей токенов входа.</span>
+            </div>
+            <div class="bullet-item">
+              <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> 
+              <span>Коды TOTP генерируются приложением на устройстве и доступны без интернета.</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
+            <div style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 10px #f59e0b;"></div>
+            <span style="color: #64748b; font-size: 12px; font-weight: 600;">Статус: Ожидание подтверждения аппаратного токена...</span>
+          </div>
+        </div>
+
+        <div class="security-interactive-side">
+          <p class="step-label">1. Отсканируйте матрицу через Google Authenticator:</p>
+          <div class="qr-code-zone-container neon-border-orange">
+            <img id="qrCodeImg" src="" alt="Генерация QR-кода...">
+          </div>
+
+          <p class="step-label" style="margin-top: 5px;">2. Текстовый секретный ключ аккаунта:</p>
+          <input type="text" id="qrSecretKeyText" readonly class="cyber-input-readonly" value="ЗАГРУЗКА...">
+
+          <p class="step-label" style="margin-top: 5px;">3. Введите 6-значный одноразовый код:</p>
+          <input type="text" id="qrVerificationCodeInput" placeholder="000 000" maxlength="6" class="cyber-input-code">
+
+          <button class="btn-auth-confirm-green btn-mega-active" id="submit2faVerificationBtn">
+            <i class="fa-solid fa-unlock-keyhole"></i> АКТИВИРОВАТЬ ЗАЩИТУ АKКАУНТА
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<div class="secure-modal-overlay" id="deleteSecureModal">
+  <div class="secure-modal-content animate__animated animate__zoomIn animate__fast">
+    <div class="secure-modal-icon" style="color:#e63946;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+    <h3>Подтверждение удаления</h3>
+    <p>Чтобы уничтожить аккаунт, подтверди личность: введи пароль или подтверди через Google.</p>
+
+    <div class="secure-modal-form">
+      <div class="secure-input-wrapper" id="deletePasswordWrapper">
+        <label><i class="fa-solid fa-lock"></i> Текущий пароль</label>
+        <input type="password" id="deletePasswordInput" placeholder="••••••••••••">
+      </div>
+    </div>
+
+    <div class="secure-modal-actions">
+      <button class="secure-btn confirm" id="submitDeleteBtn" style="background:linear-gradient(135deg,#e63946,#c9184a);">
+        Удалить аккаунт навсегда
+      </button>
+      <button class="secure-btn cancel" id="closeDeleteBtn">Отмена</button>
+    </div>
+    <p style="text-align:center; margin-top:10px;">
+      <a href="#" id="deleteViaGoogleLink" style="color:#a855f7; font-size:12px;">Подтвердить через Google вместо пароля</a>
+    </p>
+  </div>
+</div>
+
+  <script src="Api-client.js"></script>
+  <script src="Settings.js"></script>
+  <script src="google-auth.js"></script>
+</body>
+</html>

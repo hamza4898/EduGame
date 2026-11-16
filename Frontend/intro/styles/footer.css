@@ -1,0 +1,36 @@
+.final-cta {
+    text-align: center;
+    padding: 90px 20px;
+    background: radial-gradient(ellipse at bottom, rgba(168, 85, 247, 0.15), transparent 65%);
+}
+
+.final-cta h2 {
+    font-size: 34px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.final-cta p {
+    color: var(--muted);
+    margin-bottom: 30px;
+}
+
+.intro-footer {
+    border-top: 1px solid var(--border);
+    padding: 44px 20px 26px;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.footer-tag {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.footer-copy {
+    color: var(--muted);
+    font-size: 12px;
+}

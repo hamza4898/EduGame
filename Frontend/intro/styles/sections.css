@@ -1,0 +1,64 @@
+.section-title {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 70px;
+}
+
+.splits-section,
+.grid-section,
+.roles-section {
+    padding: 80px 20px;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 110px;
+}
+
+.split.rev .split-text {
+    order: 2;
+}
+
+.split.rev .split-visual {
+    order: 1;
+}
+
+.split-text h3 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+}
+
+.split-p {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.split-points {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.split-points span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.split-points i {
+    color: var(--green);
+    font-size: 12px;
+}

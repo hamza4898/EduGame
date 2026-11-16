@@ -1,0 +1,300 @@
+@media (max-width: 1100px) {
+    .learn-layout-container {
+        gap: 16px;
+    }
+
+    .learn-sidebar {
+        width: 280px;
+    }
+
+    .catalog-layout {
+        grid-template-columns: 240px 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 900px) {
+    .learn-main-wrapper {
+        padding: 20px 16px;
+    }
+
+    .learn-dashboard-view {
+        gap: 18px;
+    }
+
+    .active-course-hero-card {
+        padding: 24px;
+    }
+
+    .active-course-hero-card h2 {
+        font-size: 22px;
+    }
+
+    .learn-layout-container {
+        flex-direction: column;
+        height: auto;
+        min-height: calc(100vh - 160px);
+    }
+
+    .learn-sidebar {
+        width: 100%;
+        max-height: 320px;
+    }
+
+    .learn-main-content {
+        min-height: 420px;
+    }
+
+    .lesson-card {
+        padding: 22px;
+    }
+
+    .lesson-header-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .lesson-header-actions {
+        justify-content: flex-start;
+    }
+
+    .catalog-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-filters {
+        position: static;
+        max-height: none;
+    }
+
+    .catalog-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+
+    .saas-global-search {
+        width: 220px;
+    }
+
+    .rail-card {
+        flex: 0 0 270px;
+    }
+
+    .details-modal-scroll-body {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .saas-topbar {
+        padding: 0 14px;
+        height: 60px;
+    }
+
+    .learn-main-wrapper {
+        top: 60px;
+        padding: 14px 12px;
+    }
+
+    .saas-global-search {
+        display: none;
+    }
+
+    .saas-system-status {
+        display: none;
+    }
+
+    .saas-username-display {
+        display: none;
+    }
+
+    .workspace-name {
+        font-size: 12px;
+    }
+
+    .workspace-plan {
+        font-size: 9px;
+    }
+
+    .active-course-hero-card {
+        padding: 18px;
+    }
+
+    .active-course-hero-card h2 {
+        font-size: 19px;
+    }
+
+    .active-course-hero-card p {
+        font-size: 13px;
+    }
+
+    .btn-resume-raid {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+    }
+
+    .dashboard-filters-zone {
+        gap: 6px;
+    }
+
+    .filter-chip {
+        flex: 1 1 auto;
+        justify-content: center;
+        padding: 8px 12px;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .rail-card {
+        flex: 0 0 min(280px, calc(100vw - 60px));
+    }
+
+    .rail-arrow {
+        display: none;
+    }
+
+    .btn-global-search-trigger {
+        padding: 14px 18px;
+        font-size: 13px;
+    }
+
+    .lesson-card {
+        padding: 16px;
+    }
+
+    .lesson-header-titles h1 {
+        font-size: 18px;
+    }
+
+    .lesson-actions-zone {
+        flex-direction: column;
+    }
+
+    .hud-btn-discuss {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hud-btn-premium {
+        width: 100%;
+    }
+
+    .hud-btn-chat-link {
+        flex: 1;
+        justify-content: center;
+        font-size: 11px;
+        padding: 9px 12px;
+    }
+
+    .learn-sidebar {
+        max-height: 260px;
+    }
+
+    .quest-node {
+        padding: 10px 12px;
+    }
+
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-results-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .catalog-results-head h2 {
+        font-size: 18px;
+    }
+
+    .catalog-card {
+        padding: 16px;
+    }
+
+    .course-news-modal {
+        width: calc(100vw - 20px);
+        padding: 18px;
+    }
+
+    .course-details-modal {
+        width: calc(100vw - 20px);
+        max-height: 92vh;
+    }
+
+    .details-cover {
+        padding: 18px;
+    }
+
+    .details-cover h2 {
+        font-size: 20px;
+    }
+
+    .completion-card,
+    .course-completion-card {
+        padding: 22px 16px;
+    }
+
+    .completion-actions {
+        flex-direction: column;
+    }
+
+    .completion-actions button {
+        width: 100%;
+    }
+
+    .completion-review-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .completion-review-actions {
+        flex-direction: column;
+    }
+
+    .completion-review-actions button {
+        width: 100%;
+    }
+
+    .game-toast-container {
+        left: 12px;
+        right: 12px;
+        bottom: 16px;
+        transform: none;
+        width: auto;
+    }
+
+    .game-toast-container.show {
+        transform: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .hud-coins-badge {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .hud-level-badge {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+
+    .saas-avatar-mini {
+        width: 28px;
+        height: 28px;
+    }
+
+    .workspace-avatar {
+        width: 28px;
+        height: 28px;
+    }
+
+    .filter-chip {
+        font-size: 10px;
+        padding: 7px 10px;
+    }
+
+    .rail-card {
+        flex: 0 0 calc(100vw - 48px);
+    }
+}

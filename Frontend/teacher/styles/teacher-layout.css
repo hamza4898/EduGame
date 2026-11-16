@@ -1,0 +1,37 @@
+html {
+    overflow-x: clip;
+}
+
+body.app {
+    overflow-x: hidden;
+}
+
+.learn-dashboard-view {
+    min-height: calc(100vh - 150px);
+    gap: 20px;
+}
+
+.learn-main-wrapper {
+    overflow-x: clip;
+}
+
+.learn-layout-container {
+    min-height: 0;
+}
+
+.learn-main-content {
+    min-width: 0;
+}
+
+.learn-tab-back-panel {
+    margin-bottom: 4px;
+}
+
+.bottom-search-trigger-zone {
+    margin-top: auto;
+    padding: 8px 0 12px;
+}
+
+.btn-create-course-trigger {
+    max-width: 600px;
+}

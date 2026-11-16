@@ -1,0 +1,15 @@
+**/%bin/
+**/obj/
+**/.idea/
+**/.vscode/
+**/private.key
+**/Logs/
+**/ChatUploads/
+**/.DS_Store
+*.key
+*.pem
+.env
+Backend/appsettings.Development.json
+.VSCodeCounter/
+**/wwwroot/
+*.http

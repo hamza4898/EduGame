@@ -1,0 +1,3 @@
+namespace EduGame.Application.Developer.BroadcastDeveloperNotification;
+
+public sealed record BroadcastDeveloperNotificationRequest(string Message);

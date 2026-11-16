@@ -1,0 +1,45 @@
+services:
+  edu-db:
+    image: postgres:18-alpine
+    container_name: edugame-compose-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your environment or .env file}
+      POSTGRES_DB: edugamedb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d edugamedb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  edu-app:
+    image: edugame-local:latest
+    container_name: edu-game-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Ollama__BaseUrl: http://host.docker.internal:11434
+      Ollama__Model: qwen2.5-coder:1.5b
+      ConnectionStrings__DefaultConnection: "Host=edu-db;Port=5432;Database=edugamedb;Username=postgres;Password=${POSTGRES_PASSWORD}"
+      EDUGAME_JWT_PRIVATE_KEY_BASE64: ${EDUGAME_JWT_PRIVATE_KEY_BASE64:?Set EDUGAME_JWT_PRIVATE_KEY_BASE64 in your environment or .env file}
+      Authentication__Google__ClientId: ${GOOGLE_CLIENT_ID}
+      Authentication__Google__ClientSecret: ${GOOGLE_CLIENT_SECRET}
+    volumes:
+      - chat_uploads:/app/ChatUploads
+    depends_on:
+      edu-db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  chat_uploads:

@@ -1,0 +1,60 @@
+.learn-main-wrapper {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    padding: 32px 40px;
+    overflow-y: auto;
+}
+
+.back-hub {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+
+.learn-dashboard-view {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.learn-dashboard-view,
+.lesson-section,
+.catalog-section {
+    animation: fadeIn .4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.text-violet {
+    color: var(--violet-primary);
+}
+
+.text-red {
+    color: #e63946;
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.hidden {
+    display: none !important;
+}

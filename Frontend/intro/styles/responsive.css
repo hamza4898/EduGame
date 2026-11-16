@@ -1,0 +1,27 @@
+@media (max-width: 900px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .split,
+    .security-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .split.rev .split-text {
+        order: 1;
+    }
+
+    .split.rev .split-visual {
+        order: 2;
+    }
+
+    .g-grid {
+        grid-template-columns: 1fr;
+    }
+}

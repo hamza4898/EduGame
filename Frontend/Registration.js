@@ -4,42 +4,57 @@ function hideAllForms() {
     });
 }
 
-function showForm(role) {
-    document.querySelectorAll('.role-form').forEach(f => f.classList.remove('active'));
-    document.getElementById(role + 'Form').classList.add('active');
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const studentForm = document.getElementById('studentForm');
+    const teacherForm = document.getElementById('teacherForm');
 
-document.addEventListener('submit', async (e) => {
-    e.preventDefault(); 
+    async function handleFormSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        
+        const submitBtn = form.querySelector('[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
 
-    const form = e.target;
-    const url = form.getAttribute('action');
-    const data = Object.fromEntries(new FormData(form)); 
+        const url = form.getAttribute('action');
+        const data = Object.fromEntries(new FormData(form));
+        data.ClientRoute = window.location.origin + "/ForgotPassword.html?mode=register";
 
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
 
-        if (response.ok) {
-            window.location.href = "/Profile.html";
-        } else {
-            const errorData = await response.json();
-            
-            if (errorData && errorData.error) {
-                const messages = errorData.error;
-                alert("Ошибки:\n" + messages);
+            const result = await response.text();
+
+            if (response.ok) {
+                localStorage.setItem('registerSessionId', result);
+                if (data.email || data.Email) {
+                    localStorage.setItem('registerEmail', data.email || data.Email);
+                }
+                window.location.href = 'ForgotPassword.html?mode=register';
             } else {
-                alert("Ошибка сервера: " + response.status);
+                if (submitBtn) submitBtn.disabled = false; // Возвращаем кнопку в случае ошибки
+                try {
+                    const errorJson = JSON.parse(result);
+                    alert("Ошибка регистрации:\n" + (errorJson.error || "Дубликат данных"));
+                } catch (p) {
+                    alert("Ошибка регистрации:\n" + result);
+                }
             }
+        } catch (err) {
+            if (submitBtn) submitBtn.disabled = false;
+            console.error("Критический сбой сети:", err);
+            alert("Ошибка сети при регистрации");
         }
-    } catch (err) {
-        console.error(err);
-        alert("Ошибка сети");
     }
+
+    if (studentForm) studentForm.addEventListener('submit', handleFormSubmit);
+    if (teacherForm) teacherForm.addEventListener('submit', handleFormSubmit);
+
 });
+
 
 function togglePass(btn) {
     const input = btn.previousElementSibling;
@@ -52,3 +67,17 @@ function togglePass(btn) {
         btn.textContent = '👁️';
     }
 }
+
+function showForm(role) {
+    document.querySelectorAll('.role-form').forEach(f => f.classList.remove('active'));
+    
+    const targetForm = document.getElementById(role + 'Form');
+    if (targetForm) {
+        targetForm.classList.add('active');
+    } else {
+        console.error(`[DOM Error] Форма с ID ${role}Form не найдена в верстке!`);
+    }
+}
+
+window.showForm = showForm;
+window.togglePass = togglePass;

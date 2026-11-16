@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGame Chat</title>
+    <meta name="theme-color" content="#111827">
+    <link rel="stylesheet" href="Chat.css">
+    <link rel="icon" type="image/png" href="images/hamzaBro3.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+</head>
+<body>
+<div class="app animate__animated animate__fadeIn">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <button class="menu-btn" id="menuBtn">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <div class="search-box" id="searchBoxBtn" style="cursor: pointer;">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Поиск сообществ...">
+      </div>
+    </div>
+
+    <div class="chat-list">
+      <div class="chat-item">
+        <div class="chat-avatar">
+          <div class="avatar-placeholder"><img src="images/hamzaBro3.png" alt="E"></div>
+        </div>
+        <div class="chat-info">
+          <div class="chat-top">
+            <span class="chat-name">EduGame<img src="images/галочка.png" alt="✓" class="verified-tick"></span>
+            <span class="chat-time">19:48</span>
+          </div>
+          <div class="chat-bottom">
+            <span class="chat-preview">Чат готов к работе ✨</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-menu" id="sidebarMenu">
+      <div class="menu-header">
+        <button class="menu-close-btn" id="menuCloseBtn">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+        <span>Навигация EduGame Chat</span>
+      </div>
+      
+      <div class="menu-links">
+        <button class="menu-link-item" id="createCommunityBtn">
+          <span class="link-icon">➕</span>
+          <span class="link-text">Создать сообщество</span>
+        </button>
+        <a href="Profile.html" class="menu-link-item">
+          <span class="link-icon">👤</span>
+          <span class="link-text">Мой профиль</span>
+        </a>
+        <a href="Main.html" class="menu-link-item to-main">
+          <span class="link-icon">🏠</span>
+          <span class="link-text">Перейти на главное</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="chat-main">
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <div class="chat-placeholder" id="chatPlaceholder">
+      <div class="placeholder-content animate__animated animate__fadeIn">
+        <div class="placeholder-icon animate__animated animate__pulse animate__infinite">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a8.967 8.967 0 0 1-6 2.281 8.967 8.967 0 0 1-6-2.28m0 0a9.094 9.094 0 0 1-3.741-.479 3 3 0 0 1 4.682-2.72m-.94 3.198.002.031c0 .225.012.447.037.666A11.944 11.944 0 0 0 12 21c2.17 0 4.207-.576 5.963-1.584A6.062 6.062 0 0 0 18 18.719m-12 0a8.967 8.967 0 0 0 6 2.281 8.967 8.967 0 0 0 6-2.28M12 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm7.5 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM5.25 22a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+          </svg>
+        </div>
+        <h2>Добро пожаловать в EduGame Chat!</h2>
+        <p>Выберите сообщество слева, чтобы открыть чат и начать общение.</p>
+      </div>
+    </div>
+
+    <div class="chat-content-wrapper hidden" id="chatContentWrapper">
+
+      <div class="chat-header">
+        <div class="chat-header-left">
+          <a style="text-decoration: none; display: block;">
+
+              <button id="mobileBackBtn" class="mobile-back-btn" style="background: none; border: none; color: #ff4d6d; font-size: 18px; cursor: pointer; display: none; padding: 4px 8px;">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+
+              <div class="chat-avatar" style="cursor: pointer;">
+                  <div class="avatar-placeholder" style="background: linear-gradient(135deg, #ff4d6d, #c9184a);">D</div>
+                  <div class="online-dot"></div>
+              </div>
+          </a>
+          <div class="chat-header-info">
+            <h3 id="chatHeaderName">EduGame</h3>
+            <span class="status" id="status">online</span>
+          </div>
+        </div>
+        <div class="chat-header-actions">
+          <button class="header-btn" id="roomInfoBtn" title="Информация о сообществе" aria-label="Информация о сообществе" hidden>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+            </svg>
+          </button>
+          <button class="header-btn" id="searchBtn" type="button" title="Поиск по сообщениям" aria-label="Поиск по сообщениям" aria-expanded="false">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <section class="message-search-panel hidden" id="messageSearchPanel" aria-label="Поиск сообщений">
+        <form class="message-search-form" id="messageSearchForm">
+          <input class="message-search-input" id="messageSearchInput" type="search" maxlength="100" placeholder="Найти сообщение в этом сообществе..." autocomplete="off">
+          <button class="message-search-submit" type="submit">Найти</button>
+          <button class="message-search-close" id="messageSearchClose" type="button" aria-label="Закрыть поиск">×</button>
+        </form>
+        <div class="message-search-results" id="messageSearchResults" aria-live="polite"></div>
+      </section>
+
+      <div class="messages-area" id="messagesArea"></div>
+
+      <div class="input-area">
+        <button class="input-btn" id="attachBtn" type="button" title="Отправить фото или видео">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+        </button>
+        <button class="input-btn" id="emojiBtn" type="button" aria-label="Выбрать эмодзи" aria-expanded="false">😀</button>
+        <div class="emoji-picker hidden" id="emojiPicker" role="dialog" aria-label="Выбор эмодзи"></div>
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/gif,image/webp,video/mp4,video/webm,video/quicktime" hidden multiple>
+        <input type="text" class="message-input" id="messageInput" maxlength="1000" placeholder="Написать сообщение...">
+        
+        <button id="sendBtn" class="input-btn send">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+  <div class="clan-modal-overlay" id="clanLobbyPanel">
+    <div class="clan-modal-content animate__animated animate__zoomIn animate__fast">
+      
+      <div class="clan-modal-header">
+        <span class="lobby-title-badge">Дашборд сообщества</span>
+        <button class="lobby-close-btn" id="clanLobbyCloseBtn">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+    <div class="clan-modal-grid">
+      
+      <div class="clan-profile-side">
+        <div class="clan-avatar-big">
+          <img src="images/hamzaBro3.png" id="clanBigAvatar" alt="Clan Avatar">
+        </div>
+        <h2 class="clan-name-neon" id="clanNameNeon">EduGame</h2>
+        <div class="clan-divider"></div>
+        <p class="clan-desc" id="clanDesc">Главный хаб разработчиков и геймеров EduGame. Собирай пати, общайся и врывайся в катки! 🔥</p>
+      </div>
+
+      <div class="clan-players-side">
+        <div class="lobby-list-title">
+          <span>Участники:</span>
+          <span class="online-count-badge" id="lobbyOnlineCount"></span>
+        </div>
+
+        <button class="lobby-action-btn" id="addPlayerBtn" style="display: none; width: 100%; margin-bottom: 12px; padding: 10px; background: var(--accent-gradient); border: none; border-radius: var(--radius-xs); color: white; font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(230, 57, 70, 0.2); transition: all 0.2s;">
+          + ПРИГЛАСИТЬ ИГРОКА
+        </button>
+
+        <div class="player-list-table" id="playerListTable">
+        </div>
+      </div>
+    </div>
+  </div>
+  </main>
+</div>
+<div class="search-user-modal" id="searchUserModal">
+  <div class="search-user-content">
+    <div class="search-user-header">
+      <h3>Пригласить в сообщество</h3>
+      <button class="lobby-close-btn" id="closeSearchUserBtn" type="button" aria-label="Закрыть">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="search-tabs">
+      <button class="search-tab" data-tab="nickname">🔍 По нику</button>
+      <button class="search-tab active" data-tab="friends">👥 Из друзей</button>
+    </div>
+    <input type="text" id="searchUserInput" placeholder="Введите никнейм...">
+    <div id="searchUserResults"></div>
+  </div>
+</div>
+<div class="create-modal-overlay" id="createCommunityModal">
+  <div class="create-modal-content animate__animated animate__zoomIn animate__fast">
+    
+    <div class="create-modal-header">
+      <span class="lobby-title-badge">Создать сообщество</span>
+      <button class="lobby-close-btn" id="createCommunityCloseBtn">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="create-modal-grid">
+      
+      <div class="create-preview-side">
+        <span class="preview-mini-title">LIVE PREVIEW</span>
+        
+        <div class="avatar-upload-zone" id="avatarUploadZone" title="Загрузить аватар сообщества">
+          <input type="file" id="communityFileAvatar" accept="image/*" style="display: none;">
+          <img src="images/hamzaBro3.png" id="communityPreviewImg" alt="Preview Avatar">
+          <div class="upload-hover-overlay"><span>ЗАГРУЗИТЬ</span></div>
+        </div>
+
+        <div class="chat-item active" style="width: 100%; margin-top: 20px; pointer-events: none; background: rgba(255,255,255,0.02);">
+          <div class="chat-avatar">
+            <div class="avatar-placeholder"><img src="images/hamzaBro3.png" id="sidebarPreviewAvatar" alt="Avatar"></div>
+          </div>
+          <div class="chat-info">
+            <div class="chat-top">
+              <span class="chat-name" id="sidebarPreviewName">Новая Гильдия</span>
+              <span class="chat-time">Сейчас</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="create-form-side">
+        <div class="form-group">
+          <label for="commNameInput">НАЗВАНИЕ СООБЩЕСТВА</label>
+          <input type="text" id="commNameInput" name="CommunityName" maxlength="30" placeholder="Введите уникальное имя...">
+          <span class="error-msg-hint" id="commNameHint">Имя должно быть от 3 до 30 символов</span>
+        </div>
+
+        <div class="form-group">
+          <label for="commDescInput">ОПИСАНИЕ КЛАНА</label>
+          <textarea id="commDescInput" name="Description" maxlength="200" placeholder="Чем занимается ваше сообщество? Опишите цели, правила..."></textarea>
+          <div class="char-counter"><span id="descCharCount">0</span>/200</div>
+        </div>
+
+        <div class="form-row-enterprise" style="display: flex; gap: 20px; margin-top: 10px;">
+          
+          <div class="form-group" style="flex: 1;">
+            <label>ТИП СООБЩЕСТВА</label>
+            <div class="privacy-toggle-zone" style="display: flex; gap: 10px; margin-top: 4px;">
+              <label class="enterprise-radio">
+                <input type="radio" name="commPrivacy" value="public" checked style="display: none;">
+                <div class="radio-custom-btn">🌍 Публичное</div>
+              </label>
+              <label class="enterprise-radio">
+                <input type="radio" name="commPrivacy" value="private" style="display: none;">
+                <div class="radio-custom-btn">🔒 Приватное</div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" style="flex: 1;">
+            <label for="commLimitSelect">ЛИМИТ УЧАСТНИКОВ</label>
+            <select id="commLimitSelect" class="enterprise-select" style="margin-top: 4px;">
+              <option value="10">Сквад (до 10 человек)</option>
+              <option value="100" selected>Гильдия (до 100 человек)</option>
+              <option value="500">Альянс (до 500 человек)</option>
+              <option value="0">Легион (🔥 Безлимит)</option>
+            </select>
+          </div>
+
+        </div>
+
+        <button class="modal-btn confirm" id="submitCreateCommunityBtn" disabled style="width: 100%; margin-top: auto; padding: 14px; font-weight: 700; letter-spacing: 0.5px;">
+          СОЗДАТЬ СООБЩЕСТВО
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="room-modal" id="roomModal">
+    <div class="modal-content">
+        <h3>Войти в сообщество</h3>
+        <p>Введите название сообщества, чтобы присоединиться к общению</p>
+        
+        <input type="text" id="roomNameInput" placeholder="Например: dota2, csharp, general...">
+        
+        <div class="modal-search-results" id="modalSearchResults"></div>
+
+        <div class="modal-actions">
+            <button class="modal-btn cancel" id="closeModalBtn">Отмена</button>
+            <button class="modal-btn confirm" id="joinRoomBtn" disabled>Войти</button>
+        </div>
+    </div>
+</div>
+
+<script src="Api-client.js"></script>
+<script src="chat/scripts/core.js"></script>
+<script src="chat/scripts/dom.js"></script>
+<script src="chat/scripts/storage.js"></script>
+<script src="chat/scripts/notifications.js"></script>
+<script src="chat/scripts/render.js"></script>
+<script src="chat/scripts/history.js"></script>
+<script src="chat/scripts/connection.js"></script>
+<script src="chat/scripts/ui.js"></script>
+<script src="chat/scripts/message-search.js"></script>
+<script src="chat/scripts/community-search.js"></script>
+<script src="chat/scripts/rooms.js"></script>
+<script src="chat/scripts/send.js"></script>
+<script src="chat/scripts/socket-events.js"></script>
+<script src="chat/scripts/members.js"></script>
+<script src="chat/scripts/create-community.js"></script>
+<script src="chat/scripts/invite.js"></script>
+<script src="Chat.js"></script>
+</body>
+</html>

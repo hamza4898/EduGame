@@ -1,170 +1,278 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body { 
-    font-family: 'Lato', sans-serif; 
+html, body {
+    font-family: 'Lato', sans-serif;
     overflow-x: hidden;
-    line-height: 1.6; color: #333; 
-    scroll-behavior: smooth; 
-    background-color: black;
-    background-image: url('images/hamzaBro2.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    background: #05060b;
+    color: #f8fafc;
+}
+
+body::before {
+    content: ''; position: fixed; inset: 0;
+    background: url('images/hamzaBro3.png') center/cover no-repeat;
+    opacity: 0.05; pointer-events: none;
+}
+
+body::after {
+    content: ''; position: fixed; inset: 0; pointer-events: none;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(168, 85, 247, 0.14), transparent 40%),
+        radial-gradient(circle at 85% 90%, rgba(16, 185, 129, 0.12), transparent 40%),
+        radial-gradient(circle at 60% 40%, rgba(245, 158, 11, 0.07), transparent 45%);
 }
 
 section { 
+    position: relative; 
+    z-index: 1; 
     padding: 5rem 0; 
 }
 
-.container {
+.container { 
     max-width: 1200px; 
     margin: 0 auto; 
-    padding: 0 2rem;
-    margin-top: -50px;
+    padding: 0 2rem; 
 }
 
-.role-form { 
-    display: block; 
-    background: white; 
-    padding: 4rem 3rem;
-    border-radius: 20px; 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
-    max-width: 800px; 
+.role-form {
+    display: block;
+    max-width: 480px;
     margin: 2rem auto;
-    text-align: center; 
+    padding: 3rem 2.5rem;
+    background: rgba(15, 20, 36, 0.94);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(168, 85, 247, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 }
 
-.role-form.active { 
-    display: block; 
-    animation: slideDown 0.5s ease; 
-} 
+.role-form::before {
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #a855f7, #ec4899, transparent);
+}
+
+.login-kicker {
+    color: #a855f7; 
+    font-size: 11px; 
+    font-weight: 800;
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+    margin-bottom: 8px;
+}
 
 .role-form h3 {
-    color: #333;
-    margin-bottom: 1rem;
-    font-size: 2rem; 
-    margin-top: -20px;
+    color: #fff; 
+    font-size: 1.9rem; 
+    font-weight: 800; 
+    margin-bottom: 1.6rem;
 }
 
-.input-group {
-    position: relative;
-    margin-bottom: 16px;
+.role-form h3 .grad {
+    background: linear-gradient(90deg, #a855f7, #ec4899);
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    color: transparent;
+}
+
+.input-group { 
+    position: relative; 
+    margin-bottom: 16px; 
+    text-align: left; 
+}
+
+.field-icon {
+    position: absolute; 
+    left: 16px; 
+    top: 50%; 
+    transform: translateY(-50%);
+    color: #64748b; 
+    font-size: 14px; 
+    pointer-events: none;
 }
 
 .form-input {
-    width: 100%;
-    height: 54px;
+    width: 100%; 
+    height: 54px; 
     border-radius: 12px;
-    border: 1px solid #E5E7EB; 
-    padding: 0 16px;
-    font-size: 16px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 48px 0 44px;
+    font-size: 15px; 
     outline: none;
-    transition: border-color 0.2s;
-    color: #111;
+    color: #fff; 
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input::placeholder { 
+    color: #64748b; 
 }
 
 .form-input:focus {
-    border-color: #000;
+    border-color: #a855f7;
+    box-shadow: 0 0 14px rgba(168, 85, 247, 0.25);
 }
 
 .toggle-password {
-    position: absolute;
-    right: 16px;
-    top: 50%;
+    position: absolute; 
+    right: 16px; 
+    top: 50%; 
     transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
+    background: none; 
+    border: none; 
+    cursor: pointer; 
     padding: 0;
-    display: flex;
-    align-items: center;
+    display: flex; 
+    align-items: center; 
+    font-size: 16px;
+}
+
+.secure-hint {
+    display: flex; 
+    align-items: center; 
+    gap: 8px;
+    font-size: 11px; 
+    color: #64748b;
+    margin: -4px 0 18px; 
+    text-align: left;
+}
+
+.icon-pair { 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 5px; 
+}
+
+.icon-pair .fa-key { 
+    color: #f59e0b; 
+}
+
+.icon-pair .fa-lock { 
+    color: #a855f7; 
 }
 
 .forgot-password {
-    display: block;
+    display: block; 
     text-align: right;
-    color: #2563EB;
-    font-size: 14px;
+    color: #a855f7; 
+    font-size: 13px; 
     text-decoration: none;
-    margin-top: -8px;
-    margin-bottom: 24px;
+    margin-top: -6px; 
+    margin-bottom: 22px;
 }
 
-.forgot-password:hover {
-    text-decoration: underline;
+.forgot-password:hover { 
+    text-decoration: underline; 
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.5); 
 }
 
 .btn {
-    width: 100%;
-    height: 54px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
+    width: 100%; 
+    height: 54px; 
+    border-radius: 100px;
+    font-size: 15px; 
+    font-weight: 800; 
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.2s;
-    text-decoration: none;
-}
-
-.btn:hover {
-    opacity: 0.9;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px;
+    transition: all 0.25s; 
+    text-decoration: none; 
+    border: none;
 }
 
 .btn-primary {
-    background-color: #FF0000; 
-    color: #fff;
-    border: none;
-    margin-bottom: 24px;
+    background: linear-gradient(135deg, #6c5ce7, #a855f7);
+    color: #fff; margin-bottom: 8px;
+    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(168, 85, 247, 0.5);
+    filter: brightness(1.08);
 }
 
 .divider {
-    display: flex;
-    align-items: center;
-    margin: 24px 0;
-    color: #9CA3AF;
-    font-size: 14px;
+    display: flex; 
+    align-items: center; 
+    margin: 20px 0;
+    color: #64748b; 
+    font-size: 13px;
 }
 
-.divider::before,
-.divider::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background-color: #E5E7EB;
+.divider::before, .divider::after {
+    content: ""; 
+    flex: 1; 
+    height: 1px; 
+    background: rgba(255, 255, 255, 0.08);
 }
 
-.btn-outline {
-    background-color: #fff;
-    border: 1px solid #E5E7EB; 
-    color: #111827;
-    margin-bottom: 16px;
-    gap: 10px;
+.btn-google {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #f8fafc; 
+    margin-bottom: 8px;
 }
 
-.btn-google img {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
+.btn-google i { 
+    color: #ea4335; 
+    font-size: 18px; 
 }
 
-.form-footer {
+.btn-google:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.form-footer { 
+    text-align: center; 
+    margin-top: 24px; 
+    font-size: 14px; 
+    color: #94a3b8; 
+}
+
+.form-footer a { 
+    color: #10b981; 
+    font-weight: 700; 
+    text-decoration: none; 
+}
+
+.form-footer a:hover { 
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5); 
+}
+
+
+.login-footer {
+    position: relative; 
+    z-index: 1;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 26px 20px; 
     text-align: center;
-    margin-top: 32px;
-    font-size: 14px;
+    color: #64748b; 
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.35);
 }
 
-.form-footer a {
-    font-weight: 600;
-    text-decoration: none;
+@keyframes slideDown {
+    from { 
+        opacity: 0; 
+        transform: translateY(-20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
-
-.form-footer a:hover {
-    text-decoration: underline;
-}
-
-@keyframes slideDown { 
-    from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } 
-} 

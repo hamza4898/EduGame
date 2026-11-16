@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGame платформа</title>
+    <link rel="stylesheet" href="Intro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="icon" type="image/png" href="images/hamzaBro3.png">
+</head>
+<body>
+
+    <nav class="intro-nav">
+        <a class="nav-logo" href="#home">
+            <span class="nav-logo-icon"><i class="fa-solid fa-gamepad"></i></span>
+            EduGame
+        </a>
+        <div class="nav-links">
+            <a href="#stats">Stats</a>
+            <a href="#learn">Learn</a>
+            <a href="#chat">Chat</a>
+            <a href="#gamification">Геймификация</a>
+            <a href="#security">Надёжность</a>
+        </div>
+        <div class="nav-actions">
+            <a class="nav-signin" href="Login.html">Войти</a>
+            <a class="btn-pill btn-pill-small" href="Registration.html">Регистрация</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content animate__animated animate__fadeIn">
+            <p class="hero-kicker">Образовательная платформа с геймификацией</p>
+            <h1>Учись. Прокачивайся. <span class="grad-text">Соревнуйся как в игре</span></h1>
+            <p class="hero-sub">Квесты вместо уроков, XP и внутренние монеты вместо оценок, дерево достижений в стиле HOI4 вместо скучной программы. Три модуля: Stats, Learn и Chat.</p>
+
+            <div class="hero-buttons">
+                <button id="startButton" class="btn-pill animate__animated animate__heartBeat" onclick="showAuthButtons()">Узнать больше</button>
+                <a class="btn-dark" href="#stats">Обзор платформы <i class="fa-solid fa-arrow-down"></i></a>
+            </div>
+
+            <div id="authContainer" class="auth-container" style="display: none;">
+                <button id="loginButton" class="auth-btn auth-login" onclick="location.href = 'Login.html'">Вход</button>
+                <button id="regButton" class="auth-btn auth-reg" onclick="location.href = 'Registration.html'">Регистрация</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="visual-section">
+        <div class="visual-row" data-reveal>
+            <div class="orb">
+                <i class="fa-solid fa-gamepad"></i>
+                <span class="orb-chip oc1">+50 XP</span>
+                <span class="orb-chip oc2">🪙 350</span>
+            </div>
+            <div class="mini-dash">
+                <div class="mini-profile">
+                    <img class="mini-avatar" src="images/hamzaBro3.png" alt="Hamza" onerror="this.style.display='none'">
+                    <div>
+                        <strong>Hamza</strong>
+                        <span>Студент · Путь IT</span>
+                    </div>
+                    <b class="mini-lvl">Lvl 12</b>
+                </div>
+                <div class="mini-row"><span>🔥 Серия дней</span><b>7</b></div>
+                <div class="mini-row"><span>🪙 Внутренние монеты</span><b>350</b></div>
+                <div class="mini-bar"><div style="width:75%"></div></div>
+                <div class="mini-note">750 / 1000 XP до Lvl 13</div>
+            </div>
+        </div>
+
+        <div class="advantage" data-reveal>
+            <p class="kicker">Идея EduGame</p>
+            <p>Мы превращаем обучение в полноценную игровую экосистему: ученики проходят квесты и качают уровни, преподаватели создают игровые курсы и ведут аудиторию, а сообщества сражаются за топ рейтинга.</p>
+            <a class="adv-link" href="Registration.html">Начать бесплатно <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <section class="splits-section">
+        <h2 class="section-title" data-reveal>Одна платформа — три модуля</h2>
+
+        <div class="split" id="stats" data-reveal>
+            <div class="split-text">
+                <p class="kicker kicker-green">Модуль 1 · EduGame Stats</p>
+                <h3>Вся твоя прокачка в одном месте</h3>
+                <p class="split-p">XP и уровни, рейтинги друзей и сообществ, достижения и дерево фокусов в стиле HOI4: шесть разделов развития, узлы открываются по мере прохождения курсов и дают бейджи, титулы и рамки аватара.</p>
+                <div class="split-points">
+                    <span><i class="fa-solid fa-check"></i> Личная статистика по 6 разделам</span>
+                    <span><i class="fa-solid fa-check"></i> Дерево достижений с боссами веток</span>
+                    <span><i class="fa-solid fa-check"></i> Рейтинги: студенты, сообщества, группы</span>
+                </div>
+            </div>
+            <div class="split-visual">
+                <div class="mock-window">
+                    <div class="mock-dots"><span></span><span></span><span></span></div>
+                    <div class="mock-title">EduGame Stats · Профиль Hamza</div>
+                    <div class="mock-stats">
+                        <div><b>Lvl 12</b><span>уровень</span></div>
+                        <div><b>12.7k</b><span>XP</span></div>
+                        <div><b>🔥 7</b><span>серия</span></div>
+                    </div>
+                    <div class="mock-bar"><div style="width:75%"></div></div>
+                    <div class="mock-node done"><i class="fa-solid fa-code"></i> Основы C# & ООП <em>Пройдено</em></div>
+                    <div class="mock-node active"><i class="fa-solid fa-layer-group"></i> MediatR CQRS <em>Изучается</em></div>
+                    <div class="mock-node locked"><i class="fa-solid fa-skull-crossbones"></i> Линус Торвальдс <em>Босс ветки</em></div>
+                    <div class="mock-float">🌳 Стиль HOI4</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="split rev" id="learn" data-reveal>
+            <div class="split-text">
+                <p class="kicker">Модуль 2 · EduGame Learn</p>
+                <h3>Курсы как рейды по знаниям</h3>
+                <p class="split-p">Студент проходит этапы-квесты и забирает награды: XP, монеты, стрики. Преподаватель собирает курс в конструкторе — модули, уроки, задания — и видит аналитику: табель, воронку, отстающих, проверку решений и сертификаты.</p>
+                <div class="split-points">
+                    <span><i class="fa-solid fa-check"></i> Квесты, награды и ежедневные задания</span>
+                    <span><i class="fa-solid fa-check"></i> Конструктор курсов для наставника</span>
+                    <span><i class="fa-solid fa-check"></i> Аналитика и проверка решений</span>
+                </div>
+            </div>
+            <div class="split-visual">
+                <div class="mock-window">
+                    <div class="mock-dots"><span></span><span></span><span></span></div>
+                    <div class="mock-title">Текущий квест · Архитектура ASP.NET Core</div>
+                    <div class="mock-node done"><i class="fa-solid fa-circle-check"></i> 1. Architecture HTTP & REST <em>Пройдено</em></div>
+                    <div class="mock-node active"><i class="fa-solid fa-circle-dot"></i> 2. Настройка Middleware <em>+50 XP</em></div>
+                    <div class="mock-node locked"><i class="fa-regular fa-circle"></i> 3. Dependency Injection <em>Заблокирован</em></div>
+                    <div class="mock-bar"><div style="width:35%"></div></div>
+                    <div class="mock-float">+50 XP · +5 🪙</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="split" id="chat" data-reveal>
+            <div class="split-text">
+                <p class="kicker kicker-cyan">Модуль 3 · EduGame Chat</p>
+                <h3>Свой мессенджер для каждого сообщества</h3>
+                <p class="split-p">Встроенный чат на технологии SignalR, похожий на Telegram: у каждого преподавателя и сообщества, создавшего курс, — своё пространство. Новости курса, обсуждение квестов, разбор решений и взаимопомощь — прямо внутри платформы.</p>
+                <div class="split-points">
+                    <span><i class="fa-solid fa-check"></i> Чат у каждого курса и сообщества</span>
+                    <span><i class="fa-solid fa-check"></i> Реал-тайм на SignalR, как в Telegram</span>
+                    <span><i class="fa-solid fa-check"></i> Закрепы, ответы и обсуждения квестов</span>
+                </div>
+            </div>
+            <div class="split-visual">
+                <div class="mock-window mock-chat">
+                    <div class="mock-dots"><span></span><span></span><span></span></div>
+                    <div class="mock-title">EduGame Chat · Сообщество Backend Academy</div>
+                    <div class="chat-msg in"><b>Елена М. · наставник</b>Выкатилa новый урок по ООП — залетайте! 📚</div>
+                    <div class="chat-msg out">Принято, иду проходить квест 🎯</div>
+                    <div class="chat-msg in"><b>Hacker_Bro</b>Кто в рейд по ветке CQRS сегодня вечером?</div>
+                    <div class="chat-input"><span>Сообщение...</span><i class="fa-solid fa-paper-plane"></i></div>
+                    <div class="mock-float">⚡ SignalR</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gamification" class="grid-section">
+        <h2 class="section-title" data-reveal>Геймификация, за которую любят EduGame</h2>
+        <div class="g-grid">
+            <div class="gcard" data-reveal><span class="g-icon gi-amber"><i class="fa-solid fa-coins"></i></span><h4>Внутренние монеты</h4><p>Зарабатывай квестами и стриками, трать на доступ к курсам и кастомизацию профиля.</p></div>
+            <div class="gcard" data-reveal><span class="g-icon gi-green"><i class="fa-solid fa-bolt"></i></span><h4>XP и прокачка уровней</h4><p>Каждое действие даёт опыт: уровни растут, открывая новые возможности платформы.</p></div>
+            <div class="gcard" data-reveal><span class="g-icon gi-violet"><i class="fa-solid fa-sitemap"></i></span><h4>Деревья достижений HOI4</h4><p>Ветки разделов с порогами XP, наградами и финальными боссами — как национальные фокусы.</p></div>
+            <div class="gcard" data-reveal><span class="g-icon gi-pink"><i class="fa-solid fa-users"></i></span><h4>Друзья, кланы и рейтинги</h4><p>Добавляй друзей, вступай в сообщества и сражайся за топ в лидербордах платформы.</p></div>
+            <div class="gcard" data-reveal><span class="g-icon gi-cyan"><i class="fa-solid fa-robot"></i></span><h4>ИИ-техподдержка</h4><p>Встроенный ИИ-помощник ответит на вопрос по курсу или платформе в любое время.</p></div>
+            <div class="gcard" data-reveal><span class="g-icon gi-red"><i class="fa-solid fa-shield-halved"></i></span><h4>Безопасность</h4><p>ASP.NET Core Web API: сессии в HttpOnly-cookie, роли проверяются на сервере.</p></div>
+        </div>
+    </section>
+
+    <section class="roles-section">
+        <div class="split" data-reveal>
+            <div class="split-text">
+                <p class="kicker">Две точки входа</p>
+                <h3>Одна платформа — роли студента и учителя</h3>
+                <p class="split-p">Входишь студентом — получаешь квесты, прокачку и рейтинги. Входишь преподавателем — кабинет наставника, редактор курсов и аналитику. Интерфейс подстраивается под роль автоматически.</p>
+                <a class="btn-pill" href="Login.html">Выбрать роль</a>
+            </div>
+            <div class="tiles-cloud">
+                <span class="tile"><i class="fa-solid fa-code"></i></span>
+                <span class="tile t2"><i class="fa-solid fa-palette"></i></span>
+                <span class="tile t3"><i class="fa-solid fa-language"></i></span>
+                <span class="tile big"><i class="fa-solid fa-gamepad"></i></span>
+                <span class="tile t4"><i class="fa-solid fa-briefcase"></i></span>
+                <span class="tile t5"><i class="fa-solid fa-gears"></i></span>
+                <span class="tile t6"><i class="fa-solid fa-chalkboard-user"></i></span>
+                <span class="tile t7"><i class="fa-solid fa-arrow-up-right-dots"></i></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="security" class="security-section" data-reveal>
+        <div class="sec-visual">
+            <div class="orb orb-small"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="sec-badges">
+                <span class="sec-badge b1">API</span>
+                <span class="sec-badge b2">HttpOnly</span>
+                <span class="sec-badge b3">RBAC</span>
+            </div>
+        </div>
+        <div class="sec-text">
+            <p class="kicker kicker-green">Надёжность</p>
+            <h3>Прогресс и данные под защитой</h3>
+            <p>Бэкенд на ASP.NET Core Web API: сессии в HttpOnly-cookie, учительские данные доступны только наставникам, весь прогресс и монеты хранятся централизованно.</p>
+            <a class="btn-pill" href="Registration.html">Создать аккаунт</a>
+        </div>
+    </section>
+
+    <section class="final-cta" data-reveal>
+        <h2>Готов пройти свой первый квест?</h2>
+        <p>Присоединяйся: прокачивай знания, собирай монеты и веди свою аудиторию.</p>
+        <div class="hero-buttons" style="justify-content:center;">
+            <a class="btn-cta" href="Registration.html"><i class="fa-solid fa-gamepad"></i> Создать аккаунт</a>
+            <a class="btn-dark" href="Login.html">У меня уже есть аккаунт</a>
+        </div>
+    </section>
+
+    <footer class="intro-footer">
+        <p class="nav-logo" style="justify-content:center;"><span class="nav-logo-icon"><i class="fa-solid fa-gamepad"></i></span> EduGame</p>
+        <p class="footer-tag" style="text-align:center;">Игровая образовательная платформа.<br>Учись. Прокачивайся. Соревнуйся.</p>
+        <p class="footer-copy">2026 EduGame · Игровая образовательная платформа. Все права защищены</p>
+    </footer>
+
+    <script src="Intro.js"></script>
+    <script src="Api-client.js"></script>
+</body>
+</html>

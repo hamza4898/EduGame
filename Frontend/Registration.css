@@ -1,199 +1,380 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html, body { 
-    font-family: 'Lato', sans-serif; 
-    overflow-x: hidden;
-    line-height: 1.6; color: #333; 
-    scroll-behavior: smooth; 
-    background-color: black;
-    background-image: url('images/hamzaBro2.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+.reg-hero {
+    text-align: center;
+    padding: 130px 20px 46px;
 }
 
-section { 
-    padding: 5rem 0; 
+.reg-hero h1 {
+    font-size: 44px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 14px;
+}
+
+.reg-sub {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 620px;
+    margin: 0 auto;
 }
 
 .container {
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 0 2rem; 
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-h2 { 
-    font-size: 3rem; 
-    text-align: center; 
-    margin-bottom: 3rem; 
-    color: #333; 
+.cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
 }
 
-.register-title {
-    color: aliceblue;
-    margin: 40px 0 60px 0; 
+.cta-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 42px 28px;
+    text-align: center;
+    transition: all 0.3s;
 }
 
-.cards, .cta-grid, .platforms-grid, .features-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 2rem; 
+.cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--violet), var(--pink), transparent);
 }
 
-.cta-card { 
-    padding: 3rem 2rem;
-    border-radius: 20px; 
-    text-align: center; 
-    transition: all 0.3s; 
+.cta-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
 }
 
-.cta-card:hover { 
-    transform: translateY(-10px); 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+.card-student:hover {
+    border-color: rgba(16, 185, 129, 0.4);
 }
 
-.cta-card h3 { 
-    font-size: 2rem; 
-    margin-bottom: 1rem; 
-} 
-
-.role-btn { 
-    color: white; 
-    padding: 1rem 2rem; 
-    border: none; 
-    border-radius: 50px; 
-    font-size: 1.1rem; 
-    cursor: pointer; 
-    transition: all 0.3s; 
-    text-decoration: none; 
-    display: inline-block; 
-    margin-top: 1rem; 
+.card-teacher:hover {
+    border-color: rgba(245, 158, 11, 0.4);
 }
 
-.student-btn { 
-    background: #4CAF50; 
-} 
-
-.teacher-btn { 
-    background: #FF9800; 
+.cta-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
 }
 
-.partner-btn { 
-    background: #2196F3; 
+.card-student .cta-icon {
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--green);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
 }
 
-.role-form { 
-    display: none; 
-    background: white; 
-    padding: 3rem; 
-    border-radius: 20px; 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
-    max-width: 600px; 
-    margin: 2rem auto; 
+.card-teacher .cta-icon {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--amber);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
 }
 
-.role-form .submit-btn { 
-    background: red; 
-    color: white; 
-    border: none; 
-    padding: 1rem; 
-    border-radius: 10px; 
-    cursor: pointer; 
-    font-size: 1.1rem; 
-    font-weight: bold; 
+.cta-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 8px;
 }
 
-.role-form form { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 1rem; 
-} 
+.cta-card p {
+    color: var(--muted);
+    font-size: 13.5px;
+}
 
-.role-form input, .role-form textarea, .role-form select { 
-    padding: 1rem; 
-    border: 2px solid #eee; 
-    border-radius: 10px; 
-    font-size: 1rem; 
-    transition: border-color 0.3s; 
+.role-btn {
+    margin-top: 22px;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 100px;
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.student-btn {
+    background: linear-gradient(135deg, #059669, var(--green));
+    box-shadow: 0 10px 26px rgba(16, 185, 129, 0.3);
+}
+
+.teacher-btn {
+    background: linear-gradient(135deg, #d97706, var(--amber));
+    box-shadow: 0 10px 26px rgba(245, 158, 11, 0.3);
+}
+
+.role-btn:hover {
+    transform: scale(1.06) translateY(-3px);
+    filter: brightness(1.1);
+}
+
+.role-form {
+    display: none;
+    max-width: 640px;
+    margin: 44px auto;
+    background: rgba(11, 13, 22, 0.88);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px 32px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.role-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--violet), var(--pink), transparent);
+}
+
+.role-form.active {
+    display: block;
+    animation: slideDown 0.5s ease;
 }
 
 .role-form h3 {
-    color: #333;
-    margin-bottom: 1rem;
-    font-size: 2rem; 
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 22px;
 }
 
-.role-form input:focus, .role-form textarea:focus, .role-form select:focus {
-    outline: none; 
-    border-color: #667eea; 
-} 
-
-.role-form .submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+.role-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
-.role-form.active { 
-    display: block; 
-    animation: slideDown 0.5s ease; 
-} 
+.role-form input, .role-form select, .role-form textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: white;
+    font-size: 14px;
+    padding: 12px 16px;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
 
-.role-btn:hover { 
-    transform: scale(1.05); 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
-}  
+.role-form input:focus, .role-form select:focus, .role-form textarea:focus {
+    border-color: var(--violet);
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.15);
+}
+
+.role-form ::placeholder {
+    color: var(--muted);
+}
+
+.role-form select {
+    color: var(--muted);
+}
+
+.role-form select:valid {
+    color: white;
+}
+
+.role-form option {
+    background: #0b0d16;
+    color: white;
+}
+
+.role-form textarea {
+    resize: vertical;
+}
+
+.role-form input[type="date"] {
+    color-scheme: dark;
+}
 
 .back-btn {
-    background: #f8f9fa; 
-    color: #666; 
-    border: 2px solid #ddd; 
-    padding: 0.8rem 1.5rem; 
-    border-radius: 10px; 
-    cursor: pointer; 
-    margin-bottom: 1rem; 
-    transition: all 0.3s; 
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 9px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all 0.2s;
 }
 
-.back-btn:hover { 
-    background: #667eea; 
-    color: white; 
-    border-color: #667eea; 
+.back-btn:hover {
+    color: white;
+    border-color: var(--violet);
 }
-
-.click-btn { 
-    background: #333;
-} 
 
 .password-field {
     position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
+}
+
+.password-field .field-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 13px;
+    pointer-events: none;
 }
 
 .password-field input {
-    width: 100%;
-    padding-right: 40px;
-    box-sizing: border-box; 
+    padding-left: 42px;
+    padding-right: 44px;
 }
 
 .toggle-btn {
     position: absolute;
-    right: 10px; 
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     background: transparent;
     border: none;
     cursor: pointer;
-    font-size: 18px;
-    padding: 0;
+    font-size: 16px;
+}
+
+.secure-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: -4px;
+}
+
+.icon-pair {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.icon-pair .fa-key {
+    color: var(--amber);
+}
+
+.icon-pair .fa-lock {
+    color: var(--violet);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 100px;
+    background: linear-gradient(135deg, var(--violet), var(--pink));
+    color: white;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
+    transition: all 0.25s;
+    margin-top: 6px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(168, 85, 247, 0.5);
+    filter: brightness(1.08);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 16px;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.google-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
-    outline: none;
+    gap: 10px;
+    transition: all 0.2s;
 }
 
+.google-btn i {
+    color: #ea4335;
+    font-size: 16px;
+}
 
-@keyframes slideDown { 
-    from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } 
-} 
+.google-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.reg-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+    padding: 26px 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 800px) {
+    .cta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reg-hero h1 {
+        font-size: 32px;
+    }
+}

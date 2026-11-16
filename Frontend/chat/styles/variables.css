@@ -1,0 +1,23 @@
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #111827;
+  --bg-sidebar: rgba(17, 24, 39, 0.85);
+
+  --accent: #e63946;
+  --accent-light: #ff4d6d;
+  --accent-gradient: linear-gradient(135deg, #e63946, #c9184a, #9b2226);
+  --glass-active: rgba(230, 57, 70, 0.15);
+  
+  --green: #34d399;
+  --green-dark: #059669;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: rgba(255, 255, 255, 0.06);
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-hover: rgba(255, 255, 255, 0.07);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 8px;
+}

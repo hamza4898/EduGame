@@ -1,60 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профиль</title>
-    <link rel = "stylesheet" href = "Profile.css">
+    <title>EduGame — Профиль</title>
+    <link rel="stylesheet" href="Profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/hamzaBro3.png">
 </head>
 <body>
-    <section id="cooperation" class="hero">
-        <div class="container">         
-            <div id="profileView" class="role-form glass-morphism animate__animated animate__zoomIn">
-                <div class="profile-avatar-container">
-                    <div class="avatar-circle">
-                        <img id="u-avatar" src="images/бибизяка.jpeg" alt="Avatar">
+    <section class="profile-section animate__animated animate__fadeIn" id="profileSection">
+        <div class="container">
+
+            <div class="top-bar-row">
+                <button class="back-big-btn" id="backButton" type="button">
+                    <i class="fa-solid fa-arrow-left"></i> Назад
+                </button>
+                <a class="home-mini-link" href="Main.html"><i class="fa-solid fa-house"></i> В хаб</a>
+            </div>
+
+            <div class="profile-card animate__animated animate__fadeInUp">
+
+                <div class="profile-left">
+                    <div class="avatar-zone">
+                        <img id="profileAvatar" src="images/hamzaBro3.png" alt="Avatar">
+                        <button class="avatar-edit-btn" id="avatarEditBtn" title="Сменить аватар">
+                            <i class="fa-solid fa-camera"></i>
+                        </button>
+                        <input type="file" id="avatarInput" accept="image/png,image/jpeg,image/webp" style="display:none;">
+                    </div>
+
+                    <h2 id="profileNick">Загрузка...</h2>
+
+                    <div class="badges-row">
+                        <span class="role-badge" id="roleBadge">...</span>
+                        <span class="rank-badge hidden" id="rankBadge"></span>
+                        <span class="level-badge hidden" id="levelBadge"></span>
+                    </div>
+
+                    <div class="xp-block hidden" id="xpBlock">
+                        <div class="xp-bar-track"><div class="xp-bar-fill" id="xpBarFill"></div></div>
+                        <div class="xp-bar-label" id="xpBarText"></div>
+                    </div>
+
+                    <div class="coins-badge"><i class="fa-solid fa-coins"></i> <span id="coinsValue">0</span></div>
+
+                    <div class="profile-actions">
+                        <button class="btn red" id="editBtn"><i class="fa-solid fa-pen"></i> Редактировать</button>
+                        <button class="btn green hidden" id="saveBtn"><i class="fa-solid fa-floppy-disk"></i> Сохранить</button>
+                        <button class="btn ghost hidden" id="cancelBtn">Отмена</button>
+                        <button class="btn red hidden" id="messageBtn"><i class="fa-solid fa-comment"></i> Написать</button>
+                        <button class="btn ghost hidden" id="friendBtn"><i class="fa-solid fa-user-plus"></i> В друзья</button>
                     </div>
                 </div>
 
-                <h3 class="profile-title">Ваш профиль</h3>
-            
-                <div class="profile-grid">
-                    <div class="info-card">
-                        <label>Фамилия</label>
-                        <div id="u-lastname" class="info-text">Загрузка...</div>
-                    </div>
-
-                    <div class="info-card">
-                        <label>Имя</label>
-                        <div id="u-firstname" class="info-text">Загрузка...</div>
-                    </div>
-                
-                    <div class="info-card">
-                        <label>Пол</label>
-                        <div id="u-gender" class="info-text">Загрузка...</div>
-                    </div>
-
-                    <div class="info-card">
-                        <label>Образование</label>
-                        <div id="u-edu" class="info-text">Загрузка...</div>
-                    </div>
-                </div>
-                <br>
-
-                <div class="info-card full-width">
-                    <label>Моя мотивация</label>
-                    <div id="u-motivation" class="info-text">Загрузка данных из базы данных...</div>
-                </div>
-
-                <div class="profile-actions">
-                    <button class="action-btn exit-btn" onclick="location.href = 'Main.html'">
-                        На главную
-                    </button>
+                <div class="profile-right">
+                    <h3 class="fields-title"><i class="fa-solid fa-id-card"></i> Личные данные</h3>
+                    <div class="fields-grid" id="fieldsGrid"></div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script src="Api-client.js"></script>
+    <script src="Profile.js"></script>
 </body>
 </html>
-

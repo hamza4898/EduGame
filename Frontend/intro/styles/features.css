@@ -1,0 +1,83 @@
+.g-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.gcard {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px;
+    transition: all 0.25s;
+    overflow: hidden;
+}
+
+.gcard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--violet), var(--pink));
+}
+
+.gcard:hover {
+    transform: translateY(-6px);
+    border-color: rgba(168, 85, 247, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.g-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    margin-bottom: 16px;
+}
+
+.gi-violet {
+    background: rgba(168, 85, 247, 0.12);
+    color: var(--violet);
+}
+
+.gi-green {
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--green);
+}
+
+.gi-pink {
+    background: rgba(236, 72, 153, 0.12);
+    color: var(--pink);
+}
+
+.gi-amber {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--amber);
+}
+
+.gi-cyan {
+    background: rgba(6, 182, 212, 0.12);
+    color: var(--cyan);
+}
+
+.gi-red {
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--red);
+}
+
+.gcard h4 {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.gcard p {
+    font-size: 13px;
+    color: var(--muted);
+}

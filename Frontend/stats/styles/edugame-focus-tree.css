@@ -1,0 +1,488 @@
+.focus-tree-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(3, 7, 18, 0.96) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    z-index: 1000 !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.focus-tree-overlay.open {
+    display: flex !important;
+}
+
+.focus-tree-window {
+    width: 92vw;
+    height: 85vh;
+    background: #0b1021;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
+}
+
+.focus-tree-window.panorama-window {
+    width: 96vw !important;
+    height: 90vh !important;
+    padding: 24px !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.focus-tree-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+}
+
+.focus-tree-header h2 {
+    font-size: 16px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.btn-close-tree {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #64748b;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-close-tree:hover {
+    color: white;
+    border-color: #e63946;
+    background: #e63946;
+}
+
+.focus-branches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.focus-branch {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.branch-title {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.text-cyan {
+    color: #06b6d4;
+    text-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
+}
+
+.text-purple {
+    color: #a855f7;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
+}
+
+.text-green {
+    color: #10b981;
+    text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+.focus-node {
+    width: 165px;
+    padding: 12px 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    transition: all 0.25s;
+}
+
+.focus-node i {
+    font-size: 16px;
+}
+
+.focus-node h5 {
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+}
+
+.focus-node .condition {
+    font-size: 9px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.focus-node.completed {
+    background: rgba(16, 185, 129, 0.08) !important;
+    border-color: #10b981 !important;
+    color: #10b981;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+}
+
+.focus-node.completed .condition {
+    color: #10b981;
+}
+
+.focus-node.active {
+    background: rgba(59, 130, 246, 0.08) !important;
+    border-color: #3b82f6 !important;
+    color: #3b82f6;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
+    animation: nodePulse 2s infinite alternate;
+    cursor: pointer;
+}
+
+.focus-node.active .condition {
+    color: #3b82f6;
+}
+
+.focus-node.active:hover {
+    box-shadow: 0 0 22px rgba(59, 130, 246, 0.4);
+    border-color: #60a5fa !important;
+}
+
+@keyframes nodePulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.02);
+    }
+}
+
+.focus-node.locked {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.02) !important;
+    color: #475569;
+    cursor: not-allowed;
+}
+
+.focus-node.locked .condition {
+    color: #f59e0b;
+}
+
+.focus-node.root-node {
+    border-color: #cbd5e1 !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.focus-node.final-node.locked {
+    border-color: rgba(245, 158, 11, 0.35) !important;
+}
+
+.focus-node.final-node h5 {
+    letter-spacing: 0.3px;
+}
+
+.focus-node.shake {
+    animation: nodeShake 0.35s ease 2;
+}
+
+@keyframes nodeShake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-6px);
+    }
+    40% {
+        transform: translateX(6px);
+    }
+    60% {
+        transform: translateX(-4px);
+    }
+    80% {
+        transform: translateX(4px);
+    }
+}
+
+.focus-connector {
+    width: 2px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.focus-connector.done {
+    background: #10b981;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+}
+
+.focus-node.completed + .focus-connector {
+    background: #10b981;
+}
+
+.btn-expand-sub-branch {
+    width: 90% !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: #64748b !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 8px 0 !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    margin-top: 20px !important;
+    transition: all 0.2s;
+}
+
+.btn-expand-sub-branch:hover {
+    color: white !important;
+    border-color: rgba(16, 185, 129, 0.4) !important;
+    background: rgba(16, 185, 129, 0.04) !important;
+}
+
+.focus-canvas-scroll {
+    flex: 1;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.02) !important;
+    border-radius: 12px !important;
+    padding: 40px !important;
+    position: relative !important;
+}
+
+.focus-canvas-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.focus-canvas-scroll::-webkit-scrollbar-thumb {
+    background: rgba(16, 185, 129, 0.3) !important;
+    border-radius: 10px !important;
+}
+
+.focus-canvas-scroll::-webkit-scrollbar-thumb:hover {
+    background: #10b981 !important;
+}
+
+.focus-canvas-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    min-width: 1100px !important;
+    gap: 40px !important;
+    transform-origin: center center;
+    transition: transform 0.1s ease-out;
+    cursor: grab;
+    user-select: none;
+}
+
+.focus-canvas-content:active {
+    cursor: grabbing;
+}
+
+.focus-root-center {
+    position: relative !important;
+    z-index: 5 !important;
+}
+
+.canvas-columns-wrapper {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 80px !important;
+}
+
+.canvas-column {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.02) !important;
+    border-radius: 14px !important;
+    padding: 24px !important;
+}
+
+.column-title {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.focus-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0 !important;
+}
+
+.horizontal-connector {
+    width: 40px !important;
+    height: 2px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.focus-node.completed + .horizontal-connector {
+    background: #10b981 !important;
+    box-shadow: 0 0 10px #10b981 !important;
+}
+
+.specific-tree-window {
+    width: 96vw !important;
+    height: 90vh !important;
+    padding: 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.hoi4-vertical-branch {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0 !important;
+    flex: 1 !important;
+    overflow-y: auto !important;
+    padding: 20px 0 !important;
+}
+
+.focus-branch-column {
+    align-items: center !important;
+    gap: 0 !important;
+}
+
+.node-xp-pill {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #cbd5e1;
+}
+
+.focus-node.completed .node-xp-pill {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #10b981;
+}
+
+.focus-node.active .node-xp-pill {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #3b82f6;
+}
+
+.focus-node.locked .node-xp-pill {
+    background: rgba(245, 158, 11, 0.05);
+    border-color: rgba(245, 158, 11, 0.25);
+    color: #f59e0b;
+}
+
+.branch-xp-status {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+.branch-xp-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #cbd5e1;
+}
+
+.branch-next-goal {
+    color: #475569;
+    text-align: right;
+}
+
+.branch-xp-track {
+    height: 5px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.branch-xp-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #059669, #10b981);
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+    transition: width 0.4s ease;
+}
+
+.focus-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0f1424;
+    border: 1px solid #10b981;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(16, 185, 129, 0.1);
+    pointer-events: none;
+}
+
+.focus-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.focus-toast.error {
+    border-color: #ef4444;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(239, 68, 68, 0.1);
+}
+
+.focus-toast i {
+    font-size: 15px;
+}
+
+.focus-toast.error i {
+    color: #ef4444;
+}
+
+.focus-toast:not(.error) i {
+    color: #10b981;
+}

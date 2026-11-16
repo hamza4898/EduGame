@@ -1,88 +1,381 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduGame платформа</title>
-    <link rel = "stylesheet" href = "Main.css">
+    <title>EduGame — Главный Хаб</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src = "Main.js"></script>
+    <link rel="stylesheet" href="Main.css">
 </head>
-<body style = "background-color: black;">
-    <section id="home" class="hero">
-        <div class="hero-content animate__animated animate__fadeIn">
-            <h1>EduGame</h1>
-            <p>Обучающая платформа с элементами геймификации<br>Задания, уровни, достижения, соревнования</p>
-            <br>
-            <button id="startButton" class="cta-btn animate__animated animate__heartBeat" onclick="showAuthButtons()">Узнать больше</button>
-            <div id="authContainer" class="platforms-grid" style="display: none;">
-                <button id="loginButton" class="platform-btn auth-btn" style="background: blue;" onclick="location.href = 'Login.html'">Вход</button>
-                <button id="regButton" class="platform-btn auth-btn" style="background: #FF9800;" onclick = "location.href = 'Registration.html'">Регистрация</button>
-            </div>
-        </div>
-    </section>
+<body class="app animate__animated animate__fadeIn">
 
-    <section id="features" class="features">
-        <div class="container">
-            <h2>Что такое EduGame?</h2>
-            <div class="cards">
-                <div class="feature">
-                    <span class="feature-icon">📚</span>
-                    <div>
-                        <h3>500+ различных курсов</h3>
-                        <p>Математика, языки, логика, программирование, Unity геймдев</p>
-                    </div>
+    <div class="hub-bg-logo">
+        <img src="images/hamzaBro3.png" alt="EduGame Mascot">
+    </div>
+
+    <header class="saas-topbar animate__animated animate__fadeInDown" style="z-index: 999999 !important; position: relative;">
+        
+        <div class="hud-logo-container" style="position: relative; z-index: 1100;">
+            <div class="saas-workspace-selector" id="btnMainLogoTrigger" style="cursor: pointer;">
+                <div class="workspace-avatar"></div>
+                <div class="workspace-meta">
+                    <span class="workspace-name">EduGame Главная</span>
                 </div>
-                <div class="feature">
-                    <span class="feature-icon">🎯</span>
-                    <div>
-                        <h3>Система геймификации</h3>
-                        <p>Уровни, достижения, рейтинги, собственная валюта, ежедневные задания</p>
-                    </div>
-                </div>
-                <div class="feature">
-                    <span class="feature-icon">👨‍🏫</span>
-                    <div>
-                        <h3>Для преподавателей</h3>
-                        <p>Создавайте курсы, отслеживайте прогресс учеников</p>
-                    </div>
+                <i class="fa-solid fa-chevron-down workspace-arrow" id="logoArrowIcon" style="transition: transform 0.2s;"></i>
+            </div>
+
+            <div id="hubOptionsSubMenu" style="display: none; position: absolute; top: 48px; left: 12px; width: 260px; background: rgba(11, 16, 33, 0.98); backdrop-filter: blur(25px); border: 1px solid var(--border-violet); border-radius: var(--radius-sm); padding: 14px; box-shadow: 0 15px 40px rgba(0,0,0,0.8); animation: fadeIn 0.2s ease; z-index: 99999 !important;">
+                <span style="font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 10px; text-align: left;">Системные опции:</span>
+         
+                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+                    <button id="btnOpenSupportForm" style="width: 100%; padding: 12px; background: rgba(168, 85, 247, 0.04); border: 1px solid rgba(168, 85, 247, 0.15); border-radius: 6px; color: white; font-weight: 700; font-size: 13px; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 10px; transition: all 0.2s;">
+                        <i class="fa-solid fa-headset" style="color: #a855f7; width: 16px;"></i> Служба поддержки
+                    </button>
+                    <button onclick="window.location.href='Updates.html'" style="width: 100%; padding: 12px; background: transparent; border: 1px solid var(--border); border-radius: 6px; color: #94a3b8; font-weight: 600; font-size: 12px; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 10px; transition: all 0.2s;">
+                        <i class="fa-solid fa-code-branch" style="width: 16px;"></i> PR Лог обновлений
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="unique" class="unique">
-        <div class="container">
-            <h2 style = "color: #e9ecef">В чем наша особенность?</h2>
-            <br>
-            <div class="features-grid">
-                <div class="card">
-                    <h3>🎮 Игровая механика</h3>
-                    <p>Все обучение построено в игровом формате</p>
+        <div class="saas-topbar-actions" style="display: flex; align-items: center; gap: 24px;">
+            
+            <div class="hud-gamification-widgets" style="display: flex; align-items: center; gap: 12px; margin-right: 8px;">
+
+                <div class="hud-stat-badge" title="Ваш баланс монет. Тратьте их в Маркетплейсе на левой панели!" style="display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); padding: 6px 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 700;">
+                    <i class="fa-solid fa-coins text-gold" style="color: #eab308; filter: drop-shadow(0 0 5px rgba(234,179,8,0.5));"></i>
+                    <span id="hudUserCoinsDisplay">0</span>
                 </div>
-                <div class="card">
-                    <h3>📱 Доступность для каждого</h3>
-                    <p>eduGame реализовала свою собственную валюту, которую может заработать каждый</p>
+
+            </div>
+
+            <div class="saas-user-profile-trigger" id="hudProfileBtn" style="display: flex; align-items: center; gap: 16px; cursor: pointer;">
+                
+                <div class="hud-xp-container" style="display: flex; flex-direction: column; gap: 5px; align-items: stretch; width: 190px;">
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; white-space: nowrap;">
+                        <span id="hudUserRankDisplay" style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 800; color: #a855f7; letter-spacing: 0.5px;">Загрузка...</span>
+                        <div class="hud-level-badge" id="hudUserLevelDisplay" style="padding: 2px 6px; font-size: 11px; margin: 0;">Lvl 1</div>
+                    </div>
+
+                    <div class="hud-xp-progress-bg" style="width: 100%; height: 5px; background: rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.02); position: relative;">
+                        <div class="hud-xp-bar" id="hudUserXpBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #10b981, #34d399); box-shadow: 0 0 8px rgba(16, 185, 129, 0.6); transition: width 0.4s ease;"></div>
+                    </div>
+                    
+                    <span id="hudUserXpText" style="font-size: 8px; color: #475569; font-weight: 700; letter-spacing: 0.5px; text-align: right; margin-top: -2px;">0 / 0 XP</span>
                 </div>
-                <div class="card">
-                    <h3>👥 Сообщество</h3>
-                    <p>Соревнования, лидерборды, кланы, командные квесты</p>
+                
+                <span class="saas-username-display" id="hudUsernameDisplay" style="font-size: 13px; font-weight: 600; white-space: nowrap;">Загрузка...</span>
+                <div class="saas-avatar-mini" onclick="window.location.href = 'Profile.html'" style="width: 32px; height: 32px; border-radius: 50%; background-size: cover; flex-shrink: 0;"></div>
+            </div>
+
+        </div>
+    </header>
+
+    <nav class="saas-dockbar animate__animated animate__fadeInLeft" style="display: flex; flex-direction: column; justify-content: space-between; padding: 24px 0;">
+        
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+            <div class="dock-group" style="display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%;">
+                
+                <div class="dock-item active" id="btnMainHubTrigger" title="Главный хаб приложения">
+                    <i class="fa-solid fa-cubes"></i>
+                </div>
+                
+                <div class="dock-item" id="hudFriendsBtn" title="Друзья и Одногруппники">
+                    <i class="fa-solid fa-user-group"></i>
+                    <span class="dock-badge">4</span>
+                </div>
+                
+                <div class="dock-item" id="hudWalletBtn" title="Кошелёк: внутренний баланс и операции">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="dock-group bottom" style="display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%;">
+            <div class="dock-item saas-icon-btn" id="notificationBtn" data-count="3" title="Входящие уведомления и PR лог">
+                <i class="fa-regular fa-bell"></i>
+            </div>
+            
+            <div class="dock-item" id="hudSettingsBtn" title="Настройки безопасности и 2FA">
+                <i class="fa-solid fa-sliders"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="center-hub-container animate__animated animate__fadeIn">
+        <div class="slider-wrapper">
+            <div class="hub-app-card" data-app="section-chat">
+                <div class="card-glow-layer red"></div>
+                <div class="card-inner">
+                    <span class="card-app-badge">МЕССЕНДЖЕР</span>
+                    <h2>EduGame Chat</h2>
+                    <p>Связывайся со студентами, учителями и партнерами в реальном времени через веб-сокеты.</p>
+                    <div class="card-footer-action">Войти в чат →</div>
+                </div>
+            </div>
+
+            <div class="hub-app-card" data-app="section-learn">
+                <div class="card-glow-layer violet"></div>
+                <div class="card-inner">
+                    <span class="card-app-badge" style="border-color:#a855f7; color:#a855f7;">ОБУЧЕНИЕ</span>
+                    <h2>EduGame Learn</h2>
+                    <p>Проходи кодовые квесты, отправляй пул-реквесты учителям и проверяй логи через ИИ.</p>
+                    <div class="card-footer-action" style="background:linear-gradient(135deg, #6c5ce7, #a855f7);">Начать рейд →</div>
+                </div>
+            </div>
+
+            <div class="hub-app-card" data-app="section-stats">
+                <div class="card-glow-layer green"></div>
+                <div class="card-inner">
+                    <span class="card-app-badge" style="border-color:#34d399; color:#34d399;">СТАТИСТИКА</span>
+                    <h2>EduGame Stats</h2>
+                    <p>Отслеживай XP, забирай награды и следи за</p>
+                    <div class="card-footer-action" style="background:linear-gradient(135deg, #34d399, #059669);">Смотреть метрики →</div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="idea" class = "idea">
-        <div class="container">
-            <div class="idea-content">
-                <h3>🎯 Идея проекта</h3>
-                <p><strong>EduGame</strong> — это не просто платформа, а полноценная игровая экосистема для обучения. Мы верим, что изучение сложных тем становится в 10 раз эффективнее, когда превращается в игру.</p>
-                <p style="margin: 2rem 0; font-size: 1.2rem; color: white;">
-                    Ученики проходят квесты вместо уроков, учителя создают собственные игровые курсы, а компании используют геймификацию для корпоративного обучения.
-                </p>
+        <div class="support-wrapper-zone hidden" id="hubSupportView" style="display: none; width: 100%; max-width: 550px; margin: 0 auto; animation: fadeIn 0.4s ease;">
+            <div style="background: rgba(15, 20, 36, 0.9); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); display: flex; flex-direction: column; height: 480px; overflow: hidden; backdrop-filter: blur(25px);">
+                
+                <div style="background: rgba(0, 0, 0, 0.2); padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 36px; height: 36px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #a855f7; font-size: 16px; filter: drop-shadow(0 0 5px rgba(168,85,247,0.4));">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div style="text-align: left;">
+                        <strong style="font-size: 13px; color: white; display: block;">EduGame AI Support</strong>
+                        <span style="font-size: 10px; color: #10b981; font-weight: 700; display: flex; align-items: center; gap: 4px;">
+                            <span style="width: 6px; height: 6px; background: #10b981; border-radius: 50%; display: inline-block; box-shadow: 0 0 4px #10b981;"></span> Онлайн
+                        </span>
+                    </div>
+                </div>
+
+                <div id="aiSupportChatWindow" style="flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; text-align: left;"></div>
+
+                <div style="background: rgba(0, 0, 0, 0.2); padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.04); display: flex; gap: 10px; align-items: center;">
+                    <input type="text" id="aiSupportInput" placeholder="Введите ваш вопрос к ИИ..." style="flex: 1; background: #020408; border: 1px solid var(--border); padding: 12px 16px; border-radius: 8px; color: white; font-size: 13px; outline: none; font-family: inherit;">
+                    <button id="btnSendToAiSupport" style="width: 40px; height: 40px; background: linear-gradient(135deg, #6c5ce7, #a855f7); border: none; border-radius: 8px; color: white; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; box-shadow: 0 0 10px rgba(168,85,247,0.3);">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+
+            </div>
         </div>
-    </section>
-    <br>
-    <p class = "last-words">2026 EduGame<br>Игровая образовательная платформа. Все права защищены</p>
+
+        <div class="notifications-wrapper-zone hidden" id="hubNotificationsView" style="display: none; width: 100%; max-width: 650px; margin: 0 auto 40px auto; animation: fadeIn 0.4s ease;">
+            
+            <div class="notif-centered-header" style="text-align: center; margin-bottom: 20px;">
+                <h2 style="font-size: 13px; font-weight: 800; color: #a855f7; margin: 0; text-transform: uppercase; letter-spacing: 2px; filter: drop-shadow(0 0 5px rgba(168,85,247,0.4));">
+                    <i class="fa-regular fa-bell"></i> Центр уведомлений
+                </h2>
+                <div id="notifTotalBadge" style="font-size: 24px; font-weight: 900; color: white; margin-top: 6px; letter-spacing: -0.5px;">0 новых сообщений</div>
+            </div>
+
+            <div style="width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3), transparent); margin-bottom: 24px;"></div>
+
+            <div id="notificationsFeedContainer" style="display: flex; flex-direction: column; gap: 12px; max-height: 440px; overflow-y: auto; padding-right: 6px; text-align: left;">
+            </div>
+
+            <form id="developerNotificationForm" class="developer-notification-form" style="display: none;">
+                <label for="developerNotificationMessage">Общее уведомление всем пользователям</label>
+                <textarea id="developerNotificationMessage" maxlength="2000" required placeholder="Напишите важное объявление..."></textarea>
+                <button type="submit"><i class="fa-solid fa-paper-plane"></i> Отправить всем</button>
+                <p id="developerNotificationStatus" role="status"></p>
+            </form>
+
+        </div>
+
+        <div class="friends-wrapper-zone hidden" id="hubFriendsView" style="display: none; width: 100%; max-width: 650px; margin: 0 auto 40px auto; animation: fadeIn 0.4s ease;">
+            
+            <div class="friends-centered-header" style="text-align: center; margin-bottom: 20px;">
+                <h2 style="font-size: 13px; font-weight: 800; color: #34d399; margin: 0; text-transform: uppercase; letter-spacing: 2px; filter: drop-shadow(0 0 5px rgba(52,211,153,0.4));">
+                    <i class="fa-solid fa-user-group"></i> Сообщество студентов
+                </h2>
+                <div id="friendsTotalBadge" style="font-size: 24px; font-weight: 900; color: white; margin-top: 6px; letter-spacing: -0.5px;">0 активных друзей</div>
+            </div>
+
+            <div class="friends-tabs-zone" style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
+                <button class="filter-chip tab-friend active" data-tab="list" style="padding: 10px 16px; background: rgba(52, 211, 153, 0.05); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 6px; color: white; font-weight: 700; font-size: 12px; cursor: pointer; transition: all 0.2s;">
+                    <i class="fa-solid fa-users"></i> Мои друзья
+                </button>
+                <button class="filter-chip tab-friend" data-tab="incoming" style="padding: 10px 16px; background: transparent; border: 1px solid var(--border); border-radius: 6px; color: #64748b; font-weight: 600; font-size: 12px; cursor: pointer; transition: all 0.2s;">
+                    <i class="fa-solid fa-user-clock"></i> Входящие запросы
+                </button>
+                <button class="filter-chip tab-friend" data-tab="outgoing" style="padding: 10px 16px; background: transparent; border: 1px solid var(--border); border-radius: 6px; color: #64748b; font-weight: 600; font-size: 12px; cursor: pointer; transition: all 0.2s;">
+                    <i class="fa-solid fa-paper-plane"></i> Исходящие запросы
+                </button>
+            </div>
+
+            <div style="width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.3), transparent); margin-bottom: 24px;"></div>
+
+            <div id="friendsFeedContainer" style="display: flex; flex-direction: column; gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 6px; text-align: left;">
+            </div>
+
+        </div>
+
+        <div class="wallet-wrapper-zone hidden" id="hubWalletView" style="display: none; width: 100%; max-width: 620px; margin: 0 auto; animation: fadeIn 0.4s ease;">
+            <section id="teacherWalletPanel" class="teacher-wallet-panel" style="display: none;">
+                <div class="teacher-wallet-heading">
+                    <span class="teacher-wallet-icon"><i class="fa-solid fa-wallet"></i></span>
+                    <div>
+                        <p class="teacher-wallet-eyebrow">КАБИНЕТ ПРЕПОДАВАТЕЛЯ</p>
+                        <h2>Кошелёк наставника</h2>
+                    </div>
+                </div>
+                <div class="teacher-wallet-balance">
+                    <span>Доступный баланс</span>
+                    <strong><span id="teacherWalletCoinsBalance">0</span> <small>монет</small></strong>
+                </div>
+                <div class="teacher-wallet-notice">
+                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                    <p>Вывод в реальные деньги станет доступен после подключения платёжного шлюза и публикации официального курса обмена. Сейчас монеты остаются внутренней валютой EduGame.</p>
+                </div>
+                <button class="teacher-wallet-withdraw" id="teacherWalletWithdrawBtn" type="button">
+                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    Перейти к выводу средств
+                </button>
+            </section>
+
+            <div id="studentWalletPanel" style="background: rgba(15, 20, 36, 0.9); border: 1px solid rgba(59, 130, 246, 0.22); border-radius: 14px; padding: 22px 24px; backdrop-filter: blur(25px); box-shadow: 0 20px 50px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 16px;">
+                
+                <div style="text-align: center;">
+                    <h2 style="font-size: 12px; font-weight: 800; color: #3b82f6; margin: 0; text-transform: uppercase; letter-spacing: 2px; filter: drop-shadow(0 0 5px rgba(59,130,246,0.4));">
+                        <i class="fa-solid fa-wallet"></i> Баланс Звёзд EduGame
+                    </h2>
+                    <div id="walletStarsBalance" style="font-size: 32px; font-weight: 900; color: white; margin-top: 6px; letter-spacing: -1px;">2,500 <span style="color: #3b82f6;">🌟</span></div>
+                </div>
+
+                <div style="width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.25), transparent);"></div>
+
+                <div style="text-align: left;">
+                    <span style="font-size: 10.5px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 12px;">Выберите пакет Звёзд:</span>
+                    
+                    <div class="wallet-stars-grid-compact">
+                        
+                        <div class="star-pack-card" onclick="alert('Перенаправление на шлюз... Покупка 100 Звёзд.')">
+                            <div class="pack-stars-icon">🌟</div>
+                            <strong class="pack-amount">100</strong>
+                            <span class="pack-price-tag">149 ₽</span>
+                        </div>
+
+                        <div class="star-pack-card" onclick="alert('Перенаправление на шлюз... Покупка 250 Звёзд.')">
+                            <div class="pack-stars-icon">💫</div>
+                            <strong class="pack-amount">250</strong>
+                            <span class="pack-price-tag">349 ₽</span>
+                        </div>
+
+                        <div class="star-pack-card" onclick="alert('Перенаправление на шлюз... Покупка 500 Звёзд.')" style="border-color: rgba(59,130,246,0.3) !important;">
+                            <span class="pack-badge-hit">Популярно</span>
+                            <div class="pack-stars-icon">🔮</div>
+                            <strong class="pack-amount">500</strong>
+                            <span class="pack-price-tag" style="background: rgba(59,130,246,0.2) !important; color: white;">599 ₽</span>
+                        </div>
+
+                        <div class="star-pack-card" onclick="alert('Перенаправление на шлюз... Покупка 1,000 Звёзд.')">
+                            <div class="pack-stars-icon">💎</div>
+                            <strong class="pack-amount">1,000</strong>
+                            <span class="pack-price-tag">1,190 ₽</span>
+                        </div>
+
+                        <div class="star-pack-card" onclick="alert('Перенаправление на шлюз... Покупка 2,500 Звёзд.')" style="border-color: rgba(234, 179, 8, 0.3) !important;">
+                            <span class="pack-badge-hit" style="background: linear-gradient(135deg, #eab308, #ca8a04) !important;">Выгодно</span>
+                            <div class="pack-stars-icon">👑</div>
+                            <strong class="pack-amount" style="color: #eab308;">2,500</strong>
+                            <span class="pack-price-tag" style="background: rgba(234,179,8,0.15) !important; color: #eab308;">2,790 ₽</span>
+                        </div>
+
+                        <div class="star-pack-card" onclick="alert('Перенаправление на шлюз... Покупка 5,000 Звёзд.')" style="border-color: rgba(236, 72, 153, 0.3) !important;">
+                            <span class="pack-badge-hit" style="background: linear-gradient(135deg, #ec4899, #be185d) !important;">КИБЕР ПАК</span>
+                            <div class="pack-stars-icon">🧠</div>
+                            <strong class="pack-amount" style="color: #ec4899;">5,000</strong>
+                            <span class="pack-price-tag" style="background: rgba(236,72,153,0.15) !important; color: #ec4899;">4,990 ₽</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="hud-modal-overlay" id="modalSettings">
+        <div class="hud-modal-content animate__animated animate__zoomIn animate__fast">
+            <h3>⚙️ Системные настройки</h3>
+            <p>Конфигурация облачной среды SaaS и 2FA защиты</p>
+            <div class="settings-row-info">Статус логирования: <span style="color:var(--green);">Debug Active</span></div>
+            <button class="hud-btn confirm" style="width:100%; margin-bottom:12px;">Сбросить токены сессии</button>
+            <button class="hud-btn cancel" id="closeSettingsBtn" style="width:100%;">Закрыть</button>
+        </div>
+    </div>
+
+    <div class="hud-modal-overlay" id="modalNotifDetail" style="z-index: 2000000 !important;">
+        <div class="hud-modal-content animate__animated animate__zoomIn animate__fast" style="max-width: 450px; background: #0f1424; border: 1px solid var(--border-violet); text-align: left; padding: 24px;">
+            
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px;">
+                <div id="modalNotifIconBox" style="font-size: 20px;"></div>
+                <div>
+                    <h3 id="modalNotifSender" style="font-size: 14px; font-weight: 800; color: white; margin: 0;">Отправитель</h3>
+                    <span id="modalNotifTime" style="font-size: 10px; color: #475569; font-weight: 600;">Время</span>
+                </div>
+            </div>
+
+            <p id="modalNotifMessage" style="font-size: 13px; color: #94a3b8; line-height: 1.6; margin: 0 0 20px 0;">Текст уведомления...</p>
+
+            <button class="hud-btn confirm" id="btnAcceptCommunityInvite" style="display: none; width: 100%; margin: 0 0 10px; padding: 12px; font-weight: 700;">Принять приглашение</button>
+            <button class="hud-btn confirm" id="btnCloseNotifDetail" style="width: 100%; margin: 0; padding: 12px; font-weight: 700;">Принято</button>
+        </div>
+    </div>
+
+<div id="security-modal-overlay" class="modal-overlay">
+    
+    <div class="modal-card">
+        
+        <div class="modal-header">
+            <div class="warning-title">
+                <span class="warning-icon">⚠️</span>
+                <h3>СИСТЕМНОЕ УВЕДОМЛЕНИЕ БЕЗОПАСНОСТИ EduGame</h3>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <h2 class="alert-title text-center">2FA не включена!</h2>
+            
+            <p class="main-text">
+                Синхронизация с бэкендом <span class="white-text">EduGame</span> завершена успешно, но на вашей учетной записи <span class="accent-text">не активирована</span> двухэтапная аутентификация.
+            </p>
+            
+            <p class="secondary-text">
+                Для обеспечения максимальной безопасности платформы и защиты данных вашего аккаунта рекомендуем включить двухфакторную аутентификацию <span class="white-text">(2FA)</span>.
+            </p>
+            
+            <div class="threat-level">
+                <span class="dot red-dot"></span>
+                Текущий уровень безопасности: <span class="danger-text">Средний</span>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button id="btn-skip-security" class="btn-secondary">Пока нет</button>
+            <button id="btn-deploy-2fa" class="btn-action">🛡️ Включить 2FA</button>
+        </div>      
+    </div>
+</div>        
+</div> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+    <script type="module" src="Api-client.js"></script>
+    <script type="module" src="main/core.js"></script>
+    <script type="module" src="main/passport.js"></script>
+    <script type="module" src="main/slider.js"></script>
+    <script type="module" src="main/roles.js"></script>
+    <script type="module" src="main/devtools.js"></script>
+    <script type="module" src="main/notifications.js"></script>
+    <script type="module" src="main/ai-chat.js"></script>
+    <script type="module" src="main/friends.js"></script>
+    <script type="module" src="main/init.js"></script>
+    <script type="module" src="Main.js"></script>
 </body>
 </html>

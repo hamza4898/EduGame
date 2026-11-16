@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGame — Кабинет Преподавателя</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="Learn.css">
+    <link rel="stylesheet" href="LearnTeacher.css">
+</head>
+<body class="app animate__animated animate__fadeIn">
+
+    <div class="hub-bg-logo">
+        <img src="images/hamzaBro3.png" alt="EduGame Mascot">
+    </div>
+
+    <header class="saas-topbar animate__animated animate__fadeInDown">
+        <div class="saas-workspace-selector" onclick="window.location.href='Main.html'">
+            <div class="workspace-avatar back-hub"><i class="fa-solid fa-arrow-left"></i></div>
+            <div class="workspace-meta">
+                <span class="workspace-name">Вернуться в Хаб</span>
+                <span class="workspace-plan">Модуль: Преподавание</span>
+            </div>
+        </div>
+
+        <div class="saas-topbar-actions">
+            <div class="hud-gamification-widgets">
+                <div class="hud-stat-badge" title="Ваш баланс монет">
+                    <i class="fa-solid fa-coins text-gold"></i>
+                    <span id="hudUserCoinsDisplay">—</span>
+                </div>
+            </div>
+            <div class="saas-user-profile-trigger">
+                <div class="hud-level-badge" id="hud-level-badge" style="background:rgba(245,158,11,0.1); border-color:#f59e0b; color:#f59e0b;"></div>
+                <span class="saas-username-display" id="saas-username-display"></span>
+                <div class="saas-avatar-mini" onclick="window.location.href = 'Profile.html'"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="learn-main-wrapper">
+
+        <section class="learn-dashboard-view teacher-dashboard" id="teacherDashView">
+
+            <div class="active-course-hero-card" id="teacherHeroZone"></div>
+
+            <div class="dashboard-filters-zone">
+                <button class="filter-chip tab-filter active" data-collection="draft">
+                    <i class="fa-solid fa-hammer text-violet"></i> В разработке
+                </button>
+                <button class="filter-chip tab-filter" data-collection="published">
+                    <i class="fa-solid fa-globe text-green"></i> Опубликовано
+                </button>
+                <button class="filter-chip tab-filter" data-collection="liked">
+                    <i class="fa-solid fa-heart text-red"></i> Избранное
+                </button>
+                <button class="filter-chip tab-filter" data-collection="archived">
+                    <i class="fa-solid fa-box-archive text-muted"></i> Архив
+                </button>
+            </div>
+
+            <div class="courses-rail-wrap">
+                <button class="rail-arrow rail-prev" id="teacherRailPrev" aria-label="Предыдущие курсы">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="courses-rail" id="teacherCoursesGrid"></div>
+                <button class="rail-arrow rail-next" id="teacherRailNext" aria-label="Следующие курсы">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="bottom-search-trigger-zone">
+                <button class="btn-global-search-trigger btn-create-course-trigger" id="btnOpenCreateCourse">
+                    <i class="fa-solid fa-plus"></i> Создать курс
+                </button>
+            </div>
+        </section>
+
+        <section class="lesson-section hidden" id="editorView" style="display: none;">
+            <div class="learn-tab-back-panel">
+                <button class="btn-back-to-dash" id="btnLeaveEditor">
+                    <i class="fa-solid fa-chevron-left"></i> Вернуться к списку курсов
+                </button>
+            </div>
+
+            <div class="learn-layout-container">
+                <aside class="learn-sidebar instructor-sidebar">
+                    <div class="sidebar-header">
+                        <h3 id="editorCourseTitle"><i class="fa-solid fa-chalkboard-user"></i> Курс</h3>
+                    </div>
+                    <nav class="instructor-nav" id="instructorNav"></nav>
+                </aside>
+
+                <main class="learn-main-content">
+                    <div class="lesson-card instructor-panel" id="instructorPanel"></div>
+                </main>
+            </div>
+        </section>
+    </div>
+
+    <div class="hud-modal-overlay" id="modalCreateCourse">
+        <div class="hud-modal-content create-course-modal animate__animated animate__zoomIn animate__fast">
+            <div class="search-modal-header">
+                <h3><i class="fa-solid fa-wand-magic-sparkles text-violet"></i> Создание нового рейда</h3>
+                <button class="btn-close-search" id="btnCloseCreateCourse"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="create-form">
+                <div class="form-row">
+                    <label class="form-col">Путь обучения
+                        <select class="instr-input" id="createPath">
+                            <option value="">Выберите путь...</option>
+                        </select>
+                    </label>
+                    <label class="form-col">Подкатегория
+                        <select class="instr-input" id="createSubPath" disabled>
+                            <option value="">Сначала выберите путь</option>
+                        </select>
+                    </label>
+                </div>
+
+                <label class="form-col">Название курса
+                    <input class="instr-input" id="createTitle" placeholder="Напр.: Микросервисы и Docker для профи" maxlength="100">
+                </label>
+                
+                <label class="form-col">Краткое описание (для карточки в каталоге)
+                    <textarea class="instr-textarea" id="createDesc" rows="2" placeholder="Чему научится студент, пройдя этот рейд?" maxlength="200"></textarea>
+                </label>
+
+                <div class="form-row" style="align-items: flex-end;">
+                    <label class="form-col" style="flex: 1.2;">
+                        <div class="switch-row">
+                            <input type="checkbox" id="createIsFree" checked>
+                            <span>Сделать курс полностью бесплатным</span>
+                        </div>
+                    </label>
+                    <label class="form-col" style="flex: 1;">
+                        Цена доступа ()
+                        <input class="instr-input" id="createPrice" type="number" min="0" value="0" disabled placeholder="0">
+                    </label>
+                </div>
+
+                <label class="form-col">Сложность курса
+                    <select class="instr-input" id="createDifficulty">
+                        <option value="1">Начальный уровень</option>
+                        <option value="2" selected>Средний уровень</option>
+                        <option value="3">Продвинутый уровень</option>
+                    </select>
+                </label>
+
+                <section class="course-community-panel">
+                    <div class="course-community-heading">
+                        <span class="course-community-icon"><i class="fa-solid fa-people-group"></i></span>
+                        <div>
+                            <strong>Сообщество курса</strong>
+                            <p>Создадим пространство для учеников и сразу свяжем его с курсом.</p>
+                        </div>
+                    </div>
+                    <label class="form-col">Название сообщества
+                        <input class="instr-input" id="createCommunityName" maxlength="30" placeholder="Например: Основы C#">
+                    </label>
+                    <label class="form-col">Описание сообщества
+                        <textarea class="instr-textarea" id="createCommunityDesc" rows="2" maxlength="200" placeholder="Можно оставить пустым — возьмём описание курса"></textarea>
+                    </label>
+                    <div class="form-row">
+                        <label class="form-col">Доступ
+                            <select class="instr-input" id="createCommunityPrivacy">
+                                <option value="0">Публичное</option>
+                                <option value="1">Приватное</option>
+                            </select>
+                        </label>
+                        <label class="form-col">Лимит участников
+                            <select class="instr-input" id="createCommunityLimit">
+                                <option value="10">10 участников</option>
+                                <option value="100" selected>100 участников</option>
+                                <option value="500">500 участников</option>
+                                <option value="0">Без ограничений</option>
+                            </select>
+                        </label>
+                    </div>
+                </section>
+
+                <button class="hud-btn-premium" id="btnCreateCourse" style="margin-top: 10px;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Создать курс и сообщество
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-toast-container" id="gameToast">
+        <div class="game-toast-content">
+            <div class="toast-icon-box"><i class="fa-solid fa-trophy"></i></div>
+            <div class="toast-text-box">
+                <h4 id="toastTitle">Готово!</h4>
+                <p id="toastMessage">Действие выполнено.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="Api-client.js"></script>
+    <script src="teacher/scripts/teacher-state.js"></script>
+    <script src="teacher/scripts/teacher-api.js"></script>
+    <script src="teacher/scripts/teacher-render.js"></script>
+    <script src="teacher/scripts/teacher-editor.js"></script>
+    <script src="teacher/scripts/teacher-actions.js"></script>
+    <script src="teacher/scripts/teacher-init.js"></script>
+    <script src="Updates.js"></script>
+</body>
+</html>

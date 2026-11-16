@@ -3,19 +3,20 @@ async function loginUser(formId) {
     const data = Object.fromEntries(new FormData(form));
 
     try {
-        const response = await fetch('/api/login/LoginUser', {
+        const response = await apiFetch('/api/login/LoginUser', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
 
+        const result = await response.json();
+
         if (response.ok) {
-            window.location.href = "/Profile.html";
-        } else {
-            const errorData = await response.json();
-            
-            if (errorData && errorData.error) {
-                const messages = errorData.error;
+            localStorage.setItem("isTwoFactorEnabled", result);
+            window.location.href = "/Main.html"
+        } else {       
+            if (result.error) {
+                const messages = result.error;
                 alert("Ошибки:\n" + messages);
             } else {
                 alert("Ошибка сервера: " + response.status);

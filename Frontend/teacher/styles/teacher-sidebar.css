@@ -1,0 +1,80 @@
+.instructor-sidebar {
+    overflow: hidden;
+    border-color: rgba(168, 85, 247, .15);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, .22);
+}
+
+.instructor-sidebar .sidebar-header {
+    background: linear-gradient(135deg, rgba(168, 85, 247, .08), transparent);
+}
+
+.instructor-sidebar .sidebar-header h3 {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.instructor-sidebar .sidebar-header h3 i {
+    color: var(--violet-primary);
+}
+
+.instructor-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 14px 12px;
+    overflow-y: auto;
+}
+
+.instr-group-title {
+    padding: 0 10px 8px;
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
+.instr-group-title i {
+    margin-right: 5px;
+    color: var(--violet-primary);
+}
+
+.instr-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 12px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-secondary);
+    text-align: left;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s;
+}
+
+.instr-item:hover,
+.instr-item.active {
+    border-color: var(--border-violet);
+    background: rgba(168, 85, 247, .08);
+    color: var(--text-primary);
+}
+
+.instr-item.active i {
+    color: var(--violet-primary);
+}
+
+.count-badge {
+    min-width: 20px;
+    margin-left: auto;
+    padding: 2px 6px;
+    border-radius: 12px;
+    background: rgba(230, 57, 70, .15);
+    color: #ff859f;
+    font-size: 10px;
+    font-weight: 800;
+    text-align: center;
+}

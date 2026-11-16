@@ -1,0 +1,313 @@
+.clan-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.6) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  z-index: 200 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.clan-modal-overlay.open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.clan-modal-content {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  width: 750px;
+  max-width: 90vw;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(230, 57, 70, 0.05) !important;
+  overflow: hidden;
+}
+
+.clan-modal-header {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.clan-modal-header .lobby-close-btn {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-muted) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.clan-modal-header .lobby-close-btn:hover {
+  color: var(--accent) !important;
+  transform: scale(1.15) rotate(90deg) !important;
+  filter: drop-shadow(0 0 8px var(--accent)) !important;
+}
+
+.clan-modal-header .lobby-close-btn svg {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.clan-modal-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: calc(100% - 55px);
+}
+
+.clan-profile-side {
+  padding: 24px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.clan-avatar-big {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 15px rgba(230, 57, 70, 0.2);
+}
+
+.clan-avatar-big img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.clan-name-neon {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 12px 0;
+}
+
+.clan-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 14px;
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.clan-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.clan-players-side {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.lobby-list-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+
+.online-count-badge {
+  color: #4ade80;
+  text-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
+}
+
+.player-list-table {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-muted) transparent;
+}
+
+.player-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--glass);
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.player-row:hover {
+  background: var(--glass-active) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 12px rgba(230, 57, 70, 0.15);
+  transform: translateX(2px);
+}
+
+.player-avatar-wrapper {
+  position: relative;
+  width: 36px;
+  height: 36px;
+}
+
+.player-avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.player-status-dot {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #0a0e1a;
+}
+
+.player-status-dot.online {
+  background: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+}
+
+.player-status-dot.offline {
+  background: #718096;
+}
+
+.player-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.player-nickname {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.player-role {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  width: fit-content;
+}
+
+.player-role.leader {
+  background: rgba(230, 57, 70, 0.15);
+  color: #e63946;
+}
+
+.player-role.officer {
+  background: rgba(255, 183, 3, 0.15);
+  color: #ffb703;
+}
+
+.player-role.member {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+.player-actions-panel {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  justify-content: flex-start;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.player-row:hover .player-actions-panel,
+.player-row:focus-within .player-actions-panel {
+  opacity: 1;
+  max-height: 120px;
+  margin-top: 10px;
+}
+
+.clan-action-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: all 0.2s ease-in-out;
+}
+
+.clan-action-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+@media (hover: none) {
+  .player-actions-panel {
+    opacity: 1;
+    max-height: 120px;
+    margin-top: 8px;
+  }
+}
+
+.clan-action-btn.promote-btn:hover {
+  background: rgba(74, 222, 128, 0.1) !important;
+  border-color: #4ade80 !important;
+  color: #4ade80 !important;
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+  transform: translateY(-1px);
+}
+
+.clan-action-btn.demote-btn:hover {
+  background: rgba(255, 183, 3, 0.1) !important;
+  border-color: #ffb703 !important;
+  color: #ffb703 !important;
+  box-shadow: 0 0 10px rgba(255, 183, 3, 0.2);
+  transform: translateY(-1px);
+}
+
+.clan-action-btn.kick-btn:hover {
+  background: rgba(230, 57, 70, 0.1) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent-light) !important;
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
+  transform: translateY(-1px);
+}

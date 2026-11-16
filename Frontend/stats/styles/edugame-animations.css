@@ -1,0 +1,7 @@
+.animate__fadeIn {
+    animation-duration: 0.3s;
+}
+
+.animate__faster {
+    animation-duration: 0.25s !important;
+}

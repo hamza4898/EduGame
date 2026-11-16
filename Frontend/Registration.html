@@ -1,122 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
-    <link rel = "stylesheet" href = "Registration.css">
+    <title>EduGame — Регистрация</title>
+    <link rel="stylesheet" href="Intro.css">
+    <link rel="stylesheet" href="Registration.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src = "Registration.js"></script>
+    <link rel="icon" type="image/png" href="images/hamzaBro3.png">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
-<body style = "background-color: black;">
+<body>
+
+    <nav class="intro-nav">
+        <a class="nav-logo" href="Intro.html">
+            <span class="nav-logo-icon"><i class="fa-solid fa-gamepad"></i></span>
+            EduGame
+        </a>
+        <div class="nav-actions">
+            <a class="nav-signin" href="Intro.html">На главную</a>
+            <a class="btn-pill btn-pill-small" href="Login.html">Вход</a>
+        </div>
+    </nav>
+
+    <header class="reg-hero animate__animated animate__fadeIn">
+        <p class="kicker">Две точки входа — одна экосистема</p>
+        <h1>Выбери свою <span class="grad-text">роль в игре</span></h1>
+        <p class="reg-sub">Студент проходит квесты и качает XP. Преподаватель создаёт курсы и ведёт аудиторию. Дальше пускает только аккаунт.</p>
+    </header>
+
     <section id="cooperation">
         <div class="container">
-            <h2 class = "register-title animate__animated animate__fadeIn" style = "color: aliceblue;">Готовы поработать с нами?</h2>
-            <div class="cta-grid animate__animated animate__fadeIn">
-                <div class="cta-card" style = "color: white;">
-                    <h3>👨‍🎓 Ученик</h3>
-                    <p>Пройдите курсы, получите сертификаты</p>
+            <div class="cta-grid animate__animated animate__fadeInUp">
+                <div class="cta-card card-student">
+                    <span class="cta-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+                    <h3>Ученик</h3>
+                    <p>Проходи курсы как квесты, получай XP, монеты и сертификаты</p>
                     <button class="role-btn student-btn" onclick="showForm('student')">Начать обучение</button>
                 </div>
-                
-                <div class="cta-card" style = "color: white;">
-                    <h3>👨‍🏫 Преподаватель</h3>
-                    <p>Создавайте курсы, обучайте студентов</p>
+
+                <div class="cta-card card-teacher">
+                    <span class="cta-icon"><i class="fa-solid fa-chalkboard-user"></i></span>
+                    <h3>Преподаватель</h3>
+                    <p>Создавай игровые курсы, проверяй решения и следи за аналитикой</p>
                     <button class="role-btn teacher-btn" onclick="showForm('teacher')">Стать автором</button>
                 </div>
-                
-                <div class="cta-card" style = "color: white;">
-                    <h3>🤝 Партнерство</h3>
-                    <p>Школы, вузы, компании, франшизы и другие организации</p>
-                    <button class="role-btn partner-btn" onclick="showForm('partner')">Предложить партнерство</button>
-                </div>
             </div>
-            
+
             <div id="studentForm" class="role-form">
                 <button class="back-btn" type="button" onclick="hideAllForms()">← Назад к выбору</button>
-                <h3>👨‍🎓 Регистрация ученика</h3>
-                <form method="post" action="/api/Student/RegisterStudent">
-                    <input name = "UserName" type="text" placeholder="Никнейм" required>
-                    <input name = "FirstName" type="text" placeholder="Фамилия" required>
-                    <input name = "LastName" type="text" placeholder="Имя" required>
-                    <select name = "Gender" required aria-placeholder="Пол">
+                <h3><i class="fa-solid fa-graduation-cap" style="color:var(--green);"></i> Регистрация ученика</h3>
+                <form method="post" action="/api/student/RegisterStudent">
+                    <input name="UserName" type="text" placeholder="Никнейм" required>
+                    <input name="FirstName" type="text" placeholder="Фамилия" required>
+                    <input name="LastName" type="text" placeholder="Имя" required>
+                    <select name="Gender" required aria-placeholder="Пол">
                         <option value="" selected disabled>Пол</option>
-                        <option value="Male">Мужской</option>
-                        <option value="Female">Женский</option>
+                        <option value="Мужской">Мужской</option>
+                        <option value="Женский">Женский</option>
                     </select>
-                    <input name = "PhoneNumber" type="tel" placeholder="Телефон" required>
                     <input name="DateOfBirth" type="text" placeholder="Дата рождения" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required>
-                    <select name = "Education" required aria-placeholder = "Образование">
+                    <select name="Education" required aria-placeholder="Образование">
                         <option value="" selected disabled>Образование</option>
-                        <option value="Pupil">Ученик начальной школы</option>
-                        <option value="Middle School">Ученик средней школы</option>
-                        <option value="High School">Ученик старшей школы</option>
-                        <option value="Student">Студент</option>
-                        <option value="Other">Другое</option>
+                        <option value="Ученик начальной школы">Ученик начальной школы</option>
+                        <option value="Ученик средней школы">Ученик средней школы</option>
+                        <option value="Ученик старшей школы">Ученик старшей школы</option>
+                        <option value="Студент">Студент</option>
+                        <option value="Другое">Другое</option>
                     </select>
-                    <input name = "Email" type="email" placeholder="Email" required>
+                    <input name="Email" type="email" placeholder="Email" required>
+
                     <div class="password-field">
+                        <i class="fa-solid fa-lock field-icon"></i>
                         <input name="Password" type="password" placeholder="Пароль" required>
                         <button type="button" class="toggle-btn" onclick="togglePass(this)">👁️</button>
                     </div>
-                    <textarea name="Motivation" placeholder="В чем ваша мотивация?" rows="4" required></textarea>
+                    <p class="secure-hint">
+                        <span class="icon-pair"><i class="fa-solid fa-key"></i><i class="fa-solid fa-lock"></i></span>
+                        Пароль под защитой: сессия живёт в HttpOnly-cookie
+                    </p>
+
                     <button id="reg-btn" type="submit" class="submit-btn">Начать обучение</button>
+
+                    <div class="divider"><span>или</span></div>
+                    <button type="button" class="google-btn" onclick="googleAuthUniversal()">
+                        <i class="fa-brands fa-google"></i> Продолжить с Google
+                    </button>
                 </form>
             </div>
 
             <div id="teacherForm" class="role-form">
-                <button class="back-btn" onclick="hideAllForms()">← Назад к выбору</button>
-                <h3>👨‍🏫 Заявка преподавателя</h3>
-                <form method="post" action="/api/Teacher/RegisterTeacher">
-                    <input name = "UserName" type="text" placeholder="Никнейм" required>
-                    <input name = "FirstName" type="text" placeholder="Фамилия" required>
-                    <input name = "LastName" type="text" placeholder="Имя" required>
-                    <select name = "Gender" required aria-placeholder="Пол">
+                <button class="back-btn" type="button" onclick="hideAllForms()">← Назад к выбору</button>
+                <h3><i class="fa-solid fa-chalkboard-user" style="color:var(--amber);"></i> Заявка преподавателя</h3>
+                <form method="post" action="/api/teacher/RegisterTeacher">
+                    <input name="UserName" type="text" placeholder="Никнейм" required>
+                    <input name="FirstName" type="text" placeholder="Фамилия" required>
+                    <input name="LastName" type="text" placeholder="Имя" required>
+                    <select name="Gender" required aria-placeholder="Пол">
                         <option value="" selected disabled>Пол</option>
                         <option value="Male">Мужской</option>
                         <option value="Female">Женский</option>
                     </select>
-                    <input name = "PhoneNumber" type="tel" placeholder="Телефон" required>
                     <input name="DateOfBirth" type="text" placeholder="Дата рождения" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required>
-                    <input name = "Subject" type="text" placeholder="Предмет" required>
-                    <input name = "Email" type="email" placeholder="Email" required>
-                    <div class="password-field">
-                        <input name="Password" type="password" placeholder="Пароль" required>
-                        <button type="button" class="toggle-btn" onclick="togglePass(this)">👁️</button>
-                    </div>
-                    <textarea name="Motivation" placeholder="Опыт преподавания, примеры работ" rows="4" required></textarea>
-                    <button id="reg-btn" type="submit" class="submit-btn">Начать обучение</button>
-                </form>
-            </div>
+                    <input name="Subject" type="text" placeholder="Предмет" required>
+                    <input name="Email" type="email" placeholder="Email" required>
 
-            <div id="partnerForm" class="role-form">
-                <button class="back-btn" onclick="hideAllForms()">← Назад к выбору</button>
-                <h3>🤝 Заявка на партнерство</h3>
-                <form method="post" action="/api/Partner/RegisterPartner">
-                    <input name = "UserName" type="text" placeholder="Никнейм" required>
-                    <input name="Company" type="text" placeholder="Название компании/организации" required>
-                    <input name = "FirstName" type="text" placeholder="Фамилия контактного лица" required>
-                    <input name = "LastName" type="text" placeholder="Имя контактного лица" required>
-                    <input name = "PhoneNumber" type="tel" placeholder="Телефон" required>
-                    <input name="DateOfBirth" type="text" placeholder="Дата рождения" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required>
-                    <select name="TypeOfCooperation" required aria-placeholder="Сотрудничество">
-                        <option value="" selected disabled>Тип сотрудничества</option>
-                        <option value="School">Школа</option>
-                        <option value="University">Вуз</option>
-                        <option value="Company">Компания</option>
-                        <option value="Franchise">Франшиза</option>
-                        <option value="Other">Другое</option>
-                    </select>
-                    <input name="Email"type="email" placeholder="Email" required>
                     <div class="password-field">
+                        <i class="fa-solid fa-lock field-icon"></i>
                         <input name="Password" type="password" placeholder="Пароль" required>
                         <button type="button" class="toggle-btn" onclick="togglePass(this)">👁️</button>
                     </div>
-                    <textarea name="Motivation" placeholder="Предложение по сотрудничеству" rows="4" required></textarea>
-                    <button id="reg-btn" type="submit" class="submit-btn">Отправить заявку</button>
+                    <p class="secure-hint">
+                        <span class="icon-pair"><i class="fa-solid fa-key"></i><i class="fa-solid fa-lock"></i></span>
+                        Пароль под защитой: сессия живёт в HttpOnly-cookie
+                    </p>
+
+                    <button id="reg-btn" type="submit" class="submit-btn">Стать автором</button>
+
+                    <div class="divider"><span>или</span></div>
+                    <button type="button" class="google-btn" onclick="googleAuthUniversal()">
+                        <i class="fa-brands fa-google"></i> Продолжить с Google
+                    </button>
                 </form>
             </div>
         </div>
-    </section> 
+    </section>
+
+    <footer class="reg-footer">2026 EduGame · Игровая образовательная платформа. Все права защищены</footer>
+
+    <script src="Registration.js"></script>
+    <script src="Api-client.js"></script>
+    <script src="google-auth.js"></script>
 </body>
 </html>
